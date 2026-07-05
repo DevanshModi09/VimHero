@@ -19,6 +19,13 @@ is saved to `~/.vimhero/progress.json`.
 - In a challenge: real Vim keys. Each day's lesson tells you which ones are new.
 - `esc` while in Normal mode backs out to the challenge list.
 
+### Learning aids
+
+Every challenge explains what the new command actually does — not just
+what to press — before asking you to use it, and shows a 💡 tip on
+screen with a related trick or a common gotcha (e.g. why `b` sometimes
+"wastes" a keystroke snapping to the start of your current word).
+
 ### Scoring
 
 Each challenge has a par keystroke count. Clear it at or under par for
@@ -40,6 +47,19 @@ day unlocks the next one.
   position" or "transform the buffer into this target text."
 - `internal/progress` — persists unlock state, best scores, and streaks.
 - `internal/ui` — the Bubble Tea TUI tying it all together.
+
+## Building a binary
+
+```
+go build -o vimhero .
+```
+
+To cross-compile for another OS (e.g. from macOS/Linux for Windows),
+set `GOOS`/`GOARCH` — no extra toolchain needed:
+
+```
+GOOS=windows GOARCH=amd64 go build -o vimhero.exe .
+```
 
 ## Status
 
