@@ -26,6 +26,7 @@ type Model struct {
 
 	screen screen
 	width  int
+	height int
 
 	dayCursor       int
 	challengeCursor int
@@ -61,6 +62,7 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := msg.(type) {
 	case tea.WindowSizeMsg:
 		m.width = msg.Width
+		m.height = msg.Height
 		return m, nil
 	case tea.KeyMsg:
 		key := msg.String()
@@ -236,17 +238,45 @@ func (m Model) View() string {
 	if m.quitting {
 		return ""
 	}
+	var out string
 	switch m.screen {
 	case screenDayList:
-		return m.viewDayList()
+		out = m.viewDayList()
 	case screenChallengeList:
-		return m.viewChallengeList()
+		out = m.viewChallengeList()
 	case screenPlay:
-		return m.viewPlay()
+		out = m.viewPlay()
 	case screenThemes:
-		return m.viewThemes()
+		out = m.viewThemes()
 	}
-	return ""
+	return fitToHeight(out, m.height)
+}
+
+func fitToHeight(s string, height int) string {
+	if height <= 0 {
+		return s
+	}
+	lines := strings.Split(s, "\n")
+	if len(lines) <= height {
+		return s
+	}
+	collapsed := make([]string, 0, len(lines))
+	prevBlank := false
+	for _, l := range lines {
+		blank := strings.TrimSpace(l) == ""
+		if blank && prevBlank {
+			continue
+		}
+		collapsed = append(collapsed, l)
+		prevBlank = blank
+	}
+	if len(collapsed) <= height {
+		return strings.Join(collapsed, "\n")
+	}
+	if height < 1 {
+		height = 1
+	}
+	return strings.Join(collapsed[:height], "\n")
 }
 
 func (m Model) viewDayList() string {
@@ -290,6 +320,8 @@ func (m Model) viewDayList() string {
 	}
 	b.WriteString(themeMarker + themeLabel + dimStyle.Render(" (press t)") + "\n\n")
 	b.WriteString(helpStyle.Render("j/k move · enter select · t theme · q quit"))
+	b.WriteString("\n\n")
+	b.WriteString(dimStyle.Render("Created by Devansh"))
 	return b.String()
 }
 
