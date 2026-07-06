@@ -24,6 +24,7 @@ type Model struct {
 	days []curriculum.Day
 
 	screen screen
+	width  int
 
 	dayCursor       int
 	challengeCursor int
@@ -54,6 +55,9 @@ func (m Model) Init() tea.Cmd {
 
 func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := msg.(type) {
+	case tea.WindowSizeMsg:
+		m.width = msg.Width
+		return m, nil
 	case tea.KeyMsg:
 		key := msg.String()
 		if key == "ctrl+c" {
@@ -151,6 +155,17 @@ func (m Model) updatePlay(key string) (tea.Model, tea.Cmd) {
 	return m, nil
 }
 
+func (m Model) contentWidth() int {
+	w := m.width
+	if w <= 0 {
+		w = 80
+	}
+	if w > 100 {
+		w = 100
+	}
+	return w - 4
+}
+
 func (m Model) checkWin() bool {
 	switch m.challenge.Kind {
 	case curriculum.KindGoal:
@@ -243,7 +258,7 @@ func (m Model) viewChallengeList() string {
 	var b strings.Builder
 	b.WriteString(titleStyle.Render(fmt.Sprintf("Day %d — %s", day.Number, day.Title)))
 	b.WriteString("\n\n")
-	b.WriteString(subtitleStyle.Render(day.Summary))
+	b.WriteString(subtitleStyle.Width(m.contentWidth()).Render(day.Summary))
 	b.WriteString("\n\n")
 	for i, ch := range day.Challenges {
 		marker := "  "
@@ -266,14 +281,14 @@ func (m Model) viewPlay() string {
 	day := m.days[m.dayIdx]
 	b.WriteString(titleStyle.Render(fmt.Sprintf("Day %d — %s", day.Number, m.challenge.Title)))
 	b.WriteString("\n\n")
-	b.WriteString(subtitleStyle.Render(m.challenge.Instructions))
+	b.WriteString(subtitleStyle.Width(m.contentWidth()).Render(m.challenge.Instructions))
 	b.WriteString("\n")
 	if len(m.challenge.NewKeys) > 0 {
 		b.WriteString(dimStyle.Render("New: " + strings.Join(m.challenge.NewKeys, "  ")))
 		b.WriteString("\n")
 	}
 	if m.challenge.Tip != "" {
-		b.WriteString(tipStyle.Render("💡 " + m.challenge.Tip))
+		b.WriteString(tipStyle.Width(m.contentWidth()).Render("💡 " + m.challenge.Tip))
 		b.WriteString("\n")
 	}
 	b.WriteString("\n")
