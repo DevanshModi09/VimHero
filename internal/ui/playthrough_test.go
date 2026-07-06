@@ -29,6 +29,15 @@ func TestCurriculumSolvable(t *testing.T) {
 		{6, 0, []string{"d", "w"}},
 		{6, 1, []string{"c", "w", "q", "u", "i", "c", "k", "esc"}},
 		{6, 2, []string{"c", "i", "w", "w", "o", "r", "d", "esc"}},
+
+		{7, 0, []string{"d", "a", "w"}},
+		{7, 1, []string{"D"}},
+		{7, 2, []string{"C", "y", "o", "u", "esc"}},
+
+		{8, 0, []string{"c", "w", "q", "u", "i", "c", "k", "esc", "j", "w", "c", "w", "o", "v", "e", "r", "esc"}},
+		{8, 1, []string{"d", "d", "g", "g", "P"}},
+		{8, 2, []string{"A", " ", "w", "o", "r", "l", "d", "esc", "G", "o", "S", "e", "e", " ", "y", "o", "u", " ", "s", "o", "o", "n", "esc"}},
+		{8, 3, []string{"c", "w", "q", "u", "i", "c", "k", "esc", "w", "w", "w", "w", "c", "w", "o", "v", "e", "r", "esc"}},
 	}
 
 	m := NewModel()

@@ -322,4 +322,123 @@ var days = []Day{
 			},
 		},
 	},
+	{
+		Number: 7,
+		Week:   "Week 2: More Operators",
+		Title:  "daw, D, C — Around Word & End-of-Line Shortcuts",
+		Summary: "iw grabs just the word itself; aw grabs the word plus the whitespace " +
+			"around it, so daw cleans up after itself without leaving a double space behind. " +
+			"D and C are shortcuts for d$ and c$ — delete or change everything from the " +
+			"cursor to the end of the line in a single keystroke.",
+		Challenges: []Challenge{
+			{
+				Title: "Delete Around Word",
+				Instructions: "aw is like iw but also grabs the whitespace touching the word, so " +
+					"daw removes a whole word cleanly without leaving a stray double space behind " +
+					"like diw would. Use daw to remove \"cat \" from the line below.",
+				Tip: "Tip: yaw and caw follow the same pattern — y/c/d all pair with either the " +
+					"i (inner) or a (around) text objects.",
+				NewKeys:     []string{"daw"},
+				Start:       []string{"please cat dog run"},
+				CursorStart: Pos{0, 7},
+				Kind:        KindEdit,
+				Target:      []string{"please dog run"},
+				Par:         3,
+			},
+			{
+				Title: "Delete To End Of Line",
+				Instructions: "D deletes from the cursor all the way to the end of the line — a " +
+					"shortcut for d$. Use D to strip the junk off the end of the line below.",
+				Tip: "Tip: D is one of a handful of capital-letter shortcuts for a lowercase " +
+					"operator plus $ — C works the same way for c$, as you'll see next.",
+				NewKeys:     []string{"D"},
+				Start:       []string{"good stuff###delete me"},
+				CursorStart: Pos{0, 10},
+				Kind:        KindEdit,
+				Target:      []string{"good stuff"},
+				Par:         1,
+			},
+			{
+				Title: "Change To End Of Line",
+				Instructions: "C deletes from the cursor to the end of the line and drops you into " +
+					"Insert mode there — a shortcut for c$. Use C to fix the typo \"yuo\" at the " +
+					"end of the line into \"you\".",
+				Tip: "Tip: same after-vs-before family as D/C — think of them as \"the rest of " +
+					"the line, gone\" plus whether you land in Insert mode afterward.",
+				NewKeys:     []string{"C"},
+				Start:       []string{"nice to meet yuo"},
+				CursorStart: Pos{0, 13},
+				Kind:        KindEdit,
+				Target:      []string{"nice to meet you"},
+				Par:         5,
+			},
+		},
+	},
+	{
+		Number: 8,
+		Week:   "Week 2: Checkpoint",
+		Title:  "Boss Challenge — Everything From Days 1-7",
+		Summary: "No new keys today. Four tasks, each solvable only by combining motions, " +
+			"operators, and Insert-mode commands from Days 1-7 — no hand-holding, no single " +
+			"correct sequence spelled out for you.",
+		Challenges: []Challenge{
+			{
+				Title: "Fix Two Typos",
+				Instructions: "Two lines below have typos. Move between lines and fix each word " +
+					"— figure out which operator and motion combo gets the job done fastest.",
+				Tip: "Tip: you don't have to delete and retype an entire word to fix a typo " +
+					"inside it — Day 6 covered exactly this.",
+				Start: []string{
+					"quikc brown fox",
+					"jumps ovver the",
+					"lazy dog now",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"quick brown fox",
+					"jumps over the",
+					"lazy dog now",
+				},
+				Par: 17,
+			},
+			{
+				Title: "Sort Them Out",
+				Instructions: "These three lines are out of alphabetical order. Move the odd one " +
+					"out into its correct place — no retyping, just cut and paste.",
+				Tip: "Tip: think back to Day 5's dd/p/P — deleting a line doesn't just remove " +
+					"it, it stores it for pasting elsewhere.",
+				Start:       []string{"banana", "apple", "cherry"},
+				CursorStart: Pos{1, 0},
+				Kind:        KindEdit,
+				Target:      []string{"apple", "banana", "cherry"},
+				Par:         5,
+			},
+			{
+				Title: "Finish The Story",
+				Instructions: "The first line is missing a word at the end, and the story is " +
+					"missing its last line entirely. Fix both using Insert-mode commands from " +
+					"Day 3.",
+				Tip: "Tip: A jumps to end-of-line before inserting, o opens a fresh line below " +
+					"— neither needs any cursor-walking first.",
+				Start:       []string{"Hello", "Goodbye friend"},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target:      []string{"Hello world", "Goodbye friend", "See you soon"},
+				Par:         23,
+			},
+			{
+				Title: "One Line, Two Fixes",
+				Instructions: "Both typos live on this single line. Fix the first one, then get " +
+					"to the second using a word motion instead of hjkl — then fix that one too.",
+				Tip: "Tip: w still works right where Normal mode left the cursor after Insert " +
+					"mode ends — no need to reposition first.",
+				Start:       []string{"The quikc brown fox jumps ovver lazy"},
+				CursorStart: Pos{0, 4},
+				Kind:        KindEdit,
+				Target:      []string{"The quick brown fox jumps over lazy"},
+				Par:         19,
+			},
+		},
+	},
 }
