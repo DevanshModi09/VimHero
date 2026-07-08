@@ -1017,4 +1017,96 @@ var days = []Day{
 			},
 		},
 	},
+	{
+		Number: 12,
+		Week:   "Week 2: More Operators",
+		Title:  "X and u — Delete Backward & Undo",
+		Summary: "X deletes the character(s) immediately to the left of the cursor — the " +
+			"mirror image of x, useful when you've landed one step past what actually needs " +
+			"to go. A count in front, like 4X, deletes that many characters going left in one " +
+			"shot. u undoes your most recent change and restores the buffer, and your cursor, " +
+			"to exactly how it was before — press it again to keep walking back through " +
+			"earlier edits, one step at a time.",
+		Challenges: []Challenge{
+			{
+				Title: "Delete Backwards",
+				Instructions: "X deletes the character immediately to the left of the cursor " +
+					"and shifts everything after it left to fill the gap — it's x's mirror " +
+					"image, looking backward instead of forward. The word below has one letter " +
+					"typed twice; land just past the extra letter and press X to remove it.",
+				Tip: "Tip: x deletes forward from the cursor, X deletes backward from the " +
+					"cursor — same idea, opposite direction.",
+				NewKeys:     []string{"X"},
+				Start:       []string{"committ now"},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target:      []string{"commit now"},
+				Par:         2,
+			},
+			{
+				Title: "Count Before X",
+				Instructions: "A count in front of X deletes that many characters to the " +
+					"left in one go, just like a count in front of x does going forward. The " +
+					"filename below picked up a run of accidental leading zeros; move past " +
+					"them and clear all of them with a single count-prefixed X.",
+				Tip: "Tip: line up the count with exactly how many characters need to go — " +
+					"5X removes 5, no more, no less.",
+				Start:       []string{"file0000042.txt"},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target:      []string{"file42.txt"},
+				Par:         4,
+			},
+			{
+				Title: "Undo Your Last Move",
+				Instructions: "u undoes your most recent change and puts the buffer, and " +
+					"your cursor, back exactly where they were before it happened. Try it: " +
+					"delete \"the \" first with dw, see the wrong result, then press u to bring " +
+					"it right back before removing the actual extra word, \"oops \", the same way.",
+				Tip: "Tip: u doesn't just restore the text — it restores your cursor position " +
+					"too, so you land right back where the mistaken edit started.",
+				NewKeys:     []string{"u"},
+				Start:       []string{"oops the plan is solid"},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target:      []string{"the plan is solid"},
+				Par:         7,
+			},
+			{
+				Title: "Walk Back Two Steps",
+				Instructions: "u isn't a one-shot rewind — press it again and it undoes the " +
+					"change before that one, walking you back through your history one step " +
+					"at a time. Delete all three words below one at a time with dw, then press " +
+					"u twice to walk back exactly two of those deletions.",
+				Tip: "Tip: each u undoes exactly one previous change, however small — three " +
+					"edits forward means you can walk back up to three steps.",
+				Start:       []string{"one two three four"},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target:      []string{"two three four"},
+				Par:         8,
+			},
+			{
+				Title: "Capstone",
+				Instructions: "Three lines, three tools: a doubled letter to fix with X, a " +
+					"run of leading zeros to clear with a count-prefixed X, and one more spot " +
+					"to practice the make-a-mistake-then-u trick from before.",
+				Tip: "Tip: on the last line, delete the wrong word first on purpose so u has " +
+					"something real to undo — then finish with the correct one.",
+				Start: []string{
+					"appple is red",
+					"000007 items left",
+					"oops the goal succeeds",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"apple is red",
+					"7 items left",
+					"the goal succeeds",
+				},
+				Par: 18,
+			},
+		},
+	},
 }
