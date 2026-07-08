@@ -906,4 +906,115 @@ var days = []Day{
 			},
 		},
 	},
+	{
+		Number: 11,
+		Week:   "Week 2: Checkpoint",
+		Title:  "Boss",
+		Summary: "No new keys today. Five tasks, each solvable only by combining motions, " +
+			"operators, and Insert-mode commands from Days 1-10 — no hand-holding, no single " +
+			"correct sequence spelled out for you.",
+		Challenges: []Challenge{
+			{
+				Title: "Typo Triage",
+				Instructions: "Three different problems on three lines: a single wrong letter, " +
+					"a shouted word, and a digit that should be spelled out. Use r, ~, or s — " +
+					"whichever fits each job.",
+				Tip: "Tip: r only swaps in exactly one character — reach for s instead when " +
+					"the fix needs a different number of characters than what's there now.",
+				Start: []string{
+					"the doy is big",
+					"STOP yelling now",
+					"buy 2 apples",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"the dog is big",
+					"stop yelling now",
+					"buy two apples",
+				},
+				Par: 19,
+			},
+			{
+				Title: "Reorder And Merge",
+				Instructions: "The first two lines are out of alphabetical order — fix that " +
+					"without retyping anything. The last two lines are rough drafts that belong " +
+					"together — merge them into the single clean line shown as the target.",
+				Tip: "Tip: dd/p for the reorder, then a count in front of S for the merge — two " +
+					"completely different tools for two completely different jobs.",
+				Start: []string{
+					"banana",
+					"apple",
+					"draft one",
+					"draft two",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"apple",
+					"banana",
+					"final merged line",
+				},
+				Par: 24,
+			},
+			{
+				Title: "Redact And Rewrite",
+				Instructions: "The first line has a number that needs redacting, count and all. " +
+					"The second line is garbage from start to finish and needs a full rewrite.",
+				Tip: "Tip: a count in front of r redacts characters in place; S throws the " +
+					"whole line away and starts fresh — pick whichever matches how much of the " +
+					"line is actually wrong.",
+				Start: []string{
+					"ssn is 55555 today",
+					"this whole line is garbage and should go",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"ssn is XXXXX today",
+					"clean replacement line",
+				},
+				Par: 31,
+			},
+			{
+				Title: "One Line, Many Fixes",
+				Instructions: "This single line has three unrelated problems stacked on top of " +
+					"each other: a shouted word, a one-letter typo, and a digit that should be " +
+					"spelled out. Fix all three left to right.",
+				Tip: "Tip: mash ~ across the shouted word first, then keep moving right with w " +
+					"— no need to backtrack to the start of the line between fixes.",
+				Start:       []string{"the CAT sit on 4 legs"},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target:      []string{"the cat sat on four legs"},
+				Par:         16,
+			},
+			{
+				Title: "Final Boss",
+				Instructions: "Two lines are in the wrong order, one line has a number to " +
+					"redact, one line is shouting, and one line has junk tacked onto the end. " +
+					"Fix all four problems using whatever combination of Day 1-10 tools gets " +
+					"there fastest.",
+				Tip: "Tip: reorder first with dd/p so the rest of the fixes read top to bottom " +
+					"in a sensible order, then work your way down the list.",
+				Start: []string{
+					"cherry",
+					"apple",
+					"your pin is 12345 ok",
+					"STOP shouting please",
+					"the lazy dog###done",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"apple",
+					"cherry",
+					"your pin is XXXXX ok",
+					"stop shouting please",
+					"the lazy dog",
+				},
+				Par: 23,
+			},
+		},
+	},
 }

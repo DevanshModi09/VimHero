@@ -108,6 +108,29 @@ func TestCurriculumSolvable(t *testing.T) {
 			[]string{"j", "0", "w", "5", "s"},
 			append(typeStr("this"), "esc"),
 		)},
+
+		{11, 0, concatKeys(
+			[]string{"w", "l", "l", "r", "g", "j", "0", "~", "~", "~", "~", "j", "0", "w"},
+			append([]string{"s"}, append(typeStr("two"), "esc")...),
+		)},
+		{11, 1, concatKeys(
+			[]string{"d", "d", "p", "j", "2", "S"},
+			append(typeStr("final merged line"), "esc"),
+		)},
+		{11, 2, concatKeys(
+			[]string{"w", "w", "5", "r", "X", "j", "0", "S"},
+			append(typeStr("clean replacement line"), "esc"),
+		)},
+		{11, 3, concatKeys(
+			[]string{"w", "~", "~", "~", "w", "l", "r", "a", "w", "w"},
+			append([]string{"s"}, append(typeStr("four"), "esc")...),
+		)},
+		{11, 4, []string{
+			"d", "d", "p", "j", "0",
+			"w", "w", "w", "5", "r", "X",
+			"j", "0", "~", "~", "~", "~",
+			"j", "0", "w", "w", "w", "D",
+		}},
 	}
 
 	m := NewModel()
