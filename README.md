@@ -1,7 +1,7 @@
 # VimHero
 
 ![Go](https://img.shields.io/badge/Go-1.26-00ADD8?logo=go&logoColor=white)
-![Curriculum](https://img.shields.io/badge/curriculum-10%2F45%20days-blueviolet)
+![Curriculum](https://img.shields.io/badge/curriculum-12%2F45%20days-blueviolet)
 ![Engine](https://img.shields.io/badge/vim%20engine-hand--built-orange)
 
 **A terminal game that teaches Vim from zero to hero, one day at a time.**
@@ -12,20 +12,17 @@ a real hand-built modal editor — not a wrapper around your system's
 
 ```
 ╭────────────────────────────────────────────────────────────────╮
-│ Day 8 — Final Boss (Checkpoint)                                │
+│ Day 12 — X and u (Delete Backward & Undo)                       │
 │                                                                │
-│ One line's out of order, one word's a typo, one word           │
-│ shouldn't be there, one line has junk on the end. No new       │
-│ keys today — just Days 1-7, combined under pressure.           │
+│ Delete the two stray characters just left of the cursor,       │
+│ then undo your last edit and try again.                        │
 │                                                                │
-│ 💡 reorder first with dd/p, then fix what's left top to        │
-│ bottom — easier to spot typos once the order is right.         │
+│ 💡 X deletes backward like a mirror of x — u walks the         │
+│ buffer back one edit at a time (but doesn't take a count).     │
 │                                                                │
-│ banana                                                         │
-│ apple                                                          │
-│ quikc brown fox                                                │
+│ file0000042.txt                                                │
 │                                                                │
-│ NORMAL   keystrokes: 0   par: 21                               │
+│ NORMAL   keystrokes: 0   par: 6                                │
 ╰────────────────────────────────────────────────────────────────╯
 ```
 
@@ -73,7 +70,7 @@ Clearing every challenge in a day unlocks the next one.
 | Week | Days  | Theme                                             | Status                    |
 | ---- | ----- | ------------------------------------------------- | ------------------------- |
 | 1    | 1–5   | Basic movement & modes                            | ✅ done                   |
-| 2    | 6–14  | More operators (`cw`, `ciw`, `daw`, `D`/`C`, ...) | 🚧 in progress (6–8 done) |
+| 2    | 6–14  | More operators (`cw`, `ciw`, `daw`, `D`/`C`, `r`/`~`, `s`/`S`, `X`/`u`, ...) | 🚧 in progress (6–12 done) |
 | 3    | 15–21 | Counts & text objects                             | ⏳ planned                |
 | 4    | 22–28 | Find & search                                     | ⏳ planned                |
 | 5    | 29–35 | Visual mode                                       | ⏳ planned                |
@@ -86,15 +83,16 @@ down — not hand-computed.
 
 ## How it's built
 
-- **`internal/editor`** — the engine. A real modal text editor
+- **`pkg/editor`** — the engine. A real modal text editor
   supporting Vim's core grammar: motions (`h j k l w b e 0 ^ $ gg G f t
 F T %`), operators (`d c y` composed with motions and text objects
-  like `iw`, `i(`, `i"`), line ops (`dd yy p P`), insert mode,
-  visual/visual-line mode, undo, marks, macros (`q`/`@`), search (`/`
+  like `iw`, `i(`, `i"`), line ops (`dd yy p P`), replace/case (`r`,
+  `~`), substitute (`s`, `S`), backward delete (`X`), undo (`u`), insert
+  mode, visual/visual-line mode, marks, macros (`q`/`@`), search (`/`
   `n` `N`), and `:s` substitution. It's driven by a single
   `Buffer.Input(key string)` call per keystroke, which is what makes it
   easy to test and to embed in a TUI.
-- **`internal/curriculum`** — the 45-day lesson plan as data: each `Day`
+- **`pkg/curriculum`** — the 45-day lesson plan as data: each `Day`
   has a summary and one or more `Challenge`s, either "reach this cursor
   position" or "transform the buffer into this target text."
 - **`internal/progress`** — persists unlock state, best scores, and
