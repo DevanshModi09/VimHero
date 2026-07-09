@@ -26,9 +26,23 @@ a real hand-built modal editor — not a wrapper around your system's
 ╰────────────────────────────────────────────────────────────────╯
 ```
 
+## Contents
+
+- [Play](#play)
+- [How it teaches](#how-it-teaches)
+- [Scoring](#scoring)
+- [Curriculum roadmap](#curriculum-roadmap)
+- [How it's built](#how-its-built)
+- [Building a binary](#building-a-binary)
+- [Tests](#tests)
+
 ## Play
 
+Requires [Go 1.26+](https://go.dev/dl/).
+
 ```sh
+git clone https://github.com/DevanshModi09/VimHero.git
+cd VimHero
 go run .
 ```
 
