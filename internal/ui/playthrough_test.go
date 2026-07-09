@@ -143,6 +143,21 @@ func TestCurriculumSolvable(t *testing.T) {
 			"j", "0",
 			"w", "d", "w", "u", "0", "d", "w",
 		}},
+
+		{13, 0, []string{"0"}},
+		{13, 1, []string{"^"}},
+		{13, 2, []string{"3", "$"}},
+		{13, 3, concatKeys(
+			[]string{"d", "$", "j", "^", "w", "c", "^"},
+			append(typeStr("fix: "), "esc"),
+		)},
+		{13, 4, concatKeys(
+			[]string{"0", "i"},
+			append(typeStr("NOTE: "), "esc"),
+			[]string{"j", "0", "w", "w", "w", "w", "d", "$"},
+			[]string{"j", "^", "w", "c", "^"},
+			append(typeStr("DONE: "), "esc"),
+		)},
 	}
 
 	m := NewModel()

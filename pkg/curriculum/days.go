@@ -1,4 +1,5 @@
 package curriculum
+
 var days = []Day{
 	{
 		Number: 1,
@@ -1106,6 +1107,112 @@ var days = []Day{
 					"the goal succeeds",
 				},
 				Par: 18,
+			},
+		},
+	},
+	{
+		Number: 13,
+		Week:   "Week 2: More Operators",
+		Title:  "0, ^, and $ — Line Start, First Non-Blank, and Line End",
+		Summary: "Three motions for jumping along a single line. 0 always jumps to the " +
+			"true first column, even if that's blank indentation. ^ jumps to the first " +
+			"non-blank character instead, skipping any leading spaces or tabs — the column " +
+			"where the line's real content begins. $ jumps to the last character of the " +
+			"line, and a count in front, like 3$, jumps to the end of the line that many " +
+			"rows down. All three combine with d, c, and y exactly like any other motion — " +
+			"d$ deletes to the end of the line (it's what D is secretly shorthand for), and " +
+			"c^ deletes back to the first real character and drops you into Insert mode to " +
+			"type a replacement.",
+		Challenges: []Challenge{
+			{
+				Title: "The True Beginning",
+				Instructions: "0 always jumps to column zero — the absolute start of the " +
+					"line — even when the line begins with blank space. Land your cursor on " +
+					"the very first character of the line below, blank or not.",
+				Tip: "Tip: 0 doesn't care what's actually on the line. It just goes to the " +
+					"first column, every time.",
+				NewKeys:     []string{"0"},
+				Start:       []string{"    indented text here"},
+				CursorStart: Pos{0, 15},
+				Kind:        KindGoal,
+				GoalPos:     Pos{0, 0},
+				Par:         1,
+			},
+			{
+				Title: "Skip The Blank Space",
+				Instructions: "^ jumps to the first non-blank character on the line — the " +
+					"spot where the real content starts, ignoring any leading indentation. " +
+					"Land on the \"t\" that begins the actual sentence below.",
+				Tip: "Tip: ^ is what you want when a line is indented and you don't care " +
+					"about the blank space in front of it — 0 would leave you sitting on a " +
+					"space instead.",
+				NewKeys:     []string{"^"},
+				Start:       []string{"    the real text starts here"},
+				CursorStart: Pos{0, 28},
+				Kind:        KindGoal,
+				GoalPos:     Pos{0, 4},
+				Par:         1,
+			},
+			{
+				Title: "Straight To The Last Line",
+				Instructions: "$ jumps to the last character of the line. A count in front " +
+					"works like it does for G, but line-local: 3$ jumps straight to the end " +
+					"of the 3rd line down instead of the current one. Land on the very last " +
+					"character of the 3rd line below in one shot.",
+				Tip: "Tip: 3$ means \"the end of 3 lines down,\" not \"3 characters to the " +
+					"right of the end\" — the count picks which line, not a distance along it.",
+				NewKeys: []string{"$"},
+				Start: []string{
+					"short",
+					"medium line here",
+					"the longest line of them all",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindGoal,
+				GoalPos:     Pos{2, 27},
+				Par:         2,
+			},
+			{
+				Title: "Cut Both Ends",
+				Instructions: "d$ deletes from the cursor to the end of the line — the same " +
+					"result as D, just spelled out as an explicit motion. c^ deletes back to " +
+					"the first non-blank character and drops you into Insert mode. The first " +
+					"line below has trailing junk to cut with d$; the second has a garbage " +
+					"prefix (after its indentation) to replace with c^.",
+				Tip: "Tip: D really is just d$ under the hood — now you've typed both and can " +
+					"see they do the exact same thing.",
+				Start: []string{
+					"keep this part but not this trailing junk",
+					"    XXXX real content here",
+				},
+				CursorStart: Pos{0, 14},
+				Kind:        KindEdit,
+				Target: []string{
+					"keep this part",
+					"    fix: real content here",
+				},
+				Par: 13,
+			},
+			{
+				Title: "Capstone",
+				Instructions: "Three lines, three jobs: prepend a note at the absolute start " +
+					"of an indented line with 0, cut trailing junk from the second line with " +
+					"d$, and replace a garbage prefix on the third line with c^.",
+				Tip: "Tip: 0 lands before the indentation, ^ lands after it — pick whichever " +
+					"one the job actually needs.",
+				Start: []string{
+					"    fix the indentation on this line",
+					"keep this good part TRASH from here onward",
+					"    XXXX apply the fix here too",
+				},
+				CursorStart: Pos{0, 20},
+				Kind:        KindEdit,
+				Target: []string{
+					"NOTE:     fix the indentation on this line",
+					"keep this good part ",
+					"    DONE: apply the fix here too",
+				},
+				Par: 29,
 			},
 		},
 	},
