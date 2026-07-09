@@ -158,6 +158,39 @@ func TestCurriculumSolvable(t *testing.T) {
 			[]string{"j", "^", "w", "c", "^"},
 			append(typeStr("DONE: "), "esc"),
 		)},
+
+		{14, 0, concatKeys(
+			[]string{"$", "b", "c", "w"}, typeStr("target"), []string{"esc"},
+			[]string{"j", "d", "d"},
+			[]string{"y", "y", "p"},
+		)},
+		{14, 1, concatKeys(
+			[]string{"~", "~", "~", "~"},
+			[]string{"j", "0", "w", "w", "c", "i", "w"}, typeStr("spelling"), []string{"esc"},
+			[]string{"j", "0", "w", "w", "w", "w", "w", "h", "d", "$"},
+			[]string{"j", "0", "s"}, typeStr("three"), []string{"esc"},
+			[]string{"j", "0", "w", "3", "r", "X"},
+		)},
+		{14, 2, concatKeys(
+			[]string{"d", "d", "G", "p"},
+			[]string{"G", "o"}, typeStr("fourth"), []string{"esc"},
+		)},
+		{14, 3, concatKeys(
+			[]string{"^", "w", "c", "^"}, typeStr("TODO: "), []string{"esc"},
+			[]string{"j", "0", "w", "w", "w", "w", "d", "$"},
+			[]string{"j", "0", "i"}, typeStr("* "), []string{"esc"},
+		)},
+		{14, 4, concatKeys(
+			[]string{"^", "w", "c", "^"}, typeStr("TODO: "), []string{"esc"},
+			[]string{"j", "j", "d", "d"},
+			[]string{"w", "w", "c", "i", "w"}, typeStr("typo"), []string{"esc"},
+			[]string{"j", "d", "d"},
+			[]string{"0", "w", "w", "w", "3", "r", "X"},
+			[]string{"j", "0", "~", "~", "~", "~", "~", "~", "~", "~", "~", "~", "~", "~", "~"},
+			[]string{"j", "0", "w", "w", "h", "d", "$"},
+			[]string{"j", "d", "d", "j", "p", "k", "k", "d", "d", "p"},
+			[]string{"j", "j", "o"}, typeStr("closing line added at the end"), []string{"esc"},
+		)},
 	}
 
 	m := NewModel()

@@ -1,7 +1,7 @@
 # VimHero
 
 ![Go](https://img.shields.io/badge/Go-1.26-00ADD8?logo=go&logoColor=white)
-![Curriculum](https://img.shields.io/badge/curriculum-12%2F45%20days-blueviolet)
+![Curriculum](https://img.shields.io/badge/curriculum-14%2F45%20days-blueviolet)
 ![Engine](https://img.shields.io/badge/vim%20engine-hand--built-orange)
 
 **A terminal game that teaches Vim from zero to hero, one day at a time.**
@@ -12,17 +12,17 @@ a real hand-built modal editor — not a wrapper around your system's
 
 ```
 ╭────────────────────────────────────────────────────────────────╮
-│ Day 12 — X and u (Delete Backward & Undo)                       │
+│ Day 14 — Final Boss (Everything From Days 1-13)                 │
 │                                                                │
-│ Delete the two stray characters just left of the cursor,       │
-│ then undo your last edit and try again.                        │
+│ A whole messy document, twelve lines, one pass — every tool     │
+│ from Days 1-13, back to back.                                  │
 │                                                                │
-│ 💡 X deletes backward like a mirror of x — u walks the         │
-│ buffer back one edit at a time (but doesn't take a count).     │
+│ 💡 Work top to bottom, one problem at a time — this one's      │
+│ meant to take a few minutes, not a few seconds.                │
 │                                                                │
-│ file0000042.txt                                                │
+│     XXXX this document has a messy header                     │
 │                                                                │
-│ NORMAL   keystrokes: 0   par: 6                                │
+│ NORMAL   keystrokes: 0   par: 100                              │
 ╰────────────────────────────────────────────────────────────────╯
 ```
 
@@ -70,7 +70,7 @@ Clearing every challenge in a day unlocks the next one.
 | Week | Days  | Theme                                             | Status                    |
 | ---- | ----- | ------------------------------------------------- | ------------------------- |
 | 1    | 1–5   | Basic movement & modes                            | ✅ done                   |
-| 2    | 6–14  | More operators (`cw`, `ciw`, `daw`, `D`/`C`, `r`/`~`, `s`/`S`, `X`/`u`, ...) | 🚧 in progress (6–12 done) |
+| 2    | 6–14  | More operators (`cw`, `ciw`, `daw`, `D`/`C`, `r`/`~`, `s`/`S`, `X`/`u`, `0`/`^`/`$`, ...) | ✅ done |
 | 3    | 15–21 | Counts & text objects                             | ⏳ planned                |
 | 4    | 22–28 | Find & search                                     | ⏳ planned                |
 | 5    | 29–35 | Visual mode                                       | ⏳ planned                |
@@ -118,7 +118,7 @@ GOOS=windows GOARCH=amd64 go build -o vimhero.exe .
 go test ./...
 ```
 
-`internal/editor` has unit tests for the core engine. `internal/ui` has
+`pkg/editor` has unit tests for the core engine. `internal/ui` has
 a playthrough test that scripts the intended solution for _every_
 authored challenge and asserts it actually wins — a guard against
 authoring mistakes like wrong par counts, unreachable goals, or wrong

@@ -1216,4 +1216,150 @@ var days = []Day{
 			},
 		},
 	},
+	{
+		Number: 14,
+		Week:   "Week 2: Final Boss",
+		Title:  "Final Boss — Everything From Days 1-13",
+		Summary: "No new keys today — this is the big one. Every challenge below leans on " +
+			"tools from across the last two weeks: motions, insert-mode commands, the delete " +
+			"and yank operators, word and around-word text objects, replace and case-toggle, " +
+			"substitute, backward-delete and undo, and the line-start/first-non-blank/line-end " +
+			"motions from yesterday. The last challenge is a genuinely long, multi-part " +
+			"document with a dozen separate problems to fix — expect it to take real time, not " +
+			"a quick pass.",
+		Challenges: []Challenge{
+			{
+				Title: "Warm It Up",
+				Instructions: "Three small jobs to shake off the rust: fix the last word of " +
+					"the first line with cw, delete the second line entirely with dd, and " +
+					"duplicate the third line below itself with yy and p.",
+				Tip: "Tip: nothing here is new — it's the exact same dd and yy/p from Day 5, " +
+					"and the same cw from Day 6.",
+				Start: []string{
+					"jump to the correct spot",
+					"delete this whole line please",
+					"keep me",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"jump to the correct target",
+					"keep me",
+					"keep me",
+				},
+				Par: 17,
+			},
+			{
+				Title: "Bigger Fixes",
+				Instructions: "Five lines, five different tools: mash ~ to fix a shouted " +
+					"word, use ciw to fix a misspelling, use d$ to trim a trailing phrase, " +
+					"use s to replace a number with a spelled-out word, and use a " +
+					"count-prefixed r to redact a number in place.",
+				Tip: "Tip: match the tool to the job — ciw for a whole misspelled word, s " +
+					"when the replacement is a different length than the original, r when " +
+					"it's a straight character-for-character swap.",
+				Start: []string{
+					"STOP yelling immediately now",
+					"fix this speling mistake here",
+					"cut the ending right here needless extra words",
+					"5 apples were bought today",
+					"buy 100 items",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"stop yelling immediately now",
+					"fix this spelling mistake here",
+					"cut the ending right here",
+					"three apples were bought today",
+					"buy XXX items",
+				},
+				Par: 45,
+			},
+			{
+				Title: "Line Surgery",
+				Instructions: "The three lines below are in the wrong order — fix that with " +
+					"dd and p, no retyping. Then add a fourth line at the very end with G and o.",
+				Tip: "Tip: this is the same dd/p reordering trick from the Week 2 checkpoints, " +
+					"just with fewer lines to juggle.",
+				Start: []string{
+					"third",
+					"first",
+					"second",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"first",
+					"second",
+					"third",
+					"fourth",
+				},
+				Par: 13,
+			},
+			{
+				Title: "Indentation Cleanup",
+				Instructions: "Three indented lines, three fixes from yesterday: replace a " +
+					"garbage prefix with c^, trim a trailing phrase with d$, and prepend a " +
+					"marker at the true start of a line with 0 and i.",
+				Tip: "Tip: c^ and d$ don't touch the leading indentation itself — only 0 " +
+					"reaches all the way back to column zero.",
+				Start: []string{
+					"    XXXX keep this part clean",
+					"keep this text but###trim the rest",
+					"    old note more content stays",
+				},
+				CursorStart: Pos{0, 20},
+				Kind:        KindEdit,
+				Target: []string{
+					"    TODO: keep this part clean",
+					"keep this text but",
+					"*     old note more content stays",
+				},
+				Par: 25,
+			},
+			{
+				Title: "Final Boss",
+				Instructions: "A whole messy document, twelve lines, one pass: a garbage " +
+					"prefix to replace, an accidentally duplicated line to remove, a typo to " +
+					"fix, an entire line of junk to delete, a number to redact, a shouted " +
+					"line to fix, a trailing phrase to trim, three lines to fully reorder, " +
+					"and a brand new line to add at the end. Nothing here is new — it's every " +
+					"tool from Days 1-13, back to back, on a document big enough to actually " +
+					"take some time to fix properly.",
+				Tip: "Tip: work top to bottom, one problem at a time, and don't rush — this " +
+					"one's meant to take a few minutes, not a few seconds.",
+				Start: []string{
+					"    XXXX this document has a messy header",
+					"TWO lines got duplicated by accident",
+					"TWO lines got duplicated by accident",
+					"fix the tyop in this sentence",
+					"delete this entire line of garbage text",
+					"the count is 999 and needs redacting",
+					"STOP SHOUTING in the summary line",
+					"extra junk needless trailing words here",
+					"cherry",
+					"banana",
+					"apple",
+					"insert a new closing line below",
+				},
+				CursorStart: Pos{0, 20},
+				Kind:        KindEdit,
+				Target: []string{
+					"    TODO: this document has a messy header",
+					"TWO lines got duplicated by accident",
+					"fix the typo in this sentence",
+					"the count is XXX and needs redacting",
+					"stop shouting in the summary line",
+					"extra junk",
+					"apple",
+					"banana",
+					"cherry",
+					"insert a new closing line below",
+					"closing line added at the end",
+				},
+				Par: 100,
+			},
+		},
+	},
 }
