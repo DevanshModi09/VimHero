@@ -1362,4 +1362,141 @@ var days = []Day{
 			},
 		},
 	},
+	{
+		Number: 15,
+		Week:   "Week 3: Counts & Text Objects",
+		Title:  "Counts — Repeat Any Motion or Operator in One Shot",
+		Summary: "You've already used a count in front of r, s, S, and X — today it's " +
+			"official: almost any motion or operator can take a number in front of it to " +
+			"repeat that action that many times in a single command. 4w jumps forward four " +
+			"words, 3dd deletes three whole lines, 3yy copies three lines at once. A count " +
+			"can also sit between an operator and its motion — d3w and 3dw both delete " +
+			"exactly three words, because the two counts multiply together no matter which " +
+			"side of the operator they're on.",
+		Challenges: []Challenge{
+			{
+				Title: "Counted Word Jumps",
+				Instructions: "A number before w repeats it that many times in one command — " +
+					"4w is the same as w w w w, just two keystrokes instead of four. It works " +
+					"backward too: 2b jumps back two words. Use 4w to jump forward four words, " +
+					"then 2b to jump back two, and land exactly on the target word.",
+				Tip: "Tip: think of the count as a multiplier you attach to a motion you " +
+					"already know, not a new command to learn.",
+				Start:       []string{"alpha beta gamma delta epsilon zeta eta theta"},
+				CursorStart: Pos{0, 0},
+				Kind:        KindGoal,
+				GoalPos:     Pos{0, 11},
+				Par:         4,
+			},
+			{
+				Title: "Delete Three Lines",
+				Instructions: "A count before dd deletes that many whole lines starting from " +
+					"the cursor, in one command instead of repeating dd over and over. The list " +
+					"below has three junk lines on top; clear all three with a single 3dd.",
+				Tip: "Tip: 3dd is dd's version of the count trick — same idea as 3yy for " +
+					"copying or 4X for deleting characters, just linewise.",
+				NewKeys: []string{"3dd"},
+				Start: []string{
+					"remove me",
+					"remove me too",
+					"remove me three",
+					"keep this line",
+					"keep this line too",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"keep this line",
+					"keep this line too",
+				},
+				Par: 3,
+			},
+			{
+				Title: "Copy A Block Elsewhere",
+				Instructions: "3yy copies three lines starting from the cursor into a single " +
+					"block, just like 3dd deletes three — except it leaves the original lines " +
+					"untouched. Yank the three template lines with 3yy, jump to the very bottom " +
+					"with G, then paste the whole block after the last line with p.",
+				Tip: "Tip: G moves you to the last line first so the pasted block lands " +
+					"cleanly at the end, instead of splitting in the middle of the block you " +
+					"just copied.",
+				Start: []string{
+					"template line one",
+					"template line two",
+					"template line three",
+					"separator",
+					"END",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"template line one",
+					"template line two",
+					"template line three",
+					"separator",
+					"END",
+					"template line one",
+					"template line two",
+					"template line three",
+				},
+				Par: 5,
+			},
+			{
+				Title: "Two Counts, Same Result",
+				Instructions: "A count can sit on either side of an operator and it works the " +
+					"same way: d3w and 3dw both delete exactly three words, because the counts " +
+					"multiply together no matter which one comes first. Use d3w to clear three " +
+					"words from the first line, then use 3dw to do the same thing the other way " +
+					"on the second line.",
+				Tip: "Tip: this also means d2d and 2dd are the same command — pick whichever " +
+					"order reads more naturally to you in the moment.",
+				NewKeys: []string{"d3w", "3dw"},
+				Start: []string{
+					"delete these three words please",
+					"remove all four items now please",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"words please",
+					"items now please",
+				},
+				Par: 8,
+			},
+			{
+				Title: "Capstone",
+				Instructions: "One document, three count tricks back to back: clear three " +
+					"junk lines off the top with 3dd, strip three throwaway words off the next " +
+					"line with d3w, then copy the three-line template block near the bottom with " +
+					"3yy and paste it after the very last line with G and p.",
+				Tip: "Tip: nothing here is new — it's the same three commands from this day's " +
+					"earlier challenges, just chained together on one bigger document.",
+				Start: []string{
+					"junk line one to delete",
+					"junk line two to delete",
+					"junk line three to delete",
+					"keep this line intact",
+					"please remove three items now",
+					"template block start",
+					"template block middle",
+					"template block end",
+					"footer marker",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"keep this line intact",
+					"items now",
+					"template block start",
+					"template block middle",
+					"template block end",
+					"footer marker",
+					"template block start",
+					"template block middle",
+					"template block end",
+				},
+				Par: 15,
+			},
+		},
+	},
 }
