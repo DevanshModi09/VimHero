@@ -2,6 +2,14 @@ package editor
 
 import "testing"
 
+func typeStr(s string) []string {
+	out := make([]string, 0, len(s))
+	for _, r := range s {
+		out = append(out, string(r))
+	}
+	return out
+}
+
 func TestScratchDay13(t *testing.T) {
 	run := func(name string, lines []string, cursor Pos, keys []string) {
 		b := New(append([]string(nil), lines...), cursor)
@@ -20,9 +28,11 @@ func TestScratchDay13(t *testing.T) {
 	// Ch3: teach $ with a count — jump to end of the 3rd line down.
 	run("ch3_dollar_count", []string{"short", "medium line here", "the longest line of them all"}, Pos{0, 0}, []string{"3", "$"})
 
-	// Ch4: combine operators with these motions — d$ and c^
-	run("ch4_ddollar", []string{"keep this part but not this trailing junk"}, Pos{0, 14}, []string{"d", "$"})
-	run("ch4_ccaret", []string{"    XXXX the rest of this line stays"}, Pos{0, 36}, []string{"c", "^"})
+	// Ch4: combine operators with these motions — d$ then c^ on the next line
+	run("ch4_full", []string{
+		"keep this part but not this trailing junk",
+		"    XXXX real content here",
+	}, Pos{0, 14}, append([]string{"d", "$", "j", "^", "w", "c", "^"}, append(typeStr("fix: "), "esc")...))
 
 	// Capstone ideas
 	run("cap_line1", []string{"    fix the indentation on this line"}, Pos{0, 20}, []string{"^", "d", "0"})
