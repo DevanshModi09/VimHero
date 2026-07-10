@@ -219,6 +219,25 @@ func TestCurriculumSolvable(t *testing.T) {
 			[]string{"j", "0"},
 			append([]string{"f", "\"", "c", "i", "\""}, append(typeStr("config.yaml"), "esc")...),
 		)},
+		{17, 0, append([]string{"c", "i", "["}, append(typeStr("42"), "esc")...)},
+
+		{18, 0, []string{"d", "i", "["}},
+		{18, 1, []string{"d", "a", "["}},
+		{18, 2, append([]string{"c", "i", "{"}, append(typeStr("debug=true"), "esc")...)},
+		{18, 3, append([]string{"c", "i", "'"}, append(typeStr("Devansh"), "esc")...)},
+		{18, 4, concatKeys(
+			[]string{"f", "[", "d", "i", "["},
+			[]string{"j", "0"},
+			[]string{"f", "(", "d", "a", "("},
+			[]string{"j", "0"},
+			append([]string{"f", "(", "c", "i", "("}, append(typeStr("42"), "esc")...),
+			[]string{"j", "0"},
+			append([]string{"f", "\"", "c", "i", "\""}, append(typeStr("new.txt"), "esc")...),
+			[]string{"j", "0"},
+			append([]string{"f", "'", "c", "i", "'"}, append(typeStr("Devansh"), "esc")...),
+			[]string{"j", "0"},
+			append([]string{"f", "{", "c", "i", "{"}, append(typeStr("role=admin"), "esc")...),
+		)},
 	}
 
 	m := NewModel()

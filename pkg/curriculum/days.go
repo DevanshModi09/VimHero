@@ -1597,4 +1597,130 @@ var days = []Day{
 			},
 		},
 	},
+	{
+		Number: 17,
+		Week:   "Week 3: Counts & Text Objects",
+		Title:  "i[ — Text Objects For Square Brackets",
+		Summary: "Square brackets get the exact same text-object treatment as parentheses " +
+			"and quotes: i[ grabs everything inside a pair of [ ], a[ grabs the brackets " +
+			"too, and c/d work with either one just like they did for i(/a(.",
+		Challenges: []Challenge{
+			{
+				Title: "Swap The Array Value",
+				Instructions: "ci[ clears everything inside a pair of square brackets and " +
+					"drops you into Insert mode right where they used to be — same c, i " +
+					"pattern as ci(, just a new delimiter. Replace the value inside the " +
+					"brackets with 42.",
+				Tip: "Tip: di[/da[ delete inside/around square brackets the same way " +
+					"di(/da( did for parentheses — only the bracket shape changes, the " +
+					"i/a rule never does.",
+				NewKeys:     []string{"ci["},
+				Start:       []string{"data[old_value]"},
+				CursorStart: Pos{0, 6},
+				Kind:        KindEdit,
+				Target:      []string{"data[42]"},
+				Par:         6,
+			},
+		},
+	},
+	{
+		Number: 18,
+		Week:   "Week 3: Counts & Text Objects",
+		Title:  "i{ and i' — Finishing The Text-Object Family",
+		Summary: "Two delimiters left to round out the set: curly braces and single quotes " +
+			"follow the exact same i/a rule as every bracket and quote you've already " +
+			"learned. Square brackets also get their full di[/da[ treatment here, not just " +
+			"ci[ from yesterday — after today you'll have every text-object delimiter this " +
+			"engine supports: ( ) \" [ ] { } '.",
+		Challenges: []Challenge{
+			{
+				Title: "Empty The Index",
+				Instructions: "di[ deletes everything between a pair of square brackets " +
+					"without touching the brackets themselves — the same di( trick from " +
+					"Day 16, just a new delimiter. Your cursor is already inside the " +
+					"brackets; press di[ to empty them out.",
+				Tip: "Tip: yesterday you only used ci[ — di[ and da[ work exactly the " +
+					"same way on square brackets as they already do on parentheses.",
+				NewKeys:     []string{"di["},
+				Start:       []string{"queue[stale_id]"},
+				CursorStart: Pos{0, 8},
+				Kind:        KindEdit,
+				Target:      []string{"queue[]"},
+				Par:         3,
+			},
+			{
+				Title: "Remove The Whole Index",
+				Instructions: "da[ takes the brackets with it, unlike di[ which leaves " +
+					"them standing — the same inside/around split you already know from " +
+					"da( and da\". Use da[ to cut the whole indexed aside out of this line.",
+				Tip: "Tip: i vs a means the exact same thing no matter which delimiter " +
+					"follows it — inside leaves the delimiters, around takes them too.",
+				NewKeys:     []string{"da["},
+				Start:       []string{"keep this [delete this index] part"},
+				CursorStart: Pos{0, 15},
+				Kind:        KindEdit,
+				Target:      []string{"keep this  part"},
+				Par:         3,
+			},
+			{
+				Title: "Swap The Setting",
+				Instructions: "Curly braces are a text object too: ci{ clears everything " +
+					"inside a pair of { } and drops you into Insert mode right where they " +
+					"used to be, ready to type a replacement — same c, i pattern as ci( " +
+					"and ci[, just a new delimiter shape.",
+				Tip: "Tip: di{ and da{ delete inside/around curly braces the same way " +
+					"their ( and [ cousins do, if you ever need delete instead of change.",
+				NewKeys:     []string{"ci{"},
+				Start:       []string{"config{old_value}"},
+				CursorStart: Pos{0, 10},
+				Kind:        KindEdit,
+				Target:      []string{"config{debug=true}"},
+				Par:         14,
+			},
+			{
+				Title: "Rename The Single-Quoted Value",
+				Instructions: "Single quotes work exactly like double quotes did on Day " +
+					"16: ci' clears whatever sits between a pair of single quotes and " +
+					"drops you into Insert mode to type a replacement.",
+				Tip: "Tip: di' and da' exist too, following the same rule as every other " +
+					"delimiter — this is the last new text object in the family.",
+				NewKeys:     []string{"ci'"},
+				Start:       []string{"author = 'old_name'"},
+				CursorStart: Pos{0, 13},
+				Kind:        KindEdit,
+				Target:      []string{"author = 'Devansh'"},
+				Par:         11,
+			},
+			{
+				Title: "Capstone",
+				Instructions: "Six lines, all five text-object delimiters you now know: " +
+					"clear a bracketed index with di[, cut a parenthetical aside with " +
+					"da(, swap a call's argument with ci(, rename a quoted path with " +
+					"ci\", rename a quoted name with ci', and swap a brace-wrapped " +
+					"setting with ci{. Use f followed by the delimiter to jump onto it " +
+					"first on every line, since your cursor starts each line at column 0.",
+				Tip: "Tip: landing exactly on the opening delimiter works just as well " +
+					"as landing somewhere inside it, for every one of these pairs.",
+				Start: []string{
+					"fetch[stale_cache]",
+					"note (delete this aside) here",
+					"print(placeholder)",
+					"path = \"old/file.txt\"",
+					"greet('old_name')",
+					"user{role=guest}",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"fetch[]",
+					"note  here",
+					"print(42)",
+					"path = \"new.txt\"",
+					"greet('Devansh')",
+					"user{role=admin}",
+				},
+				Par: 70,
+			},
+		},
+	},
 }
