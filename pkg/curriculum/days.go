@@ -1723,4 +1723,201 @@ var days = []Day{
 			},
 		},
 	},
+	{
+		Number: 19,
+		Week:   "Week 3: Counts & Text Objects",
+		Title:  "yiw, yi(, yi\" — Yank Text Objects",
+		Summary: "y takes a text object too, and it works exactly like d and c already do: " +
+			"yiw copies a word, yi( copies what's inside a pair of parens, yi\" copies a " +
+			"quoted string — none of it touches the buffer until you paste it with p or P. " +
+			"The one catch: d and c both overwrite whatever y just stored, so if you need to " +
+			"delete something else before you paste, delete it first and yank second.",
+		Challenges: []Challenge{
+			{
+				Title: "Duplicate The Item",
+				Instructions: "yiw copies a word into the register without changing anything " +
+					"on screen — same iw text object as ciw and diw, but nothing gets deleted " +
+					"this time. Yank \"milk\" with yiw, jump to the end of the line with $, " +
+					"type \", \" to start a second copy, then press p to paste the word back in.",
+				Tip: "Tip: y never touches the buffer by itself — it just fills the register, " +
+					"so you're free to move anywhere on the line (or off it) before pasting " +
+					"with p or P.",
+				NewKeys:     []string{"yiw"},
+				Start:       []string{"shopping list: milk"},
+				CursorStart: Pos{0, 15},
+				Kind:        KindEdit,
+				Target:      []string{"shopping list: milk, milk"},
+				Par:         9,
+			},
+			{
+				Title: "Copy The Status Value",
+				Instructions: "Two lines, same shape, different value. Delete the wrong word " +
+					"on the second line first with diw, then jump up to the first line and " +
+					"yank the correct one with yiw, then come back down and paste it into " +
+					"the gap with p.",
+				Tip: "Tip: order matters here — d and c both overwrite whatever y just put " +
+					"in the register, so if you yank first and then delete something else, " +
+					"your copy is gone before you can paste it. Delete first, yank second, " +
+					"paste last.",
+				Start:       []string{"status = active", "status = pending"},
+				CursorStart: Pos{0, 9},
+				Kind:        KindEdit,
+				Target:      []string{"status = active", "status = active"},
+				Par:         10,
+			},
+			{
+				Title: "Copy The Scale Factor",
+				Instructions: "Same idea with parentheses: clear the wrong value on the " +
+					"second line first with di(, then go up and yank the right one with " +
+					"yi(, then come back down to paste it in — but notice the paste key " +
+					"changes here.",
+				Tip: "Tip: di( leaves your cursor sitting on the closing ), so p (paste " +
+					"after) would land outside the parens — use P (paste before) to drop " +
+					"the value back inside where the ) is waiting.",
+				NewKeys:     []string{"yi("},
+				Start:       []string{"scale(2.0)", "scale(1.0)"},
+				CursorStart: Pos{0, 6},
+				Kind:        KindEdit,
+				Target:      []string{"scale(2.0)", "scale(2.0)"},
+				Par:         10,
+			},
+			{
+				Title: "Copy The Name",
+				Instructions: "One more delimiter, same three-step order: delete the wrong " +
+					"quoted name first with di\", yank the right one from the line above " +
+					"with yi\", then paste it back in with P.",
+				Tip: "Tip: di\" leaves the cursor on the closing quote too, just like di( " +
+					"did on the closing paren — pasting before the cursor with P is what " +
+					"drops the text back inside the pair.",
+				NewKeys:     []string{"yi\""},
+				Start:       []string{`name = "Alice"`, `name = "Bob"`},
+				CursorStart: Pos{0, 8},
+				Kind:        KindEdit,
+				Target:      []string{`name = "Alice"`, `name = "Alice"`},
+				Par:         10,
+			},
+			{
+				Title: "Capstone",
+				Instructions: "One template line on top, three broken copies below it — " +
+					"one wrong word, one wrong number, one wrong path. Fix all three the " +
+					"same way: delete the wrong piece first, jump back up to the template " +
+					"to yank the correct one, then return and paste it in.",
+				Tip: "Tip: re-locate with 0 then the same motion you used the first time " +
+					"(w w, or f( / f\") before every delete and every paste — don't rely on " +
+					"the cursor's column carrying over between lines, since yanking and " +
+					"deleting don't update it the way real motions do.",
+				Start: []string{
+					`role = admin, count(5), path = "main.go"`,
+					`role = guest, count(5), path = "main.go"`,
+					`role = admin, count(0), path = "main.go"`,
+					`role = admin, count(5), path = "temp.go"`,
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					`role = admin, count(5), path = "main.go"`,
+					`role = admin, count(5), path = "main.go"`,
+					`role = admin, count(5), path = "main.go"`,
+					`role = admin, count(5), path = "main.go"`,
+				},
+				Par: 63,
+			},
+		},
+	},
+	{
+		Number: 20,
+		Week:   "Week 3: Counts & Text Objects",
+		Title:  "Y — Yank Whole Line, The Fast Way",
+		Summary: "Y is a shortcut for yy — one keystroke instead of two to yank the whole " +
+			"current line — and it takes a count exactly the same way yy does, so 3Y and " +
+			"3yy are identical. The real payoff shows up when you combine it with the text " +
+			"objects you already know: yank a line as a template with Y, paste a copy of it " +
+			"with p, then tweak just the one word, number, or quoted value that's different " +
+			"with ciw, ci(, or ci\" — a duplicate-and-customize pattern you'll use constantly.",
+		Challenges: []Challenge{
+			{
+				Title: "Yank The Whole Line, Fast",
+				Instructions: "Y does exactly what yy does — yanks the whole current line — " +
+					"in one keystroke instead of two. Yank this line with Y, then paste a " +
+					"copy of it below with p.",
+				Tip: "Tip: Y and yy are the same command in this engine; use whichever " +
+					"your fingers reach for.",
+				NewKeys:     []string{"Y"},
+				Start:       []string{"keep me twice"},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target:      []string{"keep me twice", "keep me twice"},
+				Par:         2,
+			},
+			{
+				Title: "Count Before Y",
+				Instructions: "Y takes a count exactly like yy does — 2Y yanks two lines " +
+					"starting from the cursor in a single command. Copy the two template " +
+					"lines with 2Y, jump to the bottom with G, then paste the block after " +
+					"the last line with p.",
+				Tip: "Tip: 2Y and 2yy do the exact same thing — the count trick from Day " +
+					"15 works on every one of these shortcuts, not just yy.",
+				Start:       []string{"template A", "template B", "keep me", "tail"},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"template A", "template B", "keep me", "tail", "template A", "template B",
+				},
+				Par: 4,
+			},
+			{
+				Title: "Duplicate And Customize",
+				Instructions: "Copy a line as a starting point, then tweak just one word in " +
+					"the copy — a very common real edit. Yank this line with Y, paste it " +
+					"below with p, then use ciw on the pasted copy to change 'draft' to " +
+					"'final'.",
+				Tip: "Tip: after p, your cursor lands right at the start of the pasted " +
+					"line — no need to jump down to it first.",
+				Start:       []string{"status: draft"},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target:      []string{"status: draft", "status: final"},
+				Par:         14,
+			},
+			{
+				Title: "Duplicate And Customize, Again",
+				Instructions: "Same pattern, this time on a number inside parens: Y and p " +
+					"to duplicate the line, then ci( on the copy to change 1 to 5.",
+				Tip: "Tip: this is the same Y, p, then-fix-the-copy rhythm as the last " +
+					"challenge — only the delimiter you edit with changes.",
+				Start:       []string{"retries(1)"},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target:      []string{"retries(1)", "retries(5)"},
+				Par:         10,
+			},
+			{
+				Title: "Capstone",
+				Instructions: "A three-line settings block. Yank all three at once with 3Y, " +
+					"jump to the bottom with G, and paste the whole block with p. Then fix " +
+					"the three copies one at a time: ci\" to change the quoted name to " +
+					"prod, ci( to change the count to 9, and ciw to change the role to " +
+					"admin.",
+				Tip: "Tip: this is every trick from Days 19 and 20 in one document — yank " +
+					"a whole block with a count, paste it, then reach into the copy with " +
+					"text objects to fix exactly the pieces that need to change.",
+				Start: []string{
+					`name = "template"`,
+					`count(1)`,
+					`role = user`,
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					`name = "template"`,
+					`count(1)`,
+					`role = user`,
+					`name = "prod"`,
+					`count(9)`,
+					`role = admin`,
+				},
+				Par: 37,
+			},
+		},
+	},
 }

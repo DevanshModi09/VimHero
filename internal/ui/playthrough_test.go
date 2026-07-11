@@ -238,6 +238,45 @@ func TestCurriculumSolvable(t *testing.T) {
 			[]string{"j", "0"},
 			append([]string{"f", "{", "c", "i", "{"}, append(typeStr("role=admin"), "esc")...),
 		)},
+
+		{19, 0, concatKeys(
+			[]string{"y", "i", "w", "$", "a"},
+			typeStr(", "),
+			[]string{"esc", "p"},
+		)},
+		{19, 1, []string{"j", "d", "i", "w", "k", "y", "i", "w", "j", "p"}},
+		{19, 2, []string{"j", "d", "i", "(", "k", "y", "i", "(", "j", "P"}},
+		{19, 3, []string{"j", "d", "i", "\"", "k", "y", "i", "\"", "j", "P"}},
+		{19, 4, concatKeys(
+			[]string{"j", "0", "w", "w", "d", "i", "w", "k", "0", "w", "w", "y", "i", "w", "j", "0", "w", "w", "P"},
+			[]string{"j", "0", "f", "(", "d", "i", "(", "k", "k", "0", "f", "(", "y", "i", "(", "j", "j", "0", "f", "(", "p"},
+			[]string{"j", "0", "f", "\"", "d", "i", "\"", "k", "k", "k", "0", "f", "\"", "y", "i", "\"", "j", "j", "j", "0", "f", "\"", "p"},
+		)},
+
+		{20, 0, []string{"Y", "p"}},
+		{20, 1, []string{"2", "Y", "G", "p"}},
+		{20, 2, concatKeys(
+			[]string{"Y", "p", "0", "w", "w", "c", "i", "w"},
+			typeStr("final"),
+			[]string{"esc"},
+		)},
+		{20, 3, concatKeys(
+			[]string{"Y", "p", "0", "f", "(", "c", "i", "("},
+			typeStr("5"),
+			[]string{"esc"},
+		)},
+		{20, 4, concatKeys(
+			[]string{"3", "Y", "G", "p"},
+			[]string{"0", "f", "\"", "c", "i", "\""},
+			typeStr("prod"),
+			[]string{"esc"},
+			[]string{"j", "0", "f", "(", "c", "i", "("},
+			typeStr("9"),
+			[]string{"esc"},
+			[]string{"j", "0", "w", "w", "c", "i", "w"},
+			typeStr("admin"),
+			[]string{"esc"},
+		)},
 	}
 
 	m := NewModel()
