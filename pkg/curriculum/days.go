@@ -2259,4 +2259,37 @@ var days = []Day{
 			},
 		},
 	},
+	{
+		Number: 23,
+		Week:   "Week 4: Find & Search",
+		Title:  "/ and ? — Search The Whole Buffer",
+		Summary: "f and t only look at the current line. / and ? look at the whole " +
+			"buffer. Type / followed by a word and press enter to jump forward to the " +
+			"next place that word appears, anywhere in the document. ? does the same " +
+			"thing backward. Once you've searched, n repeats the same search in the same " +
+			"direction, and N repeats it in the opposite direction — just like ; and , " +
+			"did for f and t.",
+		Challenges: []Challenge{
+			{
+				Title: "/ — Search Forward",
+				Instructions: "Press / to open a search prompt at the bottom, type ERROR, " +
+					"and press enter. The cursor jumps straight to it, no matter how many " +
+					"lines away it is.",
+				Tip: "Tip: unlike f/t, / isn't limited to the current line — it scans " +
+					"every line in the buffer for the next match.",
+				Start: []string{
+					"connecting to server...",
+					"loading configuration",
+					"validating credentials",
+					"ERROR: connection timeout",
+					"retrying in 5 seconds",
+					"connection established",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindGoal,
+				GoalPos:     Pos{3, 0},
+				Par:         7,
+			},
+		},
+	},
 }
