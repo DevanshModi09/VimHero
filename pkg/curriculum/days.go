@@ -2361,6 +2361,35 @@ var days = []Day{
 				},
 				Par: 15,
 			},
+			{
+				Title: "A Fleet Of Alerts",
+				Instructions: "Six servers, three still saying alert. Search forward for " +
+					"alert and fix node-2 to warning. Press n to reach node-4 and fix it " +
+					"to critical. Then search backward for alert to catch node-1, fixing " +
+					"it to resolved. Finally press N to reverse back to forward and catch " +
+					"node-6, fixing it to monitoring.",
+				Tip: "Tip: once you fix a line, its old text stops matching the search — " +
+					"so n and N never land you back on a line you already handled.",
+				Start: []string{
+					"node-1: alert - disk space low",
+					"node-2: alert - disk space low",
+					"node-3: status ok",
+					"node-4: alert - disk space low",
+					"node-5: status ok",
+					"node-6: alert - disk space low",
+				},
+				CursorStart: Pos{0, 13},
+				Kind:        KindEdit,
+				Target: []string{
+					"node-1: resolved - disk space low",
+					"node-2: warning - disk space low",
+					"node-3: status ok",
+					"node-4: critical - disk space low",
+					"node-5: status ok",
+					"node-6: monitoring - disk space low",
+				},
+				Par: 65,
+			},
 		},
 	},
 }
