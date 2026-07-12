@@ -2309,6 +2309,32 @@ var days = []Day{
 				GoalPos:     Pos{1, 10},
 				Par:         11,
 			},
+			{
+				Title: "n — Repeat The Last Search",
+				Instructions: "Search for pending, then press n twice to skip past the " +
+					"first two matches and land on the third one — the one on its own " +
+					"line, not the one buried in the summary. Fix it with ciw.",
+				Tip: "Tip: n always repeats in the same direction the search was made, " +
+					"whether that search was / or ? — no need to remember which one you " +
+					"used.",
+				Start: []string{
+					"task pending",
+					"task pending",
+					"task done",
+					"task pending",
+					"summary: 3 tasks pending, 1 done",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"task pending",
+					"task pending",
+					"task done",
+					"task complete",
+					"summary: 3 tasks pending, 1 done",
+				},
+				Par: 23,
+			},
 		},
 	},
 }
