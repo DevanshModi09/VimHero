@@ -21,6 +21,8 @@ const (
 	screenThemes
 )
 
+const dayPageSize = 15
+
 type Model struct {
 	prog *progress.State
 	days []curriculum.Day
@@ -102,6 +104,19 @@ func (m Model) updateDayList(key string) (tea.Model, tea.Cmd) {
 	case "k", "up":
 		if m.dayCursor > 0 {
 			m.dayCursor--
+		}
+	case "left", "h":
+		page := m.dayPageOf(m.dayCursor)
+		if page > 0 {
+			m.dayCursor = (page - 1) * dayPageSize
+		}
+	case "right":
+		page := m.dayPageOf(m.dayCursor)
+		if page < m.dayPageCount()-1 {
+			m.dayCursor = (page + 1) * dayPageSize
+			if m.dayCursor > themeRow {
+				m.dayCursor = themeRow
+			}
 		}
 	case "enter", "l":
 		if m.dayCursor == themeRow {
@@ -291,7 +306,17 @@ func (m Model) viewDayList() string {
 	var b strings.Builder
 	b.WriteString(renderHeader("VimHero — Zero to Hero in 45 Days", m.fullWidth()))
 	b.WriteString("\n\n")
-	for i, day := range m.days {
+
+	page := m.dayPageOf(m.dayCursor)
+	pageCount := m.dayPageCount()
+	start := page * dayPageSize
+	end := start + dayPageSize
+	if end > len(m.days) {
+		end = len(m.days)
+	}
+
+	for i := start; i < end; i++ {
+		day := m.days[i]
 		marker := "  "
 		if i == m.dayCursor {
 			marker = "▸ "
@@ -317,20 +342,45 @@ func (m Model) viewDayList() string {
 		b.WriteString(marker + label + status + "\n")
 	}
 	b.WriteString("\n")
+	if pageCount > 1 {
+		b.WriteString(dimStyle.Render(fmt.Sprintf("Page %d/%d  (days %d-%d of %d)", page+1, pageCount, start+1, end, len(m.days))))
+		b.WriteString("\n\n")
+	}
 	if m.prog.Streak > 0 {
 		b.WriteString(streakStyle.Render(fmt.Sprintf("🔥 %d day streak", m.prog.Streak)) + "\n")
 	}
-	themeMarker := ""
-	themeLabel := "🎨 Change Theme"
-	if m.dayCursor == len(m.days) {
-		themeMarker = markerSelectedStyle.Render("▸ ")
-		themeLabel = dayLineSelected.Render(themeLabel)
+	if page == pageCount-1 {
+		themeMarker := ""
+		themeLabel := "🎨 Change Theme"
+		if m.dayCursor == len(m.days) {
+			themeMarker = markerSelectedStyle.Render("▸ ")
+			themeLabel = dayLineSelected.Render(themeLabel)
+		}
+		b.WriteString(themeMarker + themeLabel + dimStyle.Render(" (press t)") + "\n\n")
 	}
-	b.WriteString(themeMarker + themeLabel + dimStyle.Render(" (press t)") + "\n\n")
-	b.WriteString(helpStyle.Render("j/k move · enter select · t theme · q quit"))
+	if pageCount > 1 {
+		b.WriteString(helpStyle.Render("j/k move · ←/→ page · enter select · t theme · q quit"))
+	} else {
+		b.WriteString(helpStyle.Render("j/k move · enter select · t theme · q quit"))
+	}
 	b.WriteString("\n\n")
 	b.WriteString(dimStyle.Render("Created by Devansh"))
 	return b.String()
+}
+
+func (m Model) dayPageCount() int {
+	pages := (len(m.days) + dayPageSize - 1) / dayPageSize
+	if pages == 0 {
+		pages = 1
+	}
+	return pages
+}
+
+func (m Model) dayPageOf(cursor int) int {
+	if cursor >= len(m.days) {
+		return m.dayPageCount() - 1
+	}
+	return cursor / dayPageSize
 }
 
 func (m Model) dayStars(day curriculum.Day) (avgStars, cleared, total int) {
