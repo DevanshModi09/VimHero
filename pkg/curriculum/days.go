@@ -2392,4 +2392,106 @@ var days = []Day{
 			},
 		},
 	},
+	{
+		Number: 24,
+		Week:   "Week 4: Find & Search",
+		Title:  "% — Jump To The Matching Bracket",
+		Summary: "Code is full of ( ), [ ], and { } pairs, and they're often several " +
+			"words or even several lines apart. Put the cursor on (or just before) any " +
+			"bracket and press % to jump straight to its match — the other end of the " +
+			"same pair. It works across multiple lines, and it correctly skips over any " +
+			"nested pairs of the same bracket type along the way.",
+		Challenges: []Challenge{
+			{
+				Title: "% — Jump To The Closer",
+				Instructions: "Your cursor sits on the ( of calculate(...). Press % and " +
+					"watch the cursor jump straight to the matching ) at the end of the " +
+					"line.",
+				Tip: "Tip: % is the one motion that leaps across however much text sits " +
+					"between a bracket and its partner, no counting required.",
+				Start:       []string{"calculate(alpha, beta, gamma)"},
+				CursorStart: Pos{0, 9},
+				Kind:        KindGoal,
+				GoalPos:     Pos{0, 28},
+				Par:         1,
+			},
+			{
+				Title: "% Crosses Lines Too",
+				Instructions: "This function body spans four lines. Your cursor is on the " +
+					"{ that opens it. Press % to jump all the way down to the closing } " +
+					"on its own line.",
+				Tip: "Tip: unlike f/t, % isn't limited to the current line — same as / " +
+					"and ?, it can land anywhere in the buffer.",
+				Start: []string{
+					"function setup() {",
+					"    initialize()",
+					"    configure()",
+					"    validate()",
+					"}",
+				},
+				CursorStart: Pos{0, 17},
+				Kind:        KindGoal,
+				GoalPos:     Pos{4, 0},
+				Par:         1,
+			},
+			{
+				Title: "d% — Delete A Bracket Pair And Everything Inside",
+				Instructions: "Your cursor is on the ( of run(...). Press d% to delete " +
+					"from that ( through the matching ) — brackets and all — leaving " +
+					"just run behind.",
+				Tip: "Tip: % combines with operators cleanly, same as f/t — d% deletes " +
+					"the whole bracketed chunk in one move, no matter how long it is.",
+				Start:       []string{"run(oldTask, extra, args)", "keep this line unchanged"},
+				CursorStart: Pos{0, 3},
+				Kind:        KindEdit,
+				Target:      []string{"run", "keep this line unchanged"},
+				Par:         2,
+			},
+			{
+				Title: "% Skips Nested Brackets",
+				Instructions: "This array has a smaller array nested inside it. Your " +
+					"cursor is on the outer [. Press c% and type REDACTED to replace " +
+					"the whole outer list — % correctly jumps past the inner [20, 30] " +
+					"to the real outer ], so nothing gets left behind.",
+				Tip: "Tip: % counts nesting depth as it scans, so it never mistakes an " +
+					"inner closing bracket for the outer one you actually meant.",
+				Start:       []string{"values = [10, [20, 30], 40]", "next line unchanged"},
+				CursorStart: Pos{0, 9},
+				Kind:        KindEdit,
+				Target:      []string{"values = REDACTED", "next line unchanged"},
+				Par:         11,
+			},
+			{
+				Title: "Tidy The Settings Block",
+				Instructions: "Fix three values using % to reach each one, then confirm " +
+					"the whole block's extent. Line 2: jump to the ( in timeout and use " +
+					"c% to replace (30 + 5) with (45). Line 3: jump to the [ in retries " +
+					"and use c% to replace [1, 2, 3] with [5, 10]. Line 4: jump to the " +
+					"opening quote in name and use ci\" to change prod to staging. " +
+					"Finally, go back to the very first line, press $ to reach its { , " +
+					"then % to confirm it matches the closing } at the bottom, and press " +
+					"o to add a new line after it reading # end of settings.",
+				Tip: "Tip: % is as much a sanity check as an edit tool — jumping from an " +
+					"opening brace to its close confirms exactly how much a block spans.",
+				Start: []string{
+					"settings = {",
+					"    timeout: (30 + 5),",
+					"    retries: [1, 2, 3],",
+					"    name: \"prod\"",
+					"}",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"settings = {",
+					"    timeout: (45),",
+					"    retries: [5, 10],",
+					"    name: \"staging\"",
+					"}",
+					"# end of settings",
+				},
+				Par: 63,
+			},
+		},
+	},
 }

@@ -367,6 +367,17 @@ func TestCurriculumSolvable(t *testing.T) {
 			[]string{"N"},
 			[]string{"c", "i", "w"}, typeStr("monitoring"), []string{"esc"},
 		)},
+
+		{24, 0, []string{"%"}},
+		{24, 1, []string{"%"}},
+		{24, 2, []string{"d", "%"}},
+		{24, 3, concatKeys([]string{"c", "%"}, typeStr("REDACTED"), []string{"esc"})},
+		{24, 4, concatKeys(
+			[]string{"j", "0", "f", "("}, []string{"c", "%"}, typeStr("(45)"), []string{"esc"},
+			[]string{"j", "0", "f", "["}, []string{"c", "%"}, typeStr("[5, 10]"), []string{"esc"},
+			[]string{"j", "0", "f", "\""}, []string{"c", "i", "\""}, typeStr("staging"), []string{"esc"},
+			[]string{"g", "g", "$", "%"}, []string{"o"}, typeStr("# end of settings"), []string{"esc"},
+		)},
 	}
 
 	m := NewModel()
