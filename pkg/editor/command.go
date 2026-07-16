@@ -183,6 +183,26 @@ func splitUnescaped(s string, sep byte) []string {
 	return parts
 }
 
+func (b *Buffer) searchWord(dir int) {
+	line := []rune(b.line(b.Cursor.Row))
+	col := b.Cursor.Col
+	if len(line) == 0 || col >= len(line) || wordClass(line[col]) != 1 {
+		b.StatusMsg = "no word under cursor"
+		return
+	}
+	start, end := col, col
+	for start > 0 && wordClass(line[start-1]) == 1 {
+		start--
+	}
+	for end < len(line) && wordClass(line[end]) == 1 {
+		end++
+	}
+	b.searchPattern = `\b` + regexp.QuoteMeta(string(line[start:end])) + `\b`
+	b.searchDir = dir
+	b.Cursor.Col = start
+	b.repeatSearch(1)
+}
+
 func (b *Buffer) repeatSearch(dir int) {
 	if b.searchPattern == "" {
 		return

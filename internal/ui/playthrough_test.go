@@ -378,6 +378,35 @@ func TestCurriculumSolvable(t *testing.T) {
 			[]string{"j", "0", "f", "\""}, []string{"c", "i", "\""}, typeStr("staging"), []string{"esc"},
 			[]string{"g", "g", "$", "%"}, []string{"o"}, typeStr("# end of settings"), []string{"esc"},
 		)},
+
+		{25, 0, []string{"*"}},
+		{25, 1, []string{"#", "n"}},
+		{25, 2, concatKeys(
+			[]string{"*"},
+			[]string{"c", "i", "w"}, typeStr("limit"), []string{"esc"},
+			[]string{"n"},
+			[]string{"c", "i", "w"}, typeStr("limit"), []string{"esc"},
+		)},
+		{25, 3, concatKeys(
+			[]string{"*"},
+			[]string{"c", "i", "w"}, typeStr("data"), []string{"esc"},
+			[]string{"n"},
+			[]string{"c", "i", "w"}, typeStr("data"), []string{"esc"},
+			[]string{"n"},
+			[]string{"c", "i", "w"}, typeStr("data"), []string{"esc"},
+		)},
+		{25, 4, concatKeys(
+			[]string{"#"},
+			[]string{"$", "r", "5"},
+			[]string{"j", "0"},
+			[]string{"*"},
+			[]string{"c", "i", "w"}, typeStr("conn"), []string{"esc"},
+			[]string{"n"},
+			[]string{"c", "i", "w"}, typeStr("conn"), []string{"esc"},
+			[]string{"n"},
+			[]string{"c", "i", "w"}, typeStr("conn"), []string{"esc"},
+			[]string{"G", "o"}, typeStr("done"), []string{"esc"},
+		)},
 	}
 
 	m := NewModel()

@@ -2494,4 +2494,129 @@ var days = []Day{
 			},
 		},
 	},
+	{
+		Number: 25,
+		Week:   "Week 4: Find & Search",
+		Title:  "* and # — Search The Word Under The Cursor",
+		Summary: "With / you had to type the word you were looking for. * skips the " +
+			"typing entirely: put the cursor anywhere on a word and press * to jump to " +
+			"its next occurrence, or # to jump to its previous one. Both match the " +
+			"whole word only — searching for count will never land inside counter — " +
+			"and n/N repeat the jump exactly like they do for / and ?.",
+		Challenges: []Challenge{
+			{
+				Title: "* — Jump To The Next Occurrence",
+				Instructions: "Your cursor sits in the middle of total on the first " +
+					"line. Press * and jump straight to the next place total appears — " +
+					"no typing, no search prompt.",
+				Tip: "Tip: the cursor can be anywhere inside the word — * figures out " +
+					"the word's boundaries for you before it searches.",
+				Start: []string{
+					"total = price + tax",
+					"shipping = 5",
+					"final = total - discount",
+				},
+				CursorStart: Pos{0, 2},
+				Kind:        KindGoal,
+				GoalPos:     Pos{2, 8},
+				Par:         1,
+			},
+			{
+				Title: "# — Search Backward, Whole Words Only",
+				Instructions: "Your cursor is on count in the last line. Press # to " +
+					"jump backward to the previous count — notice it skips right over " +
+					"counter on the way. Then press n to keep going backward to the " +
+					"definition at the very top.",
+				Tip: "Tip: * and # match only the whole word. A plain /count search " +
+					"would have stopped inside counter; # never will.",
+				Start: []string{
+					"count = 0",
+					"counter = count + 1",
+					"update(counter)",
+					"print(count)",
+				},
+				CursorStart: Pos{3, 6},
+				Kind:        KindGoal,
+				GoalPos:     Pos{0, 0},
+				Par:         2,
+			},
+			{
+				Title: "* Then Fix It",
+				Instructions: "Both function calls should use the local limit variable, " +
+					"not the global timeout. Your cursor is on timeout in the " +
+					"definition. Press * to jump to the one inside retry and fix it " +
+					"with ciw limit, then n to reach the one inside connect and fix it " +
+					"the same way.",
+				Tip: "Tip: same rule as / — search is a pure jump in this editor, so " +
+					"land first with * or n, then edit with a separate command like ciw.",
+				Start: []string{
+					"timeout = 30",
+					"retry(timeout, backoff)",
+					"connect(host, timeout)",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"timeout = 30",
+					"retry(limit, backoff)",
+					"connect(host, limit)",
+				},
+				Par: 20,
+			},
+			{
+				Title: "n Wraps Around — Rename Every Occurrence",
+				Instructions: "Rename tmp to data everywhere. From the definition, " +
+					"press * to reach the second occurrence and fix it with ciw data, " +
+					"press n and fix the third, then press n once more — the search " +
+					"wraps past the end of the file, straight back to the first tmp — " +
+					"and fix that one too.",
+				Tip: "Tip: wrap-around is what makes *-then-n a full rename loop — " +
+					"start anywhere, keep pressing n, and you'll visit every occurrence " +
+					"exactly once.",
+				Start: []string{
+					"tmp = load()",
+					"result = tmp + 2",
+					"save(tmp)",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"data = load()",
+					"result = data + 2",
+					"save(data)",
+				},
+				Par: 27,
+			},
+			{
+				Title: "Clean Up The Connection Script",
+				Instructions: "Three jobs. First: your cursor is on retries at the " +
+					"bottom — press # to jump back to its definition, then use $ and " +
+					"r to change the 3 to a 5. Second: press j then 0 to land on tmp, " +
+					"and rename every tmp to conn using * and n (the last n wraps back " +
+					"to the definition) with ciw conn each time. Third: press G, then " +
+					"o, and add a final line reading done.",
+				Tip: "Tip: # to find where something was defined, * to sweep every " +
+					"use of it — together they cover both directions of the rename " +
+					"workflow.",
+				Start: []string{
+					"retries = 3",
+					"tmp = connect()",
+					"send(tmp)",
+					"close(tmp)",
+					"check(retries)",
+				},
+				CursorStart: Pos{4, 6},
+				Kind:        KindEdit,
+				Target: []string{
+					"retries = 5",
+					"conn = connect()",
+					"send(conn)",
+					"close(conn)",
+					"check(retries)",
+					"done",
+				},
+				Par: 40,
+			},
+		},
+	},
 }

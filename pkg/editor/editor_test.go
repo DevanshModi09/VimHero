@@ -158,6 +158,34 @@ func TestSearch(t *testing.T) {
 	}
 }
 
+func TestSearchWordStar(t *testing.T) {
+	b := New([]string{"count = 1", "total = count + 2", "print(count)"}, Pos{0, 2})
+	feed(b, "*")
+	if b.Cursor != (Pos{1, 8}) {
+		t.Fatalf("expected {1 8} after *, got %v", b.Cursor)
+	}
+	feed(b, "n")
+	if b.Cursor != (Pos{2, 6}) {
+		t.Fatalf("expected {2 6} after n, got %v", b.Cursor)
+	}
+	feed(b, "n")
+	if b.Cursor != (Pos{0, 0}) {
+		t.Fatalf("expected wrap to {0 0} after n, got %v", b.Cursor)
+	}
+}
+
+func TestSearchWordHash(t *testing.T) {
+	b := New([]string{"count = 1", "counter = 2", "total = count"}, Pos{2, 8})
+	feed(b, "#")
+	if b.Cursor != (Pos{0, 0}) {
+		t.Fatalf("expected {0 0} after #, got %v", b.Cursor)
+	}
+	feed(b, "n")
+	if b.Cursor != (Pos{2, 8}) {
+		t.Fatalf("expected {2 8} after n, got %v", b.Cursor)
+	}
+}
+
 func TestMacro(t *testing.T) {
 	b := New([]string{"a", "a", "a"}, Pos{0, 0})
 	feed(b, "q", "a")

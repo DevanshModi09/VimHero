@@ -324,6 +324,12 @@ func (b *Buffer) handleNormal(key string) {
 	case "N":
 		b.repeatSearch(-1)
 		b.resetPending()
+	case "*":
+		b.searchWord(1)
+		b.resetPending()
+	case "#":
+		b.searchWord(-1)
+		b.resetPending()
 	case "q":
 		b.pendingKind = 'q'
 	case "@":
