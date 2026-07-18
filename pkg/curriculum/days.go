@@ -2732,4 +2732,68 @@ var days = []Day{
 			},
 		},
 	},
+	{
+		Number: 27,
+		Week:   "Week 4: Find & Search",
+		Title:  "Search Patterns — \\d, ^, and Character Classes",
+		Summary: "/ and ? don't just match literal text — they run real search " +
+			"patterns. \\d matches any digit, so /\\d jumps to the next one without " +
+			"you typing which digit it is. ^ anchors a pattern to the start of a " +
+			"line, so /^word only matches word when it opens the line, not when it " +
+			"shows up in the middle of one. [set] matches any single character from " +
+			"the set inside the brackets — [,;] matches a comma or a semicolon, " +
+			"whichever comes first. These patterns work anywhere / or ? already " +
+			"worked, including n, N, and the d/ c/ y/ operators from day 26.",
+		Challenges: []Challenge{
+			{
+				Title: "\\d — Match Any Digit",
+				Instructions: "\\d stands in for any single digit, 0 through 9 — " +
+					"you don't have to know which one shows up first. Press / then " +
+					"\\d and enter to jump straight to the first digit in this line.",
+				Tip: "Tip: \\d is a class, not a literal backslash-d — same idea as " +
+					"typing a real character for f, except this one matches a whole " +
+					"category of characters instead of just one.",
+				Start:       []string{"invoice INV-2024 total due"},
+				CursorStart: Pos{0, 0},
+				Kind:        KindGoal,
+				GoalPos:     Pos{0, 12},
+				Par:         4,
+			},
+			{
+				Title: "^ — Anchor To The Start Of A Line",
+				Instructions: "^ pins a pattern to the very start of a line, so it " +
+					"only matches there — not anywhere else the text happens to " +
+					"appear. Press / then ^WARN and enter to skip past the WARN " +
+					"buried mid-line and land on the one line that actually starts " +
+					"with it.",
+				Tip: "Tip: without the ^, /WARN would have stopped on the very " +
+					"first line instead — WARN appears there too, just not at the " +
+					"front.",
+				Start: []string{
+					"status: WARN check disk",
+					"WARN: disk usage high",
+					"note: ignore WARN here",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindGoal,
+				GoalPos:     Pos{1, 0},
+				Par:         7,
+			},
+			{
+				Title: "[set] — Match Any One Of Several Characters",
+				Instructions: "[,;] matches a single character that's either a " +
+					"comma or a semicolon — whichever one the search hits first. " +
+					"Press / then [,;] and enter to land on the first separator in " +
+					"this line.",
+				Tip: "Tip: put any characters you want to match inside the " +
+					"brackets — [,;] means \"comma or semicolon\", not the literal " +
+					"three-character string.",
+				Start:       []string{"field_one; field_two, field_three"},
+				CursorStart: Pos{0, 0},
+				Kind:        KindGoal,
+				GoalPos:     Pos{0, 9},
+				Par:         6,
+			},
+		},
+	},
 }
