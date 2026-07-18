@@ -89,10 +89,10 @@ Clearing every challenge in a day unlocks the next one.
 | 5    | 29–34 | Visual mode, marks, macros, substitution & global | ⏳ planned                |
 | —    | 35–45 | Boss gauntlet — cumulative recap of every week, ending in the Day 45 ultimate boss | ⏳ planned |
 
-\* Day 17 and Day 27 are each missing a few challenges — see
-[CURRICULUM.md](CURRICULUM.md) for the exact gaps. All new teaching
-content wraps up by Day 34; every day from 35 to 45 is pure recap and
-boss challenges, no new keys introduced.
+\* Day 17 is missing a few challenges and Day 28 (this week's boss)
+hasn't been written yet — see [CURRICULUM.md](CURRICULUM.md) for
+details. All new teaching content wraps up by Day 34; every day from
+35 to 45 is pure recap and boss challenges, no new keys introduced.
 
 Every authored day carries 5 hands-on challenges, each one verified by
 scripting its solution against the real engine before being written

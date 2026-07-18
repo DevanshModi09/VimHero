@@ -73,17 +73,18 @@ full-syllabus revision boss. Day 17 has just 1 of its planned challenges
 | 24 | % — Jump To The Matching Bracket | 5 |
 | 25 | * and # — Search The Word Under The Cursor | 5 |
 | 26 | d/, c/, y/ — Operators Meet Search | 5 |
-| 27 | Search Patterns — \d, ^, and Character Classes | 3 🚧 |
+| 27 | Search Patterns — \d, ^, and Character Classes | 5 ✅ |
 | 28 | *(week 4 boss — not yet written)* | ⏳ |
 
 Same-line character jumps (`f`/`F`/`t`/`T` plus `;`/`,`), whole-buffer
 search (`/`, `?`, `n`, `N`), bracket matching (`%`), search-the-word-
 under-cursor (`*`/`#`), then search used as an operator's motion
-(`d/`, `c/`, `y/`). Day 27 currently covers `\d`, `^`, and `[set]` as
-three standalone goal-reach challenges; still missing an operator+regex
-challenge and a multi-fix finale (see below). Day 28 is expected to be
-this week's boss day, following the pattern set by days 8, 11, 14, and
-21, but hasn't been authored yet.
+(`d/`, `c/`, `y/`). Day 27 covers `\d`, `^`, and `[set]` as three
+goal-reach challenges, then ties them back into day 26's `d/`/`c/`
+operators — first with `d/\d` alone, then a four-line finale combining
+all three patterns with `d/` and `c/`. Day 28 is expected to be this
+week's boss day, following the pattern set by days 8, 11, 14, and 21,
+but hasn't been authored yet.
 
 ## Week 5: Visual Mode, Marks, Macros, Substitution & Global — Days 29-34 ⏳
 

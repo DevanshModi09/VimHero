@@ -2794,6 +2794,50 @@ var days = []Day{
 				GoalPos:     Pos{0, 9},
 				Par:         6,
 			},
+			{
+				Title: "d/\\d — Delete Up To A Pattern, Not Just A Word",
+				Instructions: "Day 26 taught d/ with a literal word — it works exactly " +
+					"the same with a pattern instead. Press d then / then \\d and " +
+					"enter to strip the non-numeric prefix off this error code, " +
+					"whatever digit it turns out to start with.",
+				Tip: "Tip: every operator that took a search motion on day 26 takes " +
+					"a pattern too — d/, c/, and y/ don't care whether what follows " +
+					"the / is literal text or \\d, ^, or a [set].",
+				Start:       []string{"ERROR-9981: connection refused"},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target:      []string{"9981: connection refused"},
+				Par:         5,
+			},
+			{
+				Title: "Patch The Deploy Log",
+				Instructions: "Four lines, three pattern-powered fixes. Line 1: " +
+					"d/\\d strips the TMP prefix off the build id. Then /^ALERT " +
+					"jumps past the ALERT buried in line 2's sentence and lands " +
+					"on line 3, the one that actually starts with it — c/: then " +
+					"enter changes ALERT to URGENT (type URGENT then esc). " +
+					"Line 4: j then 0 to reach it, then d/[,;] strips the junk_data " +
+					"prefix up to the separator, and x deletes the separator " +
+					"itself, leaving just the clean value.",
+				Tip: "Tip: nothing here is a new key — \\d, ^, and [set] just slot " +
+					"into d/ and c/ the same way a literal word already did on " +
+					"day 26.",
+				Start: []string{
+					"TMP7734 ready to deploy",
+					"info: ALERT check queue",
+					"ALERT: queue backlog high",
+					"junk_data,essential_value here",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"7734 ready to deploy",
+					"info: ALERT check queue",
+					"URGENT: queue backlog high",
+					"essential_value here",
+				},
+				Par: 34,
+			},
 		},
 	},
 }
