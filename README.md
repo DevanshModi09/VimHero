@@ -84,11 +84,15 @@ Clearing every challenge in a day unlocks the next one.
 | ---- | ----- | ------------------------------------------------- | ------------------------- |
 | 1    | 1–5   | Basic movement & modes                            | ✅ done                   |
 | 2    | 6–14  | More operators (`cw`, `ciw`, `daw`, `D`/`C`, `r`/`~`, `s`/`S`, `X`/`u`, `0`/`^`/`$`, ...) | ✅ done |
-| 3    | 15–21 | Counts & text objects (+ Day 21 full-revision boss) | ✅ done                 |
-| 4    | 22–28 | Find & search                                     | ⏳ planned                |
-| 5    | 29–35 | Visual mode                                       | ⏳ planned                |
-| 6    | 36–42 | Marks, macros, substitution, global               | ⏳ planned                |
-| —    | 43–45 | Final boss challenges                             | ⏳ planned                |
+| 3    | 15–21 | Counts & text objects (+ Day 21 full-revision boss) | ✅ done*                |
+| 4    | 22–28 | Find & search (+ Day 28 boss)                     | 🚧 in progress*           |
+| 5    | 29–34 | Visual mode, marks, macros, substitution & global | ⏳ planned                |
+| —    | 35–45 | Boss gauntlet — cumulative recap of every week, ending in the Day 45 ultimate boss | ⏳ planned |
+
+\* Day 17 and Day 27 are each missing a few challenges — see
+[CURRICULUM.md](CURRICULUM.md) for the exact gaps. All new teaching
+content wraps up by Day 34; every day from 35 to 45 is pure recap and
+boss challenges, no new keys introduced.
 
 Every authored day carries 5 hands-on challenges, each one verified by
 scripting its solution against the real engine before being written
