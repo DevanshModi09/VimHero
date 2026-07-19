@@ -2951,4 +2951,103 @@ var days = []Day{
 			},
 		},
 	},
+	{
+		Number: 29,
+		Week:   "Week 5: Visual Mode, Marks, Macros & Global",
+		Title:  "v and V — Visual & Visual-Line Mode",
+		Summary: "Every edit so far has paired an operator with a motion in one shot — " +
+			"dw, ci(, d/foo. Visual mode flips the order: press v first to start a " +
+			"character-wise selection, then move the cursor with any motion you already " +
+			"know to grow the highlighted range, and finally press an operator — d, c, " +
+			"y, or ~ — to act on exactly what's selected, no motion argument needed " +
+			"because the selection already told it what to touch. V works the same way " +
+			"but selects whole lines at once instead of characters, growing by line with " +
+			"j and k. Either mode drops back to normal mode automatically the moment an " +
+			"operator fires.",
+		Challenges: []Challenge{
+			{
+				Title: "v — Select Characters, Then Delete Them",
+				Instructions: "Press v to start a selection at the cursor, then l three " +
+					"times to grow it rightward over \"xxx \" — watch the highlight " +
+					"stretch as you move. Press d to delete whatever's selected.",
+				Tip: "Tip: unlike dw or dl, there's no motion typed after d here — v " +
+					"already built the range, so d just acts on it.",
+				Start:       []string{"xxx hello"},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target:      []string{"hello"},
+				Par:         5,
+			},
+			{
+				Title: "V — Select Whole Lines, Then Delete Them",
+				Instructions: "The cursor is already on the first line to remove. Press " +
+					"V to select the whole line, then j to pull the next line into the " +
+					"selection too, then d to delete both at once.",
+				Tip: "Tip: V always grabs entire lines — you don't need to reach either " +
+					"end of a line before pressing it, and j/k grow the selection a " +
+					"whole line at a time instead of one character.",
+				Start: []string{
+					"keep this",
+					"delete me",
+					"delete this too",
+					"keep this too",
+				},
+				CursorStart: Pos{1, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"keep this",
+					"keep this too",
+				},
+				Par: 3,
+			},
+			{
+				Title: "Visual Yank, Then Paste Elsewhere",
+				Instructions: "The cursor is on the p of \"prod\". Press v to select, " +
+					"then $ to grow the selection to the end of the line, then y to " +
+					"yank it. Press j to drop to the second line, $ to reach its last " +
+					"character, then p to paste right after it.",
+				Tip: "Tip: y in visual mode works exactly like d and c — it copies " +
+					"whatever's highlighted, no separate motion needed.",
+				Start: []string{
+					"main: prod",
+					"copy: ",
+				},
+				CursorStart: Pos{0, 6},
+				Kind:        KindEdit,
+				Target: []string{
+					"main: prod",
+					"copy: prod",
+				},
+				Par: 6,
+			},
+			{
+				Title: "~ Over A Visual Selection",
+				Instructions: "Press v to select, then e to grow the selection to the " +
+					"end of \"hello\", then ~ to flip the case of everything selected in " +
+					"one shot.",
+				Tip: "Tip: ~ on its own in normal mode only ever touches one character — " +
+					"pairing it with a visual selection first is how you flip the case " +
+					"of a whole stretch of text at once.",
+				Start:       []string{"hello there"},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target:      []string{"HELLO there"},
+				Par:         3,
+			},
+			{
+				Title: "V and c — Rewrite A Whole Line",
+				Instructions: "Press V to select this line, then c to clear it and drop " +
+					"straight into insert mode on a fresh blank line. Type status: done " +
+					"then esc.",
+				Tip: "Tip: c in visual mode is delete-then-insert, same as everywhere " +
+					"else — in V-mode that means the whole line's contents disappear and " +
+					"you start typing from a clean line at the same indentation.",
+				Start:       []string{"status: pending"},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target:      []string{"status: done"},
+				Par:         15,
+			},
+		},
+	},
 }
