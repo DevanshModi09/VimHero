@@ -3050,4 +3050,108 @@ var days = []Day{
 			},
 		},
 	},
+	{
+		Number: 30,
+		Week:   "Week 5: Visual Mode, Marks, Macros & Global",
+		Title:  "o — Swap Ends Of A Visual Selection",
+		Summary: "A visual selection always has two ends: the anchor, planted where " +
+			"you pressed v or V, and the cursor, which is the end you've been " +
+			"moving. Press o and they swap — the cursor jumps to the anchor and " +
+			"that end becomes movable, while the old cursor position freezes in " +
+			"place as the new anchor. It's the fix for a selection grown the wrong " +
+			"way: instead of dropping out of visual mode and starting over, o lets " +
+			"you keep everything already selected and extend from the other side " +
+			"instead — and you can press it again and again, walking the movable " +
+			"end back and forth between both sides as many times as you need.",
+		Challenges: []Challenge{
+			{
+				Title: "o — Grow The Other Side Of A Selection",
+				Instructions: "Press v to start a selection on the T of TARGET, then " +
+					"l five times to grow it across the whole word. Now press o to " +
+					"send the cursor back to the anchor, then h twice to pull that end " +
+					"left over \"aa\" too. Press d to delete everything now selected.",
+				Tip: "Tip: without o, the anchor stays stuck where you first pressed v — " +
+					"there'd be no way to grow the selection backward past it.",
+				Start:       []string{"aaTARGETbb"},
+				CursorStart: Pos{0, 2},
+				Kind:        KindEdit,
+				Target:      []string{"bb"},
+				Par:         10,
+			},
+			{
+				Title: "o Works In V Mode Too",
+				Instructions: "The cursor starts on cut2. Press V to select it, then j " +
+					"to pull cut3 into the selection below. Press o to jump back to " +
+					"cut2's end, then k to grow upward over cut1 instead. Press d to " +
+					"delete all three lines at once.",
+				Tip: "Tip: o doesn't care whether you're in v or V — it always swaps " +
+					"whichever two ends the current selection has.",
+				Start: []string{
+					"keep1",
+					"cut1",
+					"cut2",
+					"cut3",
+					"keep2",
+				},
+				CursorStart: Pos{2, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"keep1",
+					"keep2",
+				},
+				Par: 5,
+			},
+			{
+				Title: "o Then ~ — Flip Case On Both Sides",
+				Instructions: "Press v on the N of NOISE, then l four times to select " +
+					"the whole word. Press o to swap back to the anchor, then h twice " +
+					"to also pull \"lo\" into the selection. Press ~ to flip the case " +
+					"of everything selected in one shot.",
+				Tip: "Tip: it doesn't matter which operator finishes the job — o is " +
+					"just about shaping the selection first, same as it was with d.",
+				Start:       []string{"loNOISEhi"},
+				CursorStart: Pos{0, 2},
+				Kind:        KindEdit,
+				Target:      []string{"LOnoisehi"},
+				Par:         9,
+			},
+			{
+				Title: "o Then c — Rewrite A Fixed-Up Selection",
+				Instructions: "Press v on the T of TODO, then l three times to select " +
+					"the word. Press o to swap back to the anchor, then h twice to " +
+					"pull \"xx\" in on that side too. Press c to clear the selection " +
+					"and drop into insert mode, type done, then esc.",
+				Tip: "Tip: c in visual mode still works exactly like before — o only " +
+					"changed which end of the selection was movable, not what happens " +
+					"once you commit to an operator.",
+				Start:       []string{"xxTODOxx"},
+				CursorStart: Pos{0, 2},
+				Kind:        KindEdit,
+				Target:      []string{"donexx"},
+				Par:         13,
+			},
+			{
+				Title: "Double o — Grab Both Sides Then Yank",
+				Instructions: "Press v on the N of NOTED, then l four times to select " +
+					"the word. Press o, then h once to also grab the a on the left. " +
+					"Press o again to send the cursor back to the right side, then l " +
+					"once to also grab the b there. Press y to yank the whole word, " +
+					"then j$ to reach the end of the second line, then p to paste.",
+				Tip: "Tip: o can be pressed more than once — each press just swaps the " +
+					"movable end again, so you can widen a selection from both sides " +
+					"as many times as you need before committing to an operator.",
+				Start: []string{
+					"aNOTEDb",
+					"copy: ",
+				},
+				CursorStart: Pos{0, 1},
+				Kind:        KindEdit,
+				Target: []string{
+					"aNOTEDb",
+					"copy: aNOTEDb",
+				},
+				Par: 13,
+			},
+		},
+	},
 }

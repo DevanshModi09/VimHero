@@ -456,6 +456,14 @@ func TestCurriculumSolvable(t *testing.T) {
 		{29, 4, concatKeys(
 			[]string{"V", "c"}, typeStr("status: done"), []string{"esc"},
 		)},
+
+		{30, 0, []string{"v", "l", "l", "l", "l", "l", "o", "h", "h", "d"}},
+		{30, 1, []string{"V", "j", "o", "k", "d"}},
+		{30, 2, []string{"v", "l", "l", "l", "l", "o", "h", "h", "~"}},
+		{30, 3, concatKeys(
+			[]string{"v", "l", "l", "l", "o", "h", "h", "c"}, typeStr("done"), []string{"esc"},
+		)},
+		{30, 4, []string{"v", "l", "l", "l", "l", "o", "h", "o", "l", "y", "j", "$", "p"}},
 	}
 
 	m := NewModel()
