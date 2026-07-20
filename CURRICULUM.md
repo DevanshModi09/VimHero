@@ -98,7 +98,7 @@ past day 34.
 | Day | Title | Status |
 | --- | ----- | ------ |
 | 29 | `v` and `V` — Visual & Visual-Line Mode | ✅ |
-| 30 | Extending A Visual Selection (motions + `o` to swap ends) | ⏳ |
+| 30 | `o` — Swap Ends Of A Visual Selection | ✅ |
 | 31 | Text Objects & Case Toggle In Visual Mode (`vi(`, `vi"`, `viw`, `~`) | ⏳ |
 | 32 | `m` and `'` — Marks | ⏳ |
 | 33 | `q`, `@`, `@@` — Macros | ⏳ |
