@@ -100,7 +100,7 @@ past day 34.
 | 29 | `v` and `V` — Visual & Visual-Line Mode | ✅ |
 | 30 | `o` — Swap Ends Of A Visual Selection | ✅ |
 | 31 | Text Objects & Case Toggle In Visual Mode (`vi(`, `vi"`, `viw`, `~`) | ✅ |
-| 32 | `m` and `'` — Marks | ⏳ |
+| 32 | `m` and `'` — Marks | ✅ |
 | 33 | `q`, `@`, `@@` — Macros | ⏳ |
 | 34 | `:s` and `:g` — Substitution & The Global Command | ⏳ |
 

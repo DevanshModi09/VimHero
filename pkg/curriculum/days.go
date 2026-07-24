@@ -3259,4 +3259,141 @@ var days = []Day{
 			},
 		},
 	},
+	{
+		Number: 32,
+		Week:   "Week 5: Visual Mode, Marks, Macros & Global",
+		Title:  "m and ' — Marks",
+		Summary: "m followed by a letter drops an invisible bookmark at the cursor's " +
+			"current position — ma sets mark a. From anywhere else in the buffer, ' " +
+			"followed by that same letter snaps straight back to it — 'a jumps to " +
+			"mark a, no matter how far away or how many edits happened in between. " +
+			"Up to 26 marks (a through z) can be live at once, so you can bookmark a " +
+			"spot before a long detour — fixing something elsewhere, or finding text " +
+			"to copy — and cut straight back the instant you're done, instead of " +
+			"re-navigating from scratch.",
+		Challenges: []Challenge{
+			{
+				Title: "ma / 'a — Bookmark A Spot, Then Jump Back To It",
+				Instructions: "Your cursor sits on the first TODO. Press ma to drop " +
+					"a bookmark right there, then j to move down to the second " +
+					"TODO. Fix it with ciw, typing DONE then esc. Now press 'a to " +
+					"snap straight back to the bookmark — no need to remember " +
+					"where it was — and fix that one with ciw the same way.",
+				Tip: "Tip: 'a jumps to the exact spot ma bookmarked, down to the " +
+					"column — not just the line, the way gg or G would.",
+				NewKeys: []string{"m", "'"},
+				Start: []string{
+					"TODO handle parsing",
+					"TODO handle rendering",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"DONE handle parsing",
+					"DONE handle rendering",
+				},
+				Par: 21,
+			},
+			{
+				Title: "Bookmark, Take A Detour, Then Come Back To Delete",
+				Instructions: "Press ma to bookmark the first line, then 3j to " +
+					"drop three lines down onto the last one. Press $ to reach " +
+					"its last word, then ciw to fix it — type 3 then esc. Now " +
+					"press 'a to jump all the way back to the bookmarked line, " +
+					"even after that whole detour, and dd to delete it.",
+				Tip: "Tip: the bookmark doesn't care what you did in between — " +
+					"edit as many other lines as you want, 'a always returns to " +
+					"the exact spot ma left behind.",
+				Start: []string{
+					"DELETE this whole line",
+					"keep this line one",
+					"keep this line two",
+					"keep this line three",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"keep this line one",
+					"keep this line two",
+					"keep this line 3",
+				},
+				Par: 14,
+			},
+			{
+				Title: "Bookmark The Destination, Then Go Grab Something To Paste There",
+				Instructions: "Press ma to bookmark the paste site on the first " +
+					"line. Press j then w to reach \"this\" on the line below, " +
+					"and yiw to yank it. Press 'a to jump straight back to the " +
+					"bookmark, then $ to reach the end of that line, and p to " +
+					"paste.",
+				Tip: "Tip: marks work just as well in reverse — bookmark where " +
+					"you want to end up before you go find what you need, then " +
+					"'a brings you straight back to paste it.",
+				Start: []string{
+					"target: ",
+					"grab this phrase please",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"target: this",
+					"grab this phrase please",
+				},
+				Par: 11,
+			},
+			{
+				Title: "Two Marks At Once — ma, mb, Then Jump Between Them",
+				Instructions: "Press ma on the first TODO, then jj to drop down " +
+					"to the second one and mb to bookmark that too — two marks, " +
+					"live at the same time. Press 'a to jump back to the first " +
+					"and fix it with ciw, typing DONE then esc. Then press 'b " +
+					"to jump straight to the second bookmark and fix that one " +
+					"the same way.",
+				Tip: "Tip: up to 26 marks (a-z) can all be live at once — each " +
+					"letter is its own independent bookmark, so you can jump " +
+					"between several spots in any order.",
+				Start: []string{
+					"TODO alpha section",
+					"middle stuff here",
+					"TODO beta section",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"DONE alpha section",
+					"middle stuff here",
+					"DONE beta section",
+				},
+				Par: 26,
+			},
+			{
+				Title: "Capstone",
+				Instructions: "Bookmark home with ma, then j and mb to bookmark " +
+					"the junk line right below it too. Press j then w to reach " +
+					"\"this\" on the next line and yiw to yank it. Press j then " +
+					"$ to reach the end of the last line and p to paste. Now " +
+					"press 'b to jump back to the junk line and dd to delete " +
+					"it, then 'a to jump all the way home and ciw to fix the " +
+					"TODO there, typing DONE then esc.",
+				Tip: "Tip: this is the whole point of marks — bookmark home " +
+					"before a multi-step detour through the rest of the buffer, " +
+					"then cut straight back the instant you're done, instead of " +
+					"re-navigating from scratch.",
+				Start: []string{
+					"TODO alpha section",
+					"DELETE this whole junk line",
+					"grab this phrase please",
+					"note: ",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"DONE alpha section",
+					"grab this phrase please",
+					"note: this",
+				},
+				Par: 27,
+			},
+		},
+	},
 }

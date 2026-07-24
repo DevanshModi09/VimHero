@@ -480,6 +480,42 @@ func TestCurriculumSolvable(t *testing.T) {
 			[]string{"j", "0"},
 			[]string{"f", "(", "v", "i", "(", "o", "h", "h", "d"},
 		)},
+
+		{32, 0, concatKeys(
+			[]string{"m", "a"},
+			[]string{"j"},
+			append([]string{"c", "i", "w"}, append(typeStr("DONE"), "esc")...),
+			[]string{"'", "a"},
+			append([]string{"c", "i", "w"}, append(typeStr("DONE"), "esc")...),
+		)},
+		{32, 1, concatKeys(
+			[]string{"m", "a"},
+			[]string{"3", "j", "$"},
+			append([]string{"c", "i", "w"}, append(typeStr("3"), "esc")...),
+			[]string{"'", "a", "d", "d"},
+		)},
+		{32, 2, concatKeys(
+			[]string{"m", "a"},
+			[]string{"j", "w", "y", "i", "w"},
+			[]string{"'", "a", "$", "p"},
+		)},
+		{32, 3, concatKeys(
+			[]string{"m", "a"},
+			[]string{"j", "j", "m", "b"},
+			[]string{"'", "a"},
+			append([]string{"c", "i", "w"}, append(typeStr("DONE"), "esc")...),
+			[]string{"'", "b"},
+			append([]string{"c", "i", "w"}, append(typeStr("DONE"), "esc")...),
+		)},
+		{32, 4, concatKeys(
+			[]string{"m", "a"},
+			[]string{"j", "m", "b"},
+			[]string{"j", "w", "y", "i", "w"},
+			[]string{"j", "$", "p"},
+			[]string{"'", "b", "d", "d"},
+			[]string{"'", "a"},
+			append([]string{"c", "i", "w"}, append(typeStr("DONE"), "esc")...),
+		)},
 	}
 
 	m := NewModel()
