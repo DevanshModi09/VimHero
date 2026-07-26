@@ -3546,4 +3546,142 @@ var days = []Day{
 			},
 		},
 	},
+	{
+		Number: 34,
+		Week:   "Week 5: Visual Mode, Marks, Macros & Global",
+		Title:  ":s and :g — Substitution & The Global Command",
+		Summary: ": followed by s and a /pattern/replacement/ template substitutes " +
+			"text using a search pattern instead of manual editing — :s/old/new/ " +
+			"changes the first match on the current line. Add a g flag, " +
+			":s/old/new/g, to change every match on that line instead of just the " +
+			"first. Prefix the whole command with %, as in :%s/old/new/, to widen " +
+			"it from just the current line to every line in the buffer — combine " +
+			"both, :%s/old/new/g, to change every match everywhere. : followed by " +
+			"g and /pattern/d deletes every line containing a match, no matter " +
+			"where it sits — :g/pattern/d clears out every matching line in one " +
+			"shot. Together these turn edits that would take dozens of individual " +
+			"keystrokes into a single command line.",
+		Challenges: []Challenge{
+			{
+				Title: ":s/old/new/ — Substitute On This Line Only",
+				Instructions: "Your cursor sits on the first line. Press : to " +
+					"open the command line, type s/cat/dog/ then enter to " +
+					"replace \"cat\" with \"dog\" — but :s only touches the " +
+					"current line, so the second line's \"cat\" is left alone.",
+				Tip: "Tip: : opens a command line at the bottom of the screen — " +
+					"whatever you type there runs as a command instead of being " +
+					"typed into the buffer, so backspace and enter both work as " +
+					"you'd expect while it's open.",
+				NewKeys: []string{":s"},
+				Start: []string{
+					"I like cat food",
+					"I like cat toys",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"I like dog food",
+					"I like cat toys",
+				},
+				Par: 12,
+			},
+			{
+				Title: ":s/old/new/g — Every Match, Not Just The First",
+				Instructions: "This line repeats \"fix\" three times. Press : " +
+					"then type s/fix/DONE/g and enter — the g flag at the end " +
+					"tells :s to replace every match on the line, not stop after " +
+					"the first one.",
+				Tip: "Tip: without the g flag, :s only changes the first match " +
+					"it finds on the line — g is what makes it change all of " +
+					"them.",
+				Start: []string{
+					"fix fix fix this line",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"DONE DONE DONE this line",
+				},
+				Par: 14,
+			},
+			{
+				Title: "%s/old/new/ — Every Line, Not Just This One",
+				Instructions: "Three lines each have one TODO. Press : then " +
+					"type %s/TODO/DONE/ and enter — the % before s widens the " +
+					"command from just the current line to every line in the " +
+					"buffer, fixing all three at once.",
+				Tip: "Tip: % and g solve two different problems — % widens " +
+					"which lines get searched, g widens how many matches get " +
+					"changed per line. Here each line only has one match, so g " +
+					"isn't needed at all.",
+				Start: []string{
+					"TODO alpha",
+					"TODO beta",
+					"TODO gamma",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"DONE alpha",
+					"DONE beta",
+					"DONE gamma",
+				},
+				Par: 15,
+			},
+			{
+				Title: ":g/pattern/d — Delete Every Matching Line",
+				Instructions: "Two junk lines are mixed in among the ones worth " +
+					"keeping. Press : then type g/DELETE/d and enter — it " +
+					"deletes every line containing \"DELETE\", wherever it " +
+					"appears, in a single command.",
+				Tip: "Tip: :g/pattern/d scans the whole buffer for lines " +
+					"matching the pattern and deletes all of them at once — no " +
+					"need to hunt each one down with dd individually.",
+				NewKeys: []string{":g"},
+				Start: []string{
+					"keep alpha",
+					"DELETE this junk",
+					"keep beta",
+					"DELETE more junk",
+					"keep gamma",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"keep alpha",
+					"keep beta",
+					"keep gamma",
+				},
+				Par: 12,
+			},
+			{
+				Title: "Capstone",
+				Instructions: "Clear out the junk first: press : then type " +
+					"g/DELETE/d and enter to delete every junk line. Then fix " +
+					"what's left in one shot: press : then type " +
+					"%s/TODO/DONE/g and enter to replace every TODO, on every " +
+					"line, all at once — each remaining line has two.",
+				Tip: "Tip: this is the payoff of the whole day — :g clears out " +
+					"the noise across the entire buffer, then %s together with " +
+					"g rewrites everything that's left, wherever it is and " +
+					"however many times it appears, without ever moving the " +
+					"cursor.",
+				Start: []string{
+					"TODO alpha TODO twice",
+					"DELETE this junk",
+					"TODO beta TODO twice",
+					"DELETE more junk",
+					"TODO gamma TODO twice",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"DONE alpha DONE twice",
+					"DONE beta DONE twice",
+					"DONE gamma DONE twice",
+				},
+				Par: 28,
+			},
+		},
+	},
 }

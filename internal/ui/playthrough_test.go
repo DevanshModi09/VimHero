@@ -560,6 +560,15 @@ func TestCurriculumSolvable(t *testing.T) {
 			[]string{"@", "a"},
 			[]string{"d", "d"},
 		)},
+
+		{34, 0, exCmd("s/cat/dog/")},
+		{34, 1, exCmd("s/fix/DONE/g")},
+		{34, 2, exCmd("%s/TODO/DONE/")},
+		{34, 3, exCmd("g/DELETE/d")},
+		{34, 4, concatKeys(
+			exCmd("g/DELETE/d"),
+			exCmd("%s/TODO/DONE/g"),
+		)},
 	}
 
 	m := NewModel()
@@ -603,4 +612,9 @@ func typeStr(s string) []string {
 		out = append(out, string(r))
 	}
 	return out
+}
+
+func exCmd(cmd string) []string {
+	out := append([]string{":"}, typeStr(cmd)...)
+	return append(out, "enter")
 }
