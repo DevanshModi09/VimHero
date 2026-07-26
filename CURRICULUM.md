@@ -101,7 +101,7 @@ past day 34.
 | 30 | `o` — Swap Ends Of A Visual Selection | ✅ |
 | 31 | Text Objects & Case Toggle In Visual Mode (`vi(`, `vi"`, `viw`, `~`) | ✅ |
 | 32 | `m` and `'` — Marks | ✅ |
-| 33 | `q`, `@`, `@@` — Macros | ⏳ |
+| 33 | `q`, `@`, `@@` — Macros | ✅ |
 | 34 | `:s` and `:g` — Substitution & The Global Command | ⏳ |
 
 Day 29 introduces `v`/`V` on their own — selection grown with plain

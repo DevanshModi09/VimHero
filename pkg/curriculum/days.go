@@ -3396,4 +3396,154 @@ var days = []Day{
 			},
 		},
 	},
+	{
+		Number: 33,
+		Week:   "Week 5: Visual Mode, Marks, Macros & Global",
+		Title:  "q, @ and @@ — Macros",
+		Summary: "q followed by a letter starts recording a macro into that register " +
+			"— qa begins recording into register a. Every keystroke you type after " +
+			"that is captured exactly, until you press q again to stop. Once it's " +
+			"recorded, @ followed by the same letter replays it — @a fires off " +
+			"everything you typed between qa and q, in order, as if you'd typed it " +
+			"all again. @@ repeats whichever macro you played most recently, so you " +
+			"don't have to remember its letter. A single edit, once recorded, can be " +
+			"replayed across as many lines as you need.",
+		Challenges: []Challenge{
+			{
+				Title: "qa ... q, Then @a — Record Once, Replay Once",
+				Instructions: "Your cursor sits on the first TODO. Press qa to " +
+					"start recording into register a. Fix the line with ciw, " +
+					"typing DONE then esc, then press q to stop recording. Press " +
+					"j to move down to the second TODO, then @a to replay the " +
+					"exact same fix there.",
+				Tip: "Tip: everything between qa and the q that stops it gets " +
+					"captured — the qa and the final q themselves are never part " +
+					"of the recording, only what happens in between.",
+				NewKeys: []string{"q", "@"},
+				Start: []string{
+					"TODO first",
+					"TODO second",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"DONE first",
+					"DONE second",
+				},
+				Par: 22,
+			},
+			{
+				Title: "@@ — Repeat The Last Macro Without Naming It",
+				Instructions: "Press qa to start recording, fix the first TODO " +
+					"with ciw, typing DONE then esc, then q to stop. Press j then " +
+					"@a to replay the fix on the second line. Press j then @@ to " +
+					"replay it again on the third line — @@ reruns whatever macro " +
+					"you last played, so you don't need to type its letter a " +
+					"second time.",
+				Tip: "Tip: @@ is shorthand for \"do that last macro again\" — " +
+					"handy once you've already replayed a macro at least once and " +
+					"don't want to keep typing @a.",
+				NewKeys: []string{"@@"},
+				Start: []string{
+					"TODO one",
+					"TODO two",
+					"TODO three",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"DONE one",
+					"DONE two",
+					"DONE three",
+				},
+				Par: 33,
+			},
+			{
+				Title: "Record The Move Too — One @a Per Line",
+				Instructions: "Press qa to start recording. Fix the first TODO " +
+					"with ciw, typing DONE then esc, then press j to step onto " +
+					"the next line before you stop recording with q — the move " +
+					"down becomes part of the macro. Now press @a three times in " +
+					"a row to fix the remaining three lines, each replay fixing " +
+					"one line and stepping onto the next.",
+				Tip: "Tip: fold the motion that lines you up for the next " +
+					"repetition into the recording itself, and each @a becomes a " +
+					"complete \"do the next one\" command — no manual navigating " +
+					"between replays.",
+				Start: []string{
+					"TODO alpha",
+					"TODO beta",
+					"TODO gamma",
+					"TODO delta",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"DONE alpha",
+					"DONE beta",
+					"DONE gamma",
+					"DONE delta",
+				},
+				Par: 45,
+			},
+			{
+				Title: "dd And j — A Macro That Skips The Lines You Keep",
+				Instructions: "The first line is junk to delete; the second is " +
+					"worth keeping; that pattern repeats. Press qa to start " +
+					"recording, dd to delete the junk line, then j to land on " +
+					"the next junk line further down — the keeper line shifts up " +
+					"into place as soon as you delete, so one j is all it takes " +
+					"to skip it. Press q to stop, then @a twice to clear out the " +
+					"remaining two junk lines.",
+				Tip: "Tip: deleting a line pulls everything below it up into " +
+					"the cursor's row, so dd followed by j doesn't skip a " +
+					"keeper line by accident — it lands you exactly on the next " +
+					"line to delete.",
+				Start: []string{
+					"DELETE first junk",
+					"keep alpha",
+					"DELETE second junk",
+					"keep beta",
+					"DELETE third junk",
+					"keep gamma",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"keep alpha",
+					"keep beta",
+					"keep gamma",
+				},
+				Par: 16,
+			},
+			{
+				Title: "Capstone",
+				Instructions: "Press qa to start recording. Fix the first TODO " +
+					"with ciw, typing DONE then esc, then j to step onto the " +
+					"next line, then q to stop. Press @a three times to fix the " +
+					"remaining three TODO lines and land on the last line, then " +
+					"dd to delete the leftover junk line.",
+				Tip: "Tip: this is the whole point of macros — record the " +
+					"fix-and-advance pattern once, then fire it off as many " +
+					"times as there are lines left, instead of retyping the " +
+					"same edit over and over.",
+				Start: []string{
+					"TODO first",
+					"TODO second",
+					"TODO third",
+					"TODO fourth",
+					"DELETE this line",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"DONE first",
+					"DONE second",
+					"DONE third",
+					"DONE fourth",
+				},
+				Par: 47,
+			},
+		},
+	},
 }

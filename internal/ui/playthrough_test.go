@@ -516,6 +516,50 @@ func TestCurriculumSolvable(t *testing.T) {
 			[]string{"'", "a"},
 			append([]string{"c", "i", "w"}, append(typeStr("DONE"), "esc")...),
 		)},
+
+		{33, 0, concatKeys(
+			[]string{"q", "a"},
+			append([]string{"c", "i", "w"}, append(typeStr("DONE"), "esc")...),
+			[]string{"q"},
+			[]string{"j"},
+			[]string{"@", "a"},
+		)},
+		{33, 1, concatKeys(
+			[]string{"q", "a"},
+			append([]string{"c", "i", "w"}, append(typeStr("DONE"), "esc")...),
+			[]string{"q"},
+			[]string{"j"},
+			[]string{"@", "a"},
+			[]string{"j"},
+			[]string{"@", "@"},
+		)},
+		{33, 2, concatKeys(
+			[]string{"q", "a"},
+			append([]string{"c", "i", "w"}, append(typeStr("DONE"), "esc")...),
+			[]string{"j"},
+			[]string{"q"},
+			[]string{"@", "a"},
+			[]string{"@", "a"},
+			[]string{"@", "a"},
+		)},
+		{33, 3, concatKeys(
+			[]string{"q", "a"},
+			[]string{"d", "d"},
+			[]string{"j"},
+			[]string{"q"},
+			[]string{"@", "a"},
+			[]string{"@", "a"},
+		)},
+		{33, 4, concatKeys(
+			[]string{"q", "a"},
+			append([]string{"c", "i", "w"}, append(typeStr("DONE"), "esc")...),
+			[]string{"j"},
+			[]string{"q"},
+			[]string{"@", "a"},
+			[]string{"@", "a"},
+			[]string{"@", "a"},
+			[]string{"d", "d"},
+		)},
 	}
 
 	m := NewModel()
@@ -534,9 +578,13 @@ func TestCurriculumSolvable(t *testing.T) {
 			continue
 		}
 		want := day.Challenges[tc.challenge].Par
-		if len(tc.keys) != want {
+		// Use mm.buf.Keystrokes rather than len(tc.keys): they match for every
+		// scripted solution except macro playback (@/@@), where each replayed
+		// key runs back through Buffer.Input and increments Keystrokes again,
+		// so the true cost is higher than the literal keys the test sent.
+		if mm.buf.Keystrokes != want {
 			t.Errorf("day %d challenge %d (%s): Par=%d but scripted minimal solve took %d keystrokes",
-				tc.day, tc.challenge, day.Challenges[tc.challenge].Title, want, len(tc.keys))
+				tc.day, tc.challenge, day.Challenges[tc.challenge].Title, want, mm.buf.Keystrokes)
 		}
 	}
 }
