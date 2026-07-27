@@ -3684,4 +3684,131 @@ var days = []Day{
 			},
 		},
 	},
+	{
+		Number: 35,
+		Week:   "Boss Gauntlet",
+		Title:  "Boss Challenge — Everything From Days 1-5",
+		Summary: "No new keys from here on — every remaining day is a recap, and this " +
+			"one goes back to the beginning. Five tasks built only out of the first " +
+			"week: hjkl for single steps, w/e/b for word-wise movement, gg and G for " +
+			"the top and bottom of the buffer, i/A/o/O for the four ways into insert " +
+			"mode, x for a single character, and dd/yy/p/P for moving and copying " +
+			"whole lines. Nothing here needs an operator or a text object — just the " +
+			"basics, recombined without the route spelled out key by key.",
+		Challenges: []Challenge{
+			{
+				Title: "Back To The Top",
+				Instructions: "Your cursor starts on the last line. Get to the very " +
+					"end of the word \"perfect\" on the first line — gg takes you to " +
+					"the top, then word motions carry you across the line, with e " +
+					"landing you on a word's last character rather than its first.",
+				Tip: "Tip: gg and G are the cheapest long-distance moves you have — " +
+					"reaching for k over and over to climb a buffer costs one " +
+					"keystroke per line for no reason.",
+				Start: []string{
+					"practice makes perfect",
+					"every single day",
+					"until the keys",
+					"feel invisible",
+				},
+				CursorStart: Pos{3, 5},
+				Kind:        KindGoal,
+				GoalPos:     Pos{0, 21},
+				Par:         5,
+			},
+			{
+				Title: "Wrong Order",
+				Instructions: "These three lines are numbered but shuffled — the " +
+					"first one sits at the bottom. Cut it with dd, get back to the " +
+					"top, and put it back with P so it lands above the line you're " +
+					"on instead of below it.",
+				Tip: "Tip: p and P differ only in which side of the cursor line the " +
+					"text lands on — pasting to the very top of a buffer is the one " +
+					"case where only P will do.",
+				Start: []string{
+					"second line",
+					"third line",
+					"first line",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"first line",
+					"second line",
+					"third line",
+				},
+				Par: 6,
+			},
+			{
+				Title: "Three Ways In",
+				Instructions: "One line needs company on both sides and a word on " +
+					"the end. Open a line above it and type top, append  end to the " +
+					"line itself, then open a line below and type bottom — that's O, " +
+					"A, and o, each followed by esc.",
+				Tip: "Tip: O, o, and A all drop you into insert mode, but each one " +
+					"positions the cursor for you first — picking the right one " +
+					"means you never have to steer once you're typing.",
+				Start: []string{
+					"middle",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"top",
+					"middle end",
+					"bottom",
+				},
+				Par: 20,
+			},
+			{
+				Title: "Fix, Then Copy",
+				Instructions: "The first line has one letter too many, and a copy of " +
+					"it is missing from the bottom. Ride e out to the end of the " +
+					"word and x off the stray letter, then yank the fixed line and " +
+					"paste it below the last one.",
+				Tip: "Tip: yy remembers the whole line no matter where the cursor " +
+					"sits on it, so you can travel with G before pasting and still " +
+					"get exactly what you copied.",
+				Start: []string{
+					"alphaa",
+					"beta",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"alpha",
+					"beta",
+					"alpha",
+				},
+				Par: 6,
+			},
+			{
+				Title: "Boss Challenge",
+				Instructions: "This list is a mess in three different ways. The " +
+					"heading is buried on the third line — cut it and paste it back " +
+					"above the first. Then drop to the last line, walk out to " +
+					"\"plantts\" and delete the doubled letter. Finally, open one " +
+					"more line at the bottom and type all done.",
+				Tip: "Tip: everything here is week-one keys only — dd and P to move " +
+					"a line, gg and G to cross the buffer, w and e to cross a line, " +
+					"x for one character, o to finish. No operators needed.",
+				Start: []string{
+					"buy milk",
+					"walk the dog",
+					"TODO list",
+					"water the plantts",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"TODO list",
+					"buy milk",
+					"walk the dog",
+					"water the plants",
+					"all done",
+				},
+				Par: 23,
+			},
+		},
+	},
 }

@@ -569,6 +569,21 @@ func TestCurriculumSolvable(t *testing.T) {
 			exCmd("g/DELETE/d"),
 			exCmd("%s/TODO/DONE/g"),
 		)},
+
+		{35, 0, []string{"g", "g", "w", "w", "e"}},
+		{35, 1, []string{"G", "d", "d", "g", "g", "P"}},
+		{35, 2, concatKeys(
+			append([]string{"O"}, append(typeStr("top"), "esc")...),
+			[]string{"j"},
+			append([]string{"A"}, append(typeStr(" end"), "esc")...),
+			append([]string{"o"}, append(typeStr("bottom"), "esc")...),
+		)},
+		{35, 3, []string{"e", "x", "y", "y", "G", "p"}},
+		{35, 4, concatKeys(
+			[]string{"j", "j", "d", "d", "g", "g", "P"},
+			[]string{"G", "w", "w", "e", "h", "x"},
+			append([]string{"o"}, append(typeStr("all done"), "esc")...),
+		)},
 	}
 
 	m := NewModel()

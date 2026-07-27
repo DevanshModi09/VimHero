@@ -115,24 +115,30 @@ visual mode, `d`/`y`/`c`/`~` over a selection, marks (`m`/`'`), macros
 (`q`/`@`), `:s` substitution, and `:g` — so this week is buildable
 against existing functionality with no engine changes needed.
 
-## Days 35-45: Boss Gauntlet ⏳
+## Days 35-45: Boss Gauntlet 🚧
 
 No new keys from here on — every day is a cumulative recap, increasing
 in scope until day 45 pulls in the entire curriculum.
 
-| Day | Recap scope |
-| --- | ----------- |
-| 35 | Movement & modes (days 1-5) |
-| 36 | Operators (days 6-14) |
-| 37 | Counts & text objects (days 15-21) |
-| 38 | Find & search (days 22-28) |
-| 39 | Visual mode (days 29-31) |
-| 40 | Marks & macros (days 32-33) |
-| 41 | Substitution & global (day 34) |
-| 42 | Search + visual combined |
-| 43 | Operators + marks + macros combined |
-| 44 | Big mixed recap — nearly everything |
-| 45 | The Ultimate Boss — all 45 days |
+| Day | Recap scope | Status |
+| --- | ----------- | ------ |
+| 35 | Movement & modes (days 1-5) | ✅ |
+| 36 | Operators (days 6-14) | ⏳ |
+| 37 | Counts & text objects (days 15-21) | ⏳ |
+| 38 | Find & search (days 22-28) | ⏳ |
+| 39 | Visual mode (days 29-31) | ⏳ |
+| 40 | Marks & macros (days 32-33) | ⏳ |
+| 41 | Substitution & global (day 34) | ⏳ |
+| 42 | Search + visual combined | ⏳ |
+| 43 | Operators + marks + macros combined | ⏳ |
+| 44 | Big mixed recap — nearly everything | ⏳ |
+| 45 | The Ultimate Boss — all 45 days | ⏳ |
+
+Day 35 follows the checkpoint-boss pattern of days 8, 11, 14, 21, and 28
+— no new keys, five tasks recombining `hjkl`, `w`/`e`, `gg`/`G`,
+`i`/`A`/`o`/`O`, `x`, and `dd`/`yy`/`p`/`P`, with the route described
+rather than dictated key by key. Its first challenge is a `KindGoal`
+reach, matching how week 1 itself opened on pure movement.
 
 ## Where the engine outpaces the curriculum
 
