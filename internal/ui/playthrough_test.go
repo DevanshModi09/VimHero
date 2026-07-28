@@ -584,6 +584,52 @@ func TestCurriculumSolvable(t *testing.T) {
 			[]string{"G", "w", "w", "e", "h", "x"},
 			append([]string{"o"}, append(typeStr("all done"), "esc")...),
 		)},
+
+		{36, 0, []string{"w", "d", "w", "w", "c", "i", "w", "n", "a", "m", "e", "esc"}},
+		{36, 1, []string{"w", "d", "a", "w", "w", "w", "D"}},
+		{36, 2, concatKeys(
+			[]string{"w", "l", "l", "r", "g"},
+			[]string{"j", "0", "~", "~", "~", "~"},
+			append([]string{"j", "0", "w", "w", "s"}, append(typeStr("five"), "esc")...),
+		)},
+		{36, 3, concatKeys(
+			[]string{"e", "X"},
+			[]string{"j", "0", "w", "d", "w", "u", "0", "d", "w"},
+		)},
+		{36, 4, concatKeys(
+			[]string{"w", "d", "a", "w"},
+			append([]string{"j", "0", "w", "w", "c", "i", "w"}, append(typeStr("typo"), "esc")...),
+			[]string{"j", "0", "w", "w", "w", "w", "D"},
+			[]string{"j", "0", "~", "~", "~", "~"},
+			append([]string{"j", "0", "w", "w", "s"}, append(typeStr("seven"), "esc")...),
+			append([]string{"j", "0", "^", "c", "w"}, append(typeStr("DONE:"), "esc")...),
+		)},
+
+		{37, 0, []string{"3", "d", "w", "j", "0", "2", "d", "d"}},
+		{37, 1, concatKeys(
+			append([]string{"f", "(", "c", "i", "("}, append(typeStr("newArg"), "esc")...),
+			append([]string{"j", "0", "f", "\"", "c", "i", "\""}, append(typeStr("new.txt"), "esc")...),
+		)},
+		{37, 2, concatKeys(
+			append([]string{"f", "[", "c", "i", "["}, append(typeStr("5"), "esc")...),
+			append([]string{"j", "0", "f", "{", "c", "i", "{"}, append(typeStr("debug=true"), "esc")...),
+			append([]string{"j", "0", "f", "'", "c", "i", "'"}, append(typeStr("newName"), "esc")...),
+		)},
+		{37, 3, concatKeys(
+			append([]string{"y", "i", "w", "$", "a"}, append(typeStr(", "), []string{"esc", "p"}...)...),
+			[]string{"j", "0", "f", "(", "y", "i", "(", "f", "(", "p"},
+			[]string{"j", "0", "Y", "p"},
+		)},
+		{37, 4, concatKeys(
+			[]string{"3", "d", "w"},
+			[]string{"j", "0", "2", "d", "d"},
+			append([]string{"f", "(", "c", "i", "("}, append(typeStr("newValue"), "esc")...),
+			append([]string{"j", "0", "f", "\"", "c", "i", "\""}, append(typeStr("new.cfg"), "esc")...),
+			append([]string{"j", "0", "f", "[", "c", "i", "["}, append(typeStr("5"), "esc")...),
+			append([]string{"f", "{", "c", "i", "{"}, append(typeStr("debug=true"), "esc")...),
+			append([]string{"j", "0", "f", "'", "c", "i", "'"}, append(typeStr("newNote"), "esc")...),
+			[]string{"j", "0", "Y", "p"},
+		)},
 	}
 
 	m := NewModel()

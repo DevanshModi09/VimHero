@@ -3811,4 +3811,240 @@ var days = []Day{
 			},
 		},
 	},
+	{
+		Number: 36,
+		Week:   "Boss Gauntlet",
+		Title:  "Boss Challenge — Operators (Days 6-14)",
+		Summary: "Still no new keys — this recap pulls from the operators week: dw/cw/ciw/diw " +
+			"for word-wise edits, daw for the around-word cleanup that doesn't leave a double " +
+			"space, D/C for cut-to-end-of-line, r/~ for single-character fixes, s/S for " +
+			"substitute, X/u for backward-delete and undo, and 0/^/$ for line-local jumps. " +
+			"Five tasks, no route spelled out key by key.",
+		Challenges: []Challenge{
+			{
+				Title: "Word Cleanup",
+				Instructions: "One stray word to strip with dw, one typo to fix with ciw " +
+					"wherever inside it you land. Clean up the line below.",
+				Tip: "Tip: dw only needs the cursor at the word's first letter; ciw works " +
+					"from anywhere inside the word, which is why it's the safer choice for a " +
+					"typo you're not landing on precisely.",
+				Start:       []string{"clean extra this naem up"},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target:      []string{"clean this name up"},
+				Par:         12,
+			},
+			{
+				Title: "Trim Both Ends",
+				Instructions: "daw removes a whole word plus the whitespace touching it — no " +
+					"double space left behind. D cuts everything from the cursor to the end of " +
+					"the line. Strip the stray word near the front, then trim the junk tacked " +
+					"onto the end.",
+				Tip: "Tip: a run of punctuation like ### counts as its own word — w lands you " +
+					"right on it, exactly where D needs to strike.",
+				Start:       []string{"remove junk word here###trash tail"},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target:      []string{"remove word here"},
+				Par:         7,
+			},
+			{
+				Title: "Three Quick Fixes",
+				Instructions: "Three lines, three different single-purpose tools: r to swap in " +
+					"one correct letter, ~ mashed across a shouted word to calm it down, and s to " +
+					"replace a digit with a spelled-out word.",
+				Tip: "Tip: r never leaves Normal mode and only ever replaces exactly one " +
+					"character — reach for s instead the moment the replacement is a different " +
+					"length than what's there now.",
+				Start: []string{
+					"the doy is big",
+					"STOP the presses",
+					"score is 5 now",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"the dog is big",
+					"stop the presses",
+					"score is five now",
+				},
+				Par: 21,
+			},
+			{
+				Title: "Mistake, Then Undo",
+				Instructions: "Fix the doubled letter on the first line with X. On the second, " +
+					"practice the safety net: delete the wrong word first with dw, see the wrong " +
+					"result, press u to bring it right back, then delete the actual extra word.",
+				Tip: "Tip: u restores your cursor position along with the text — after undoing, " +
+					"you land exactly back where the mistaken edit started.",
+				Start: []string{
+					"committ now",
+					"nope stays the truth",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"commit now",
+					"stays the truth",
+				},
+				Par: 11,
+			},
+			{
+				Title: "Boss Challenge",
+				Instructions: "Six lines, six different operators-week tools: daw for a stray " +
+					"word, ciw for a typo, D for trailing junk after a run of punctuation, ~ " +
+					"mashed across a shouted word, s to spell out a digit, and ^ paired with cw " +
+					"to replace a garbage prefix after some indentation.",
+				Tip: "Tip: none of this needs a new key — it's every operator from Days 6-14, " +
+					"back to back, on six unrelated lines.",
+				Start: []string{
+					"please extra remove this word",
+					"fix the tyop here",
+					"keep this line clean###trailing junk",
+					"STOP shouting now",
+					"count is 7 today",
+					"    XXXX apply fix here",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"please remove this word",
+					"fix the typo here",
+					"keep this line clean",
+					"stop shouting now",
+					"count is seven today",
+					"    DONE: apply fix here",
+				},
+				Par: 51,
+			},
+		},
+	},
+	{
+		Number: 37,
+		Week:   "Boss Gauntlet",
+		Title:  "Boss Challenge — Counts & Text Objects (Days 15-21)",
+		Summary: "Still no new keys — this recap pulls from Week 3: a count prefix stacked on " +
+			"any motion or operator (3dw, 2dd), the full i/a text-object family across every " +
+			"delimiter ((, \", [, {, '), yanking with a text object instead of a motion " +
+			"(yiw, yi(), and Y as the fast whole-line yank. Five tasks, no route spelled out " +
+			"key by key.",
+		Challenges: []Challenge{
+			{
+				Title: "Counted Cleanup",
+				Instructions: "A count in front of an operator repeats it that many times in " +
+					"one shot. Use 3dw to strip the first three words off the line below, then " +
+					"2dd to delete two unwanted lines.",
+				Tip: "Tip: 3dw deletes 3 words starting from the cursor, same idea as 3dd " +
+					"deleting 3 lines — the count always comes first, before the operator.",
+				Start: []string{
+					"one two three four five six",
+					"alpha",
+					"beta",
+					"gamma",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"four five six",
+					"gamma",
+				},
+				Par: 8,
+			},
+			{
+				Title: "Parens And Quotes",
+				Instructions: "ci( changes the text inside a pair of parentheses, ci\" does the " +
+					"same for a pair of double quotes — land anywhere inside (or right on the " +
+					"delimiter) and it grabs the whole contents. Fix the argument, then the " +
+					"filename.",
+				Tip: "Tip: f( jumps straight to the next ( on the line — a fast way to land on " +
+					"a delimiter before a text object without counting characters.",
+				Start: []string{
+					"call(oldArg)",
+					"path = \"old.txt\"",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"call(newArg)",
+					"path = \"new.txt\"",
+				},
+				Par: 27,
+			},
+			{
+				Title: "The Rest Of The Family",
+				Instructions: "ci[, ci{, and ci' round out the text-object family from Day 18 " +
+					"— square brackets, curly braces, and single quotes, same idea as ( and \" " +
+					"from yesterday. Fix all three below.",
+				Tip: "Tip: whichever delimiter you're inside, the pattern is identical: land " +
+					"inside or on it, then c/d/y followed by i and the delimiter itself.",
+				Start: []string{
+					"arr[oldIdx]",
+					"cfg{oldOpt}",
+					"name = 'oldName'",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"arr[5]",
+					"cfg{debug=true}",
+					"name = 'newName'",
+				},
+				Par: 40,
+			},
+			{
+				Title: "Yank With A Text Object",
+				Instructions: "yiw yanks just the word under the cursor instead of everything a " +
+					"w motion would cross, and Y yanks the whole current line in one keystroke. " +
+					"Duplicate the first word at the end of its line, copy a value from one pair " +
+					"of parens into another, then duplicate the last line below itself with Y.",
+				Tip: "Tip: yi( behaves exactly like yiw but grabs everything inside the nearest " +
+					"parens instead of a word — the yanked text pastes with p exactly like any " +
+					"other yank.",
+				Start: []string{
+					"keyword blank",
+					"wrap(payload) other()",
+					"keep this line",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"keyword blank, keyword",
+					"wrap(payload) other(payload)",
+					"keep this line",
+					"keep this line",
+				},
+				Par: 23,
+			},
+			{
+				Title: "Boss Challenge",
+				Instructions: "Six lines: a counted word-delete, a counted line-delete, then " +
+					"one fix apiece for (, \", [ and { together on one line, ', and a final Y/p " +
+					"duplicate.",
+				Tip: "Tip: nothing here is new — it's every count and every text object from " +
+					"Days 15-21, back to back, on six unrelated lines.",
+				Start: []string{
+					"one two three four five six",
+					"alpha",
+					"beta",
+					"grab(oldValue)",
+					"path = \"old.cfg\"",
+					"list[oldIdx] opts{oldFlag}",
+					"note = 'oldNote'",
+					"keep line",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"four five six",
+					"grab(newValue)",
+					"path = \"new.cfg\"",
+					"list[5] opts{debug=true}",
+					"note = 'newNote'",
+					"keep line",
+					"keep line",
+				},
+				Par: 81,
+			},
+		},
+	},
 }

@@ -123,8 +123,8 @@ in scope until day 45 pulls in the entire curriculum.
 | Day | Recap scope | Status |
 | --- | ----------- | ------ |
 | 35 | Movement & modes (days 1-5) | ✅ |
-| 36 | Operators (days 6-14) | ⏳ |
-| 37 | Counts & text objects (days 15-21) | ⏳ |
+| 36 | Operators (days 6-14) | ✅ |
+| 37 | Counts & text objects (days 15-21) | ✅ |
 | 38 | Find & search (days 22-28) | ⏳ |
 | 39 | Visual mode (days 29-31) | ⏳ |
 | 40 | Marks & macros (days 32-33) | ⏳ |
@@ -139,6 +139,18 @@ Day 35 follows the checkpoint-boss pattern of days 8, 11, 14, 21, and 28
 `i`/`A`/`o`/`O`, `x`, and `dd`/`yy`/`p`/`P`, with the route described
 rather than dictated key by key. Its first challenge is a `KindGoal`
 reach, matching how week 1 itself opened on pure movement.
+
+Day 36 recaps the operators week (days 6-14): `dw`/`cw`/`ciw`/`diw`,
+`daw`, `D`/`C`, `r`/`~`, `s`/`S`, `X`/`u`, and `0`/`^`/`$`, ending in a
+six-line boss that touches all of them. Day 37 recaps counts and text
+objects (days 15-21): a count prefix stacked on any operator or motion
+(`3dw`, `2dd`), the full `i`/`a` family across `(`, `"`, `[`, `{`, and
+`'`, yanking with a text object (`yiw`, `yi(`) instead of a motion, and
+`Y` as the fast whole-line yank — its boss combines a counted
+word-delete, a counted line-delete, one fix per bracket/quote
+delimiter, and a final `Y`/`p` duplicate. Both days are all `KindEdit`
+challenges (no `KindGoal` reach), matching the shape of days 8, 11, and
+14 from the weeks they recap.
 
 ## Where the engine outpaces the curriculum
 
