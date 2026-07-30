@@ -125,7 +125,7 @@ in scope until day 45 pulls in the entire curriculum.
 | 35 | Movement & modes (days 1-5) | ✅ |
 | 36 | Operators (days 6-14) | ✅ |
 | 37 | Counts & text objects (days 15-21) | ✅ |
-| 38 | Find & search (days 22-28) | ⏳ |
+| 38 | Find & search (days 22-28) | ✅ |
 | 39 | Visual mode (days 29-31) | ⏳ |
 | 40 | Marks & macros (days 32-33) | ⏳ |
 | 41 | Substitution & global (day 34) | ⏳ |
@@ -148,9 +148,15 @@ objects (days 15-21): a count prefix stacked on any operator or motion
 `'`, yanking with a text object (`yiw`, `yi(`) instead of a motion, and
 `Y` as the fast whole-line yank — its boss combines a counted
 word-delete, a counted line-delete, one fix per bracket/quote
-delimiter, and a final `Y`/`p` duplicate. Both days are all `KindEdit`
-challenges (no `KindGoal` reach), matching the shape of days 8, 11, and
-14 from the weeks they recap.
+delimiter, and a final `Y`/`p` duplicate. Day 38 recaps find & search
+(days 22-28): `f`/`F`/`t`/`T` chained with `;`/`,`, whole-buffer `/`/`?`
+with `n`/`N` (including overshooting and correcting with `N`), `%`
+across a nested bracket pair, `*`/`#` to rename by word instead of
+retyping a search, and `d/`/`c/` paired with the `\d`/`^`/`[set]`
+patterns from day 27 — its eight-line boss touches all six tools in one
+pass. All three days are `KindEdit` challenges (no `KindGoal` reach),
+matching the shape of days 8, 11, 14, 21, and 28 from the weeks they
+recap.
 
 ## Where the engine outpaces the curriculum
 

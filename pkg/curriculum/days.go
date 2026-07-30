@@ -4047,4 +4047,156 @@ var days = []Day{
 			},
 		},
 	},
+	{
+		Number: 38,
+		Week:   "Boss Gauntlet",
+		Title:  "Boss Challenge — Find & Search (Days 22-28)",
+		Summary: "No new keys today. Five tasks pulling from the whole find-and-search " +
+			"week: same-line character jumps (f, F, t, T, and their ; and , repeats), " +
+			"whole-buffer search (/, ?, n, N), bracket matching (%), search-the-word-" +
+			"under-the-cursor (*, #), and search used as an operator's motion (d/, c/, " +
+			"y/) together with the \\d, ^, and [set] patterns from Day 27 — no single " +
+			"correct sequence spelled out for you.",
+		Challenges: []Challenge{
+			{
+				Title: "Chained Jumps, Forward And Back",
+				Instructions: "This variable name picked up three stray underscores. Press " +
+					"f_ to land on the first one and x to delete it, then ; twice more to " +
+					"reach and clear the other two — no retyping f_. Below it, your cursor " +
+					"starts at the far end of the line: F l jumps backward to the one l in " +
+					"sight, then a a esc appends the missing letter right after it.",
+				Tip: "Tip: ; and , don't care which of f, F, t, or T you used last — they " +
+					"just repeat it, forward or backward, as many times as you need.",
+				Start: []string{
+					"backup_data_folder_now please",
+					"the quick brown fox hops over the lzy dog",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"backupdatafoldernow please",
+					"the quick brown fox hops over the lazy dog",
+				},
+				Par: 14,
+			},
+			{
+				Title: "Search The Whole Buffer",
+				Instructions: "Six queues, mixed status. /idle then enter lands right back " +
+					"on this line's own idle — queue-a stays as is. n jumps to queue-b: fix " +
+					"it with ciw busy. n twice more skips past queue-d and overshoots to " +
+					"queue-f; N steps back onto queue-d — fix it too. n once more returns " +
+					"to queue-f for the final fix.",
+				Tip: "Tip: N is the undo button for overshooting with n — it walks back " +
+					"exactly one match without restarting the search.",
+				Start: []string{
+					"queue-a: idle",
+					"queue-b: idle",
+					"queue-c: busy",
+					"queue-d: idle",
+					"queue-e: busy",
+					"queue-f: idle",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"queue-a: idle",
+					"queue-b: busy",
+					"queue-c: busy",
+					"queue-d: busy",
+					"queue-e: busy",
+					"queue-f: busy",
+				},
+				Par: 35,
+			},
+			{
+				Title: "Brackets, Confirmed And Cleared",
+				Instructions: "Two calls, two different jobs with %. Line 1: f( lands on " +
+					"the opening paren, then c% deletes straight through the matching " +
+					"close — parens included — and drops you into insert mode to type the " +
+					"new call. Line 2 has a nested list: f[ lands on the outer bracket, and " +
+					"d% deletes the whole thing in one shot, correctly skipping over the " +
+					"inner [2, 3] pair on its way to the real closing ].",
+				Tip: "Tip: % counts nesting depth as it scans, so d% and c% always reach " +
+					"the bracket that actually closes the one your cursor started on — " +
+					"never an inner one.",
+				Start: []string{
+					"run(oldConfig) done",
+					"data = [1, [2, 3], 4]",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"run(newConfig, extra) done",
+					"data = ",
+				},
+				Par: 29,
+			},
+			{
+				Title: "Rename By Word, Not By Typing",
+				Instructions: "Three lines share threshold, and two more share a typo'd " +
+					"retryLimit. Press * on threshold to jump straight to its first use and " +
+					"fix it with ciw limit, then n to reach the second use and fix that one " +
+					"too — no re-typing the search. Then jump down to the retryLimit usage " +
+					"at the bottom (f( then l lands you right on it) and press # to jump " +
+					"backward to its definition, then $ r 5 to fix the wrong value there.",
+				Tip: "Tip: * and # search for whatever word the cursor is already sitting " +
+					"on, no typing required — exactly why they're the fastest way to sweep " +
+					"every use of a name.",
+				Start: []string{
+					"threshold = 5",
+					"check(threshold)",
+					"verify(threshold)",
+					"retryLimit = 3",
+					"for i in range(retryLimit):",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"threshold = 5",
+					"check(limit)",
+					"verify(limit)",
+					"retryLimit = 5",
+					"for i in range(retryLimit):",
+				},
+				Par: 28,
+			},
+			{
+				Title: "Boss Challenge",
+				Instructions: "Eight lines, six different find-and-search tools. Line 1: " +
+					"f b jumps to the only b, then the classic x p swap fixes the " +
+					"transposed letters. Line 2: f( then d% deletes the whole parenthesized " +
+					"argument. Lines 3-4: * on cache jumps to its one other use — fix it " +
+					"with ciw store. Line 5: d/\\d strips the non-numeric prefix off the " +
+					"request id. Lines 6-7: /^ALERT skips the decoy on line 6 and lands on " +
+					"the real alert; c/: then enter changes ALERT to URGENT (type URGENT " +
+					"then esc). Line 8: d/[,;] clears the junk field up to its separator, " +
+					"and x removes the separator itself.",
+				Tip: "Tip: nothing here is new — it's every find-and-search tool from Days " +
+					"22-27, back to back, on eight unrelated lines.",
+				Start: []string{
+					"quick biref summary",
+					"cleanup(tempData)",
+					"cache = {}",
+					"flush(cache)",
+					"REQ_88231 confirmed",
+					"info: ALERT nothing to see",
+					"ALERT: memory critical",
+					"field1,field2;field3",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"quick brief summary",
+					"cleanup",
+					"cache = {}",
+					"flush(store)",
+					"88231 confirmed",
+					"info: ALERT nothing to see",
+					"URGENT: memory critical",
+					"field2;field3",
+				},
+				Par: 59,
+			},
+		},
+	},
 }
