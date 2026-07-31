@@ -4314,4 +4314,147 @@ var days = []Day{
 			},
 		},
 	},
+	{
+		Number: 40,
+		Week:   "Boss Gauntlet",
+		Title:  "Boss Challenge — Marks & Macros (Days 32-33)",
+		Summary: "Still no new keys — this recap pulls from Week 5's other pair: m and ' " +
+			"to bookmark a spot and jump straight back to it, and q/@/@@ to record a " +
+			"keystroke sequence once and replay it as many times as there are lines " +
+			"left. Five tasks recombining both, the route described rather than " +
+			"dictated key by key.",
+		Challenges: []Challenge{
+			{
+				Title: "ma / 'a — Bookmark, Detour, Then Return",
+				Instructions: "Press ma to bookmark the first line, then jj to drop " +
+					"down onto the last line. Press $ to reach its extra trailing " +
+					"digit and x to delete it. Press 'a to jump straight back to the " +
+					"bookmark, no matter the detour, and ciw to fix it — type DONE " +
+					"then esc.",
+				Tip: "Tip: same idea as Day 32 — 'a always returns to the exact spot " +
+					"ma left behind, no matter what you did in between.",
+				Start: []string{
+					"FIX alpha",
+					"other stuff",
+					"other stuff2",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"DONE alpha",
+					"other stuff",
+					"other stuff",
+				},
+				Par: 16,
+			},
+			{
+				Title: "qa ... q, Then @a Twice — Replay Across The Rest",
+				Instructions: "Press qa to start recording, ciw to fix the first " +
+					"TODO — type DONE then esc — then j to step onto the next line " +
+					"before stopping with q, folding the move into the recording. " +
+					"Press @a twice to fix the remaining two lines, each replay " +
+					"fixing one and stepping onto the next.",
+				Tip: "Tip: same idea as Day 33's Record The Move Too — fold the " +
+					"motion that lines you up for the next repetition into the " +
+					"macro itself, and each @a becomes a complete \"do the next " +
+					"one\" command.",
+				Start: []string{
+					"TODO a",
+					"TODO b",
+					"TODO c",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"DONE a",
+					"DONE b",
+					"DONE c",
+				},
+				Par: 34,
+			},
+			{
+				Title: "Two Marks At Once, Then Jump Between Them",
+				Instructions: "Press ma on the first TODO, then jj to drop down to " +
+					"the second and mb to bookmark that too. Press 'a to jump back " +
+					"to the first and fix it with ciw, typing DONE then esc, then " +
+					"'b to jump straight to the second and fix that one the same " +
+					"way.",
+				Tip: "Tip: same idea as Day 32 — up to 26 marks can be live at " +
+					"once, each letter its own independent bookmark, so you can " +
+					"jump between several spots in any order.",
+				Start: []string{
+					"TODO one",
+					"noise",
+					"TODO two",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"DONE one",
+					"noise",
+					"DONE two",
+				},
+				Par: 26,
+			},
+			{
+				Title: "A Macro That Skips The Lines You Keep",
+				Instructions: "Junk and keeper lines alternate. Press qa to start " +
+					"recording, dd to delete the junk line, then j to land on the " +
+					"next junk line further down — the keeper shifts up into place " +
+					"as soon as you delete, so one j is all it takes to skip it. " +
+					"Press q to stop, then @a twice to clear out the rest.",
+				Tip: "Tip: same idea as Day 33 — dd followed by j never skips a " +
+					"keeper line by accident, since deleting a line pulls " +
+					"everything below it up into the cursor's row first.",
+				Start: []string{
+					"DEL junk1",
+					"keep1",
+					"DEL junk2",
+					"keep2",
+					"DEL junk3",
+					"keep3",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"keep1",
+					"keep2",
+					"keep3",
+				},
+				Par: 16,
+			},
+			{
+				Title: "Boss Challenge",
+				Instructions: "Six lines, marks and macros both. Press ma to " +
+					"bookmark the first line as the paste destination, then j onto " +
+					"the first TODO. Record a macro with qa: ciw to fix it (type " +
+					"DONE then esc), then j to step onto the next TODO before " +
+					"stopping with q. Press @a twice to fix the remaining two " +
+					"TODOs, landing on the line below them. Press w then yiw to " +
+					"yank this, then 'a to jump back to the bookmark, $ to reach " +
+					"the end of that line, and p to paste. Finally G to reach the " +
+					"last line and dd to delete the leftover junk.",
+				Tip: "Tip: nothing here is new — it's m/', q/@/@@, and every trick " +
+					"from Days 32-33, back to back, in one pass.",
+				Start: []string{
+					"home: ",
+					"TODO alpha",
+					"TODO beta",
+					"TODO gamma",
+					"grab this value",
+					"DELETE junk line",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"home: this",
+					"DONE alpha",
+					"DONE beta",
+					"DONE gamma",
+					"grab this value",
+				},
+				Par: 48,
+			},
+		},
+	},
 }

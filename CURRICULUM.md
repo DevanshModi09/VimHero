@@ -127,7 +127,7 @@ in scope until day 45 pulls in the entire curriculum.
 | 37 | Counts & text objects (days 15-21) | ✅ |
 | 38 | Find & search (days 22-28) | ✅ |
 | 39 | Visual mode (days 29-31) | ✅ |
-| 40 | Marks & macros (days 32-33) | ⏳ |
+| 40 | Marks & macros (days 32-33) | ✅ |
 | 41 | Substitution & global (day 34) | ⏳ |
 | 42 | Search + visual combined | ⏳ |
 | 43 | Operators + marks + macros combined | ⏳ |
@@ -154,9 +154,20 @@ with `n`/`N` (including overshooting and correcting with `N`), `%`
 across a nested bracket pair, `*`/`#` to rename by word instead of
 retyping a search, and `d/`/`c/` paired with the `\d`/`^`/`[set]`
 patterns from day 27 — its eight-line boss touches all six tools in one
-pass. All three days are `KindEdit` challenges (no `KindGoal` reach),
-matching the shape of days 8, 11, 14, 21, and 28 from the weeks they
-recap.
+pass. Day 39 recaps the visual-mode trio from days 29-31: `v`/`V` to
+start and grow a selection, `o` to swap which end is movable, and the
+visual text objects (`viw`, `vi(`, `vi"`) that aim a selection the same
+way `iw`/`i(`/`i"` aim an operator — its six-line boss chains a visual
+yank-and-paste, a `V`/`c` whole-line rewrite, `vi"`/`c`, `viw`/`d`, and
+an `o`-widened delete into one pass. Day 40 recaps the other Week 5 pair:
+`m`/`'` to bookmark a spot and jump straight back to it, and `q`/`@`/`@@`
+to record a keystroke sequence once and replay it as many times as there
+are lines left — its six-line boss bookmarks a paste destination, folds
+a fix-and-advance edit into a macro, replays it across two more lines,
+then yanks a value and jumps back to the bookmark to paste it before a
+final cleanup delete. All five days are `KindEdit` challenges (no
+`KindGoal` reach), matching the shape of days 8, 11, 14, 21, and 28 from
+the weeks they recap.
 
 ## Where the engine outpaces the curriculum
 
