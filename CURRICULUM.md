@@ -126,7 +126,7 @@ in scope until day 45 pulls in the entire curriculum.
 | 36 | Operators (days 6-14) | ✅ |
 | 37 | Counts & text objects (days 15-21) | ✅ |
 | 38 | Find & search (days 22-28) | ✅ |
-| 39 | Visual mode (days 29-31) | ⏳ |
+| 39 | Visual mode (days 29-31) | ✅ |
 | 40 | Marks & macros (days 32-33) | ⏳ |
 | 41 | Substitution & global (day 34) | ⏳ |
 | 42 | Search + visual combined | ⏳ |

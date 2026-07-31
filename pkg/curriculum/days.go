@@ -4199,4 +4199,119 @@ var days = []Day{
 			},
 		},
 	},
+	{
+		Number: 39,
+		Week:   "Boss Gauntlet",
+		Title:  "Boss Challenge — Visual Mode (Days 29-31)",
+		Summary: "Still no new keys — this recap pulls from Week 5's visual-mode trio: v " +
+			"and V to start a selection and grow it with any ordinary motion, o to swap " +
+			"which end is movable, and text objects (viw, vi(, vi\") that aim a visual " +
+			"selection the same way iw/i(/i\" aim an operator, all finished off with d, c, " +
+			"y, or ~. Five tasks recombining all of it, the route described rather than " +
+			"dictated key by key.",
+		Challenges: []Challenge{
+			{
+				Title: "v — Select A Stretch, Then Delete It",
+				Instructions: "TARGET is buried inside a run of x's. Press v to start a " +
+					"selection on the T, then l five times to grow it across the whole " +
+					"word, then d to delete exactly what's highlighted.",
+				Tip: "Tip: same idea as Day 29 — v builds the range with ordinary " +
+					"motions, then whichever operator you press acts on it with no " +
+					"motion argument needed.",
+				Start:       []string{"xxxTARGETxxx"},
+				CursorStart: Pos{0, 3},
+				Kind:        KindEdit,
+				Target:      []string{"xxxxxx"},
+				Par:         7,
+			},
+			{
+				Title: "V, j, Then o To Pull In The Line Above",
+				Instructions: "Three lines need to go, and the cursor starts in the " +
+					"middle of them. Press V to select this line, j to grow the " +
+					"selection down over the line below it, then o to send the cursor " +
+					"back to the anchor so k can pull the line above into the selection " +
+					"too. d deletes all three at once.",
+				Tip: "Tip: o from Day 30 is what makes this possible — without it the " +
+					"anchor stays stuck on the line where you pressed V, and there'd be " +
+					"no way to grow the selection backward.",
+				Start: []string{
+					"keep1",
+					"cut1",
+					"cut2",
+					"cut3",
+					"keep2",
+				},
+				CursorStart: Pos{2, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"keep1",
+					"keep2",
+				},
+				Par: 5,
+			},
+			{
+				Title: "vi( — Text Object In Visual Mode, Then ~",
+				Instructions: "vi( selects everything between a pair of parentheses, " +
+					"same as Day 31 — press it here, then ~ to flip the case of " +
+					"everything selected in one shot.",
+				Tip: "Tip: vi( is just v followed by the same i( text object behind " +
+					"ci( — visual mode shows you the range before you commit to an " +
+					"operator, instead of committing the instant you type it.",
+				Start:       []string{"print(hello)"},
+				CursorStart: Pos{0, 8},
+				Kind:        KindEdit,
+				Target:      []string{"print(HELLO)"},
+				Par:         4,
+			},
+			{
+				Title: "viw, Then Extend, Then c",
+				Instructions: "viw selects just oldval, but underneath it's still an " +
+					"ordinary visual selection — press l once afterward to pull the " +
+					"trailing comma in too, then c to clear the selection and drop into " +
+					"insert mode. Type new then esc.",
+				Tip: "Tip: unlike ciw, which commits the instant you type it, v " +
+					"followed by iw leaves you in visual mode — any motion after it " +
+					"keeps growing the selection until you choose an operator, exactly " +
+					"like Day 31's viw Then Extend.",
+				Start:       []string{"set(oldval, other)"},
+				CursorStart: Pos{0, 6},
+				Kind:        KindEdit,
+				Target:      []string{"set(new other)"},
+				Par:         9,
+			},
+			{
+				Title: "Boss Challenge",
+				Instructions: "Six lines, every visual-mode tool from Days 29-31. Line " +
+					"1: f s then v $ y visually yanks staging to the end of the word, " +
+					"then j $ p pastes it onto line 2. Line 3: V c clears the whole " +
+					"line and drops into insert — type queue: clear then esc. Line 4: " +
+					"f \" lands on the opening quote, then vi\" c replaces the filename " +
+					"— type prod.env then esc. Line 5: w lands on extraword, then viw d " +
+					"deletes just the word. Line 6: f S lands on the run's start, v and " +
+					"four l's select STALE, o swaps back to the anchor so hh can pull " +
+					"the leading pp in too, and d deletes it all.",
+				Tip: "Tip: nothing here is new — it's v/V, o, and every visual text " +
+					"object from Days 29-31, back to back, on six unrelated lines.",
+				Start: []string{
+					"env: staging",
+					"target: ",
+					"queue: blocked",
+					"path = \"old.txt\"",
+					"trim extraword now",
+					"ppSTALEqq",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"env: staging",
+					"target: staging",
+					"queue: clear",
+					"path = \"prod.env\"",
+					"trim  now",
+					"qq",
+				},
+				Par: 62,
+			},
+		},
+	},
 }

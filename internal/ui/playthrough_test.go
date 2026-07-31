@@ -630,6 +630,28 @@ func TestCurriculumSolvable(t *testing.T) {
 			append([]string{"j", "0", "f", "'", "c", "i", "'"}, append(typeStr("newNote"), "esc")...),
 			[]string{"j", "0", "Y", "p"},
 		)},
+
+		{39, 0, []string{"v", "l", "l", "l", "l", "l", "d"}},
+		{39, 1, []string{"V", "j", "o", "k", "d"}},
+		{39, 2, []string{"v", "i", "(", "~"}},
+		{39, 3, concatKeys(
+			[]string{"v", "i", "w", "l", "c"}, typeStr("new"), []string{"esc"},
+		)},
+		{39, 4, concatKeys(
+			[]string{"f", "s", "v", "$", "y"},
+			[]string{"j", "$", "p"},
+			[]string{"j", "0"},
+			[]string{"V", "c"}, typeStr("queue: clear"), []string{"esc"},
+			[]string{"j", "0"},
+			[]string{"f", "\""},
+			[]string{"v", "i", "\"", "c"}, typeStr("prod.env"), []string{"esc"},
+			[]string{"j", "0"},
+			[]string{"w"},
+			[]string{"v", "i", "w", "d"},
+			[]string{"j", "0"},
+			[]string{"f", "S"},
+			[]string{"v", "l", "l", "l", "l", "o", "h", "h", "d"},
+		)},
 	}
 
 	m := NewModel()
