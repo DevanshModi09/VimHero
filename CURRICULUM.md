@@ -128,8 +128,8 @@ in scope until day 45 pulls in the entire curriculum.
 | 38 | Find & search (days 22-28) | ✅ |
 | 39 | Visual mode (days 29-31) | ✅ |
 | 40 | Marks & macros (days 32-33) | ✅ |
-| 41 | Substitution & global (day 34) | ⏳ |
-| 42 | Search + visual combined | ⏳ |
+| 41 | Substitution & global (day 34) | ✅ |
+| 42 | Search + visual combined | ✅ |
 | 43 | Operators + marks + macros combined | ⏳ |
 | 44 | Big mixed recap — nearly everything | ⏳ |
 | 45 | The Ultimate Boss — all 45 days | ⏳ |
@@ -165,9 +165,19 @@ to record a keystroke sequence once and replay it as many times as there
 are lines left — its six-line boss bookmarks a paste destination, folds
 a fix-and-advance edit into a macro, replays it across two more lines,
 then yanks a value and jumps back to the bookmark to paste it before a
-final cleanup delete. All five days are `KindEdit` challenges (no
-`KindGoal` reach), matching the shape of days 8, 11, 14, 21, and 28 from
-the weeks they recap.
+final cleanup delete. Day 41 recaps Day 34 alone: `:s/old/new/` on the
+current line, the `g` flag for every match on that line, a `%` prefix
+for every line in the buffer, and `:g/pattern/d` to delete every
+matching line — its boss reruns Day 34's own capstone shape, clearing
+junk lines with `:g` before rewriting what's left with `%s`/`g`. Day 42
+is the first cross-week recap: search motions (`f`/`F`/`t`/`T`, `/`,
+`%`, `*`) from Days 22-27 paired with visual mode (`v`, `V`, text
+objects) from Days 29-31, built on the fact that `f`/`F`/`t`/`T` and `%`
+work as ordinary growing motions inside an active `v`/`V` selection —
+its boss chains a `*`-then-`viw`-`~` fix, an `f(`-then-`v%d` bracket
+delete, a `/pattern`-then-`Vd` line delete, and a closing `o` insert.
+All seven days are `KindEdit` challenges (no `KindGoal` reach), matching
+the shape of days 8, 11, 14, 21, and 28 from the weeks they recap.
 
 ## Where the engine outpaces the curriculum
 

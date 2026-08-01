@@ -4457,4 +4457,239 @@ var days = []Day{
 			},
 		},
 	},
+	{
+		Number: 41,
+		Week:   "Boss Gauntlet",
+		Title:  "Boss Challenge — Substitution & Global (Day 34)",
+		Summary: "Still no new keys — this recap pulls from Day 34 alone: :s/old/new/ " +
+			"substitutes the first match on the current line, the g flag widens it to " +
+			"every match on that line, a % prefix widens it further to every line in " +
+			"the buffer, and :g/pattern/d deletes every line containing a match in one " +
+			"shot. Five tasks recombining all four, the route described rather than " +
+			"dictated key by key.",
+		Challenges: []Challenge{
+			{
+				Title: ":s/old/new/ — Substitute On This Line Only",
+				Instructions: "Press : to open the command line, type s/tea/coffee/ " +
+					"then enter — :s only touches the current line, so the second " +
+					"line's tea is left alone.",
+				Tip: "Tip: same idea as Day 34 — : opens a command line at the " +
+					"bottom, and a plain :s stops after the first match on the " +
+					"current line.",
+				Start: []string{
+					"I like tea time",
+					"I like tea party",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"I like coffee time",
+					"I like tea party",
+				},
+				Par: 15,
+			},
+			{
+				Title: ":s/old/new/g — Every Match On The Line",
+				Instructions: "This line repeats run three times. Press : then " +
+					"type s/run/GO/g and enter — the g flag replaces every match " +
+					"on the line, not just the first.",
+				Tip: "Tip: same idea as Day 34 — g is what makes :s keep going " +
+					"past the first match instead of stopping right after it.",
+				Start:       []string{"run run run please"},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target:      []string{"GO GO GO please"},
+				Par:         12,
+			},
+			{
+				Title: "%s/old/new/ — Every Line At Once",
+				Instructions: "Three lines each have one NOTE. Press : then type " +
+					"%s/NOTE/DONE/ and enter — the % prefix widens the command " +
+					"from just the current line to every line in the buffer.",
+				Tip: "Tip: same idea as Day 34 — % widens which lines get " +
+					"searched, separate from g, which widens how many matches " +
+					"per line get changed.",
+				Start: []string{
+					"NOTE a",
+					"NOTE b",
+					"NOTE c",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"DONE a",
+					"DONE b",
+					"DONE c",
+				},
+				Par: 15,
+			},
+			{
+				Title: ":g/pattern/d — Delete Every Matching Line",
+				Instructions: "Junk lines are mixed in among the ones worth " +
+					"keeping. Press : then type g/DELETE/d and enter — it deletes " +
+					"every line containing DELETE, wherever it sits, in one " +
+					"command.",
+				Tip: "Tip: same idea as Day 34 — :g/pattern/d scans the whole " +
+					"buffer and deletes every matching line without you ever " +
+					"moving the cursor there yourself.",
+				Start: []string{
+					"keep x",
+					"DELETE y",
+					"keep z",
+					"DELETE w",
+					"keep v",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"keep x",
+					"keep z",
+					"keep v",
+				},
+				Par: 12,
+			},
+			{
+				Title: "Boss Challenge",
+				Instructions: "Two junk lines and three lines that each have FIX " +
+					"repeated twice. Press : then type g/DELETE/d and enter to " +
+					"clear out the junk. Then press : again and type " +
+					"%s/FIX/DONE/g and enter to replace every FIX, on every " +
+					"remaining line, in one shot.",
+				Tip: "Tip: nothing here is new — it's the exact one-two punch " +
+					"from Day 34's own capstone: :g clears the noise, then %s " +
+					"with g rewrites everything left behind.",
+				Start: []string{
+					"FIX a FIX twice",
+					"DELETE junk1",
+					"FIX b FIX twice",
+					"DELETE junk2",
+					"FIX c FIX twice",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"DONE a DONE twice",
+					"DONE b DONE twice",
+					"DONE c DONE twice",
+				},
+				Par: 27,
+			},
+		},
+	},
+	{
+		Number: 42,
+		Week:   "Boss Gauntlet",
+		Title:  "Boss Challenge — Search + Visual Combined",
+		Summary: "Still no new keys — this recap crosses two weeks at once: the " +
+			"find-and-search family (f/F/t/T, /, %, *) from Days 22-27 and the " +
+			"visual-mode family (v, V, text objects) from Days 29-31. Search and " +
+			"visual mode aren't separate tools — a search motion can pick out exactly " +
+			"where a selection should start, and f/F/t/T and % both work as ordinary " +
+			"growing motions once you're already inside v or V. Five tasks pulling " +
+			"from both families at once.",
+		Challenges: []Challenge{
+			{
+				Title: "* To Jump, Then viw ~ To Fix It",
+				Instructions: "Your cursor sits on value on the first line. Press " +
+					"* to jump straight to its other use on the second line, then " +
+					"viw to select the word visually and ~ to flip its case.",
+				Tip: "Tip: * from Day 25 picks the target, viw from Day 31 " +
+					"selects it, and ~ finishes the job — the search and the " +
+					"visual selection are two separate steps that just happen to " +
+					"chain together.",
+				Start: []string{
+					"value = 1",
+					"old value here",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"value = 1",
+					"old VALUE here",
+				},
+				Par: 5,
+			},
+			{
+				Title: "/pattern To Jump, Then V d To Delete",
+				Instructions: "Press / then type ALERT and enter to jump straight " +
+					"to the line containing it, then V to select the whole line " +
+					"and d to delete it.",
+				Tip: "Tip: / from Day 23 gets you there no matter how far down " +
+					"the buffer it is — V from Day 29 then grabs the entire line " +
+					"in one press, wherever the search left the cursor.",
+				Start: []string{
+					"one",
+					"two ALERT three",
+					"four",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"one",
+					"four",
+				},
+				Par: 9,
+			},
+			{
+				Title: "v Then % — Visual Selection To The Matching Bracket",
+				Instructions: "Press f( to land on the opening parenthesis, then " +
+					"v to start a selection and % to extend it all the way to " +
+					"the matching closing one. d deletes everything selected, " +
+					"parens included.",
+				Tip: "Tip: % works as an ordinary motion inside visual mode " +
+					"too, same as h, l, or e — it just happens to jump to " +
+					"whichever bracket matches the one you started on.",
+				Start:       []string{"remove(all of this)"},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target:      []string{"remove"},
+				Par:         5,
+			},
+			{
+				Title: "v, Then f Twice — Growing A Selection With Finds",
+				Instructions: "Press v to start a selection, then f X to grow it " +
+					"up to the first X, and f X again to grow it further, up to " +
+					"the second X. d deletes everything now selected.",
+				Tip: "Tip: f isn't just for positioning the cursor before an " +
+					"edit — pressed while already inside a visual selection, it " +
+					"grows the highlighted range exactly like any other motion.",
+				Start:       []string{"12X34X56"},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target:      []string{"56"},
+				Par:         6,
+			},
+			{
+				Title: "Boss Challenge",
+				Instructions: "Five lines. Press * on value to jump to its other " +
+					"use below, then viw ~ to flip its case. Press /wrap and " +
+					"enter to jump to the call on line 2, f( to reach its " +
+					"opening paren, then v % d to delete the whole parenthesized " +
+					"argument. Press /DEBUG and enter to reach the noisy line, " +
+					"then V d to delete it outright. Finally G to reach the last " +
+					"remaining line and o to add one more below it — type all " +
+					"clear then esc.",
+				Tip: "Tip: nothing here is new — every jump is from Days 22-27 " +
+					"and every selection is from Days 29-31, each one just " +
+					"landing wherever the previous step left the cursor.",
+				Start: []string{
+					"value = 1",
+					"wrap(target)",
+					"noise DEBUG line",
+					"old value here",
+					"keep this line",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"value = 1",
+					"wrap",
+					"old VALUE here",
+					"keep this line",
+					"all clear",
+				},
+				Par: 37,
+			},
+		},
+	},
 }

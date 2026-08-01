@@ -691,6 +691,45 @@ func TestCurriculumSolvable(t *testing.T) {
 			[]string{"$", "p"},
 			[]string{"G", "d", "d"},
 		)},
+
+		{41, 0, exCmd("s/tea/coffee/")},
+		{41, 1, exCmd("s/run/GO/g")},
+		{41, 2, exCmd("%s/NOTE/DONE/")},
+		{41, 3, exCmd("g/DELETE/d")},
+		{41, 4, concatKeys(
+			exCmd("g/DELETE/d"),
+			exCmd("%s/FIX/DONE/g"),
+		)},
+
+		{42, 0, concatKeys(
+			[]string{"*"},
+			[]string{"v", "i", "w", "~"},
+		)},
+		{42, 1, concatKeys(
+			[]string{"/"}, typeStr("ALERT"), []string{"enter"},
+			[]string{"V", "d"},
+		)},
+		{42, 2, concatKeys(
+			[]string{"f", "("},
+			[]string{"v", "%", "d"},
+		)},
+		{42, 3, concatKeys(
+			[]string{"v"},
+			[]string{"f", "X"},
+			[]string{"f", "X"},
+			[]string{"d"},
+		)},
+		{42, 4, concatKeys(
+			[]string{"*"},
+			[]string{"v", "i", "w", "~"},
+			[]string{"/"}, typeStr("wrap"), []string{"enter"},
+			[]string{"f", "("},
+			[]string{"v", "%", "d"},
+			[]string{"/"}, typeStr("DEBUG"), []string{"enter"},
+			[]string{"V", "d"},
+			[]string{"G"},
+			append([]string{"o"}, append(typeStr("all clear"), "esc")...),
+		)},
 	}
 
 	m := NewModel()
