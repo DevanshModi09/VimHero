@@ -4692,4 +4692,143 @@ var days = []Day{
 			},
 		},
 	},
+	{
+		Number: 43,
+		Week:   "Boss Gauntlet",
+		Title:  "Boss Challenge — Operators + Marks + Macros Combined",
+		Summary: "Still no new keys — this recap pulls together the operator week " +
+			"(Days 6-14: daw, D, C, r, s, X) with the bookmarking and repetition " +
+			"tools from Days 32-33 (m/' marks, q/@/@@ macros). A mark lets you " +
+			"wander off to edit somewhere else and jump straight back; a macro lets " +
+			"one recorded operator edit replay itself down a whole list without " +
+			"retyping it. Five tasks combining both.",
+		Challenges: []Challenge{
+			{
+				Title: "m/' — Bookmark, Edit Elsewhere, Then Fix What You Bookmarked",
+				Instructions: "Press m a to bookmark the first line. Move down two " +
+					"lines and press f# to land on the # before the junk, then D to " +
+					"strip it off. Press ' a to jump back to your bookmark, w to " +
+					"reach the typo, then C to rewrite it — type right and esc.",
+				Tip: "Tip: D and C from Day 7 don't care that a mark sent you here " +
+					"— they just act from wherever the cursor lands, same as always.",
+				Start: []string{
+					"beta wrong",
+					"filler",
+					"alpha###junk",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"beta right",
+					"filler",
+					"alpha",
+				},
+				Par: 17,
+			},
+			{
+				Title: "A Macro Built From r — Replace The Same Spot Three Times",
+				Instructions: "Every line has the same typo in the same column. " +
+					"Record a macro into register a: 0 to reset the column, l to " +
+					"step onto the bad letter, r a to replace it — then j to drop " +
+					"to the next line before stopping the recording. Replay it " +
+					"twice with @ a @ a to fix both remaining lines.",
+				Tip: "Tip: r from Day 9 replaces a single character without " +
+					"leaving Normal mode — perfect for a macro, since there's no " +
+					"Insert-mode esc to worry about landing correctly.",
+				Start: []string{
+					"cXt",
+					"cXt",
+					"cXt",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"cat",
+					"cat",
+					"cat",
+				},
+				Par: 22,
+			},
+			{
+				Title: "A Macro Built From daw — Strip A Word Three Times",
+				Instructions: "Every line opens with the same throwaway word. " +
+					"Record a macro into register a: daw removes it cleanly, then " +
+					"j 0 moves to the next line's start before you stop recording. " +
+					"Replay it twice with @ a @ a.",
+				Tip: "Tip: same daw from Day 7 — the macro doesn't know or care " +
+					"what the word is, it just repeats the same operator+text-" +
+					"object combo wherever the cursor lands next.",
+				Start: []string{
+					"junk word keep",
+					"junk word keep",
+					"junk word keep",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"word keep",
+					"word keep",
+					"word keep",
+				},
+				Par: 22,
+			},
+			{
+				Title: "Marks + A Macro Built From X And s",
+				Instructions: "Bookmark the header line with m a. Move down and " +
+					"record a macro into register a: $ to reach the end of the " +
+					"line, X to delete the stray letter before it, then j 0 to " +
+					"advance before stopping. Replay it twice with @ a @ a to fix " +
+					"the remaining two lines, then ' a to jump back to the header " +
+					"and s to swap its first letter — type B and esc.",
+				Tip: "Tip: X from Day 12 deletes backward, so landing on the very " +
+					"last character with $ first is what puts the stray letter " +
+					"right before the cursor where X can reach it.",
+				Start: []string{
+					"bad header",
+					"trailing1xz",
+					"trailing2xz",
+					"trailing3xz",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"Bad header",
+					"trailing1z",
+					"trailing2z",
+					"trailing3z",
+				},
+				Par: 27,
+			},
+			{
+				Title: "Boss Challenge",
+				Instructions: "Press m a to bookmark the title line. Move down and " +
+					"record a macro into register a that runs daw then j 0, stop " +
+					"recording, and replay it twice with @ a @ a to strip the junk " +
+					"prefix off the next two lines. Press G to reach the last line, " +
+					"f# to find the junk marker, and D to strip it off. Finally " +
+					"' a to jump back to the title and w then C to rewrite its " +
+					"second word — type fixed and esc.",
+				Tip: "Tip: nothing here is new — every piece is from Days 6-14 or " +
+					"32-33, chained the same way the four tasks above already " +
+					"chained them, just longer.",
+				Start: []string{
+					"title bad",
+					"junk1 word keep",
+					"junk2 word keep",
+					"junk3 word keep",
+					"trailing###junk",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"title fixed",
+					"word keep",
+					"word keep",
+					"word keep",
+					"trailing",
+				},
+				Par: 39,
+			},
+		},
+	},
 }
