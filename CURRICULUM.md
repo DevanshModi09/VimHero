@@ -130,7 +130,7 @@ in scope until day 45 pulls in the entire curriculum.
 | 40 | Marks & macros (days 32-33) | ✅ |
 | 41 | Substitution & global (day 34) | ✅ |
 | 42 | Search + visual combined | ✅ |
-| 43 | Operators + marks + macros combined | ⏳ |
+| 43 | Operators + marks + macros combined | ✅ |
 | 44 | Big mixed recap — nearly everything | ⏳ |
 | 45 | The Ultimate Boss — all 45 days | ⏳ |
 
@@ -178,6 +178,13 @@ its boss chains a `*`-then-`viw`-`~` fix, an `f(`-then-`v%d` bracket
 delete, a `/pattern`-then-`Vd` line delete, and a closing `o` insert.
 All seven days are `KindEdit` challenges (no `KindGoal` reach), matching
 the shape of days 8, 11, 14, 21, and 28 from the weeks they recap.
+
+Day 43 is the first recap built specifically around Days 32-34's marks and
+macros paired with the operators week (Days 6-14): `m`/`'` to bookmark a
+spot and jump back after editing elsewhere, and a macro built from `r`,
+`daw`, or `X`/`s` to replay one operator edit down a whole list — its boss
+chains a mark, a macro built from `daw`, and a `D`/`C` fix reached by
+jumping back to the bookmark.
 
 ## Where the engine outpaces the curriculum
 
