@@ -776,6 +776,43 @@ func TestCurriculumSolvable(t *testing.T) {
 			[]string{"w"},
 			append([]string{"C"}, append(typeStr("fixed"), "esc")...),
 		)},
+
+		{44, 0, concatKeys(
+			[]string{"2", "d", "w"},
+			[]string{"/"}, typeStr("TARGET"), []string{"enter"},
+			[]string{"d", "a", "w"},
+		)},
+		{44, 1, concatKeys(
+			exCmd("g/DROP/d"),
+			[]string{"g", "g"},
+			[]string{"v", "i", "w", "~"},
+		)},
+		{44, 2, concatKeys(
+			[]string{"q", "a"},
+			exCmd("s/run/GO/g"),
+			[]string{"j", "q"},
+			[]string{"@", "a"},
+		)},
+		{44, 3, concatKeys(
+			[]string{"m", "a"},
+			[]string{"G"},
+			[]string{"v", "i", "w", "~"},
+			[]string{"'", "a"},
+			[]string{"v", "i", "w", "~"},
+		)},
+		{44, 4, concatKeys(
+			exCmd("g/DROP/d"),
+			[]string{"g", "g"},
+			[]string{"j"},
+			exCmd("s/run/GO/g"),
+			[]string{"j"},
+			[]string{"/"}, typeStr("target"), []string{"enter"},
+			[]string{"v", "i", "w", "~"},
+			[]string{"G"},
+			[]string{"v", "i", "w", "~"},
+			[]string{"g", "g"},
+			append([]string{"c", "i", "w"}, append(typeStr("TITLE"), "esc")...),
+		)},
 	}
 
 	m := NewModel()

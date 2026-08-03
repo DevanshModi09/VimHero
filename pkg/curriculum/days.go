@@ -4831,4 +4831,133 @@ var days = []Day{
 			},
 		},
 	},
+	{
+		Number: 44,
+		Week:   "Boss Gauntlet",
+		Title:  "Boss Challenge — Big Mixed Recap",
+		Summary: "Still no new keys — this is the widest recap yet, pulling from " +
+			"nearly every week at once: counted operators and search from Weeks " +
+			"2-4, the global command and substitution from Day 34, visual-mode " +
+			"case toggling from Day 31, and marks and macros from Days 32-33. " +
+			"Nothing here is dictated key by key — figure out which tool from " +
+			"which week fits each job.",
+		Challenges: []Challenge{
+			{
+				Title: "Count + Search + daw",
+				Instructions: "Press 2dw to clear the first two words. Then / " +
+					"TARGET and enter to jump straight to it, and daw to remove it " +
+					"cleanly.",
+				Tip: "Tip: 2dw from Day 15 and daw from Day 7 both still work " +
+					"exactly the same after a / search from Day 23 repositions the " +
+					"cursor — a search is just another way to arrive somewhere.",
+				Start: []string{
+					"one two three four",
+					"find TARGET here",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"three four",
+					"find here",
+				},
+				Par: 14,
+			},
+			{
+				Title: ":g To Clean Up, Then A Visual Case Toggle",
+				Instructions: "Press : then type g/DROP/d and enter to delete " +
+					"every DROP line. Press gg to make sure you're back at the " +
+					"top, then v i w ~ to flip the case of the first word.",
+				Tip: "Tip: :g from Day 34 and viw from Day 31 have nothing to do " +
+					"with each other — they just both happen to be useful in the " +
+					"same cleanup pass.",
+				Start: []string{
+					"alpha value",
+					"DROP junk1",
+					"beta value",
+					"DROP junk2",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"ALPHA value",
+					"beta value",
+				},
+				Par: 16,
+			},
+			{
+				Title: "Macro Around A Substitution",
+				Instructions: "Record a macro into register a: :s/run/GO/g and " +
+					"enter fixes every run on the current line, then j moves to " +
+					"the next line before you stop recording. Replay it once with " +
+					"@ a to fix the second line the same way.",
+				Tip: "Tip: a macro doesn't just replay simple keystrokes — the " +
+					"entire :s/run/GO/g enter command from Day 34 gets recorded " +
+					"and replayed as a single unit, same as any other key.",
+				Start: []string{
+					"fix run run please",
+					"fix run run please",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"fix GO GO please",
+					"fix GO GO please",
+				},
+				Par: 31,
+			},
+			{
+				Title: "Marks + Visual Case Toggle, Twice",
+				Instructions: "Press m a to bookmark the first line. Press G to " +
+					"reach the last line and v i w ~ to flip its first word's " +
+					"case. Press ' a to jump back to your bookmark and v i w ~ " +
+					"again to flip that word too.",
+				Tip: "Tip: same m/' from Day 32 and viw/~ from Day 31 as always " +
+					"— a mark is just a saved position, it doesn't care what you " +
+					"do before or after jumping back to it.",
+				Start: []string{
+					"alpha value",
+					"beta value",
+					"gamma value",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"ALPHA value",
+					"beta value",
+					"GAMMA value",
+				},
+				Par: 13,
+			},
+			{
+				Title: "Boss Challenge",
+				Instructions: "Press : then type g/DROP/d and enter to clear the " +
+					"junk lines. Press gg then j to reach the run line and fix it " +
+					"with :s/run/GO/g and enter. Press j to reach the next line, " +
+					"then / target and enter followed by v i w ~ to flip its case. " +
+					"Press G then v i w ~ to flip the last line's first word too. " +
+					"Finally gg and c i w to retitle the first line — type TITLE " +
+					"and esc.",
+				Tip: "Tip: nothing here is new — every piece is from the four " +
+					"tasks above, just strung into one longer pass across a " +
+					"bigger buffer.",
+				Start: []string{
+					"title placeholder",
+					"DROP junk one",
+					"fix run run twice",
+					"DROP junk two",
+					"search target spot",
+					"tail value",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"TITLE placeholder",
+					"fix GO GO twice",
+					"search TARGET spot",
+					"TAIL value",
+				},
+				Par: 54,
+			},
+		},
+	},
 }
