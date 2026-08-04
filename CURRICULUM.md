@@ -115,7 +115,7 @@ visual mode, `d`/`y`/`c`/`~` over a selection, marks (`m`/`'`), macros
 (`q`/`@`), `:s` substitution, and `:g` — so this week is buildable
 against existing functionality with no engine changes needed.
 
-## Days 35-45: Boss Gauntlet 🚧
+## Days 35-45: Boss Gauntlet ✅
 
 No new keys from here on — every day is a cumulative recap, increasing
 in scope until day 45 pulls in the entire curriculum.
@@ -131,8 +131,8 @@ in scope until day 45 pulls in the entire curriculum.
 | 41 | Substitution & global (day 34) | ✅ |
 | 42 | Search + visual combined | ✅ |
 | 43 | Operators + marks + macros combined | ✅ |
-| 44 | Big mixed recap — nearly everything | ⏳ |
-| 45 | The Ultimate Boss — all 45 days | ⏳ |
+| 44 | Big mixed recap — nearly everything | ✅ |
+| 45 | The Ultimate Boss — all 45 days | ✅ |
 
 Day 35 follows the checkpoint-boss pattern of days 8, 11, 14, 21, and 28
 — no new keys, five tasks recombining `hjkl`, `w`/`e`, `gg`/`G`,
@@ -184,7 +184,18 @@ macros paired with the operators week (Days 6-14): `m`/`'` to bookmark a
 spot and jump back after editing elsewhere, and a macro built from `r`,
 `daw`, or `X`/`s` to replay one operator edit down a whole list — its boss
 chains a mark, a macro built from `daw`, and a `D`/`C` fix reached by
-jumping back to the bookmark.
+jumping back to the bookmark. Day 44 widens the net further, pulling from
+nearly every week at once: a counted `2dw` paired with a `/` search and
+`daw`, `:g` cleanup paired with a visual case toggle, a macro recording an
+entire `:s///g` command, and marks paired with `viw`/`~` twice — its boss
+strings all four together across a six-line buffer. Day 45 closes out the
+curriculum: each of its first four tasks spotlights one broad slice (Week
+1 movement and Insert mode, Week 2-3 operators/text-objects/counts, Week
+4-5 search/visual/marks, and Day 32-34 macros/substitution/global), and
+the fifth is the grand finale — a mark, a `:g` cleanup, a macro built from
+`ciw` and `di(`, a search-driven visual case toggle, a fresh line opened
+with `o`, and a final jump back to the bookmark to retitle it, all in one
+pass across the longest buffer in the game.
 
 ## Where the engine outpaces the curriculum
 
