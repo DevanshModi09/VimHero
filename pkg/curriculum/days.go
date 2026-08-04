@@ -4960,4 +4960,139 @@ var days = []Day{
 			},
 		},
 	},
+	{
+		Number: 45,
+		Week:   "Boss Gauntlet",
+		Title:  "The Ultimate Boss — All 45 Days",
+		Summary: "The final day. No new keys — this pulls one representative tool " +
+			"from across the entire curriculum: movement and Insert mode from " +
+			"Week 1, operators/text-objects/counts from Weeks 2-3, search and " +
+			"visual mode from Weeks 4-5, and marks/macros/substitution/global from " +
+			"the end of Week 5. The last challenge is the grand finale — every " +
+			"family gets used at least once, chained into a single pass across " +
+			"the longest buffer in the whole game.",
+		Challenges: []Challenge{
+			{
+				Title: "Movement + dd + Insert",
+				Instructions: "Press j then dd to delete the junk line in the " +
+					"middle. Press G then A to append to the last line — type " +
+					" done and esc. Press gg then O to open a new first line — " +
+					"type header and esc.",
+				Tip: "Tip: straight out of Week 1 — j/G/gg for movement, dd from " +
+					"Day 5, A/O from Day 3. The oldest tools in the game still " +
+					"carry their weight on the very last day.",
+				Start: []string{
+					"keep one",
+					"junk line",
+					"keep two",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"header",
+					"keep one",
+					"keep two done",
+				},
+				Par: 21,
+			},
+			{
+				Title: "Text Object + Count, Chained",
+				Instructions: "Press f( to reach the opening paren, then d i ( to " +
+					"empty it out. Press w to step past the closing paren, then " +
+					"2dw to clear the next two words.",
+				Tip: "Tip: di( from Day 16 and the count on 2dw from Day 15 don't " +
+					"interact at all — they're just two separate Week 2-3 tools " +
+					"landing back to back on the same line.",
+				Start: []string{
+					"one (two) three four five",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"one () five",
+				},
+				Par: 9,
+			},
+			{
+				Title: "Search + Visual + Marks + daw",
+				Instructions: "Press m a to bookmark the first line. Press * to " +
+					"jump to the word's other use, then v i w ~ to flip its case. " +
+					"Press ' a to jump back to your bookmark, then daw to remove " +
+					"the word cleanly.",
+				Tip: "Tip: * from Day 25, viw from Day 31, and m/' from Day 32 " +
+					"each do one small thing — stacked together they cover three " +
+					"different weeks in four keystrokes' worth of ideas.",
+				Start: []string{
+					"value alpha",
+					"other value beta",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"alpha",
+					"other VALUE beta",
+				},
+				Par: 12,
+			},
+			{
+				Title: ":g Then %s — The Day 34 One-Two Punch, One More Time",
+				Instructions: "Press : then type g/DROP/d and enter to clear the " +
+					"junk line. Press : again and type %s/fix/DONE/g and enter to " +
+					"replace every remaining fix, on every line, in one shot.",
+				Tip: "Tip: the exact same capstone move from Day 34 and Day 41 " +
+					"— :g clears the noise first, then %s with g rewrites " +
+					"everything that's left.",
+				Start: []string{
+					"fix a fix twice",
+					"DROP junk",
+					"fix b fix twice",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"DONE a DONE twice",
+					"DONE b DONE twice",
+				},
+				Par: 25,
+			},
+			{
+				Title: "The Ultimate Boss Challenge",
+				Instructions: "Press m a to bookmark the title line. Press : then " +
+					"type g/DROP/d and enter to clear the junk lines. Press gg " +
+					"then j to reach the first fixme line, and record a macro " +
+					"into register a: c i w to retype the word — type done and " +
+					"esc — then f( and d i ( to empty its parens, then j 0 to " +
+					"advance before stopping the recording. Replay it once with " +
+					"@ a for the second fixme line. Press / target and enter to " +
+					"jump to the search line, then v i w ~ to flip its case. " +
+					"Press G then o to add a closing line — type all clear and " +
+					"esc. Finally ' a to jump back to your bookmark and c i w to " +
+					"retitle it — type TITLE and esc.",
+				Tip: "Tip: every single piece here — marks, :g, a macro built " +
+					"from ciw and di(, search, a visual case toggle, and a fresh " +
+					"line with o — was taught on its own day somewhere in the " +
+					"first 44. Today is just proof they all still work together.",
+				Start: []string{
+					"title placeholder",
+					"DROP junk one",
+					"fixme alpha (old)",
+					"fixme beta (old)",
+					"DROP junk two",
+					"find target word",
+					"tail line here",
+				},
+				CursorStart: Pos{0, 0},
+				Kind:        KindEdit,
+				Target: []string{
+					"TITLE placeholder",
+					"done alpha ()",
+					"done beta ()",
+					"find TARGET word",
+					"tail line here",
+					"all clear",
+				},
+				Par: 85,
+			},
+		},
+	},
 }

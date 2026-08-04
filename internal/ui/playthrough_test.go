@@ -813,6 +813,50 @@ func TestCurriculumSolvable(t *testing.T) {
 			[]string{"g", "g"},
 			append([]string{"c", "i", "w"}, append(typeStr("TITLE"), "esc")...),
 		)},
+
+		{45, 0, concatKeys(
+			[]string{"j"},
+			[]string{"d", "d"},
+			[]string{"G"},
+			append([]string{"A"}, append(typeStr(" done"), "esc")...),
+			[]string{"g", "g"},
+			append([]string{"O"}, append(typeStr("header"), "esc")...),
+		)},
+		{45, 1, concatKeys(
+			[]string{"f", "("},
+			[]string{"d", "i", "("},
+			[]string{"w"},
+			[]string{"2", "d", "w"},
+		)},
+		{45, 2, concatKeys(
+			[]string{"m", "a"},
+			[]string{"*"},
+			[]string{"v", "i", "w", "~"},
+			[]string{"'", "a"},
+			[]string{"d", "a", "w"},
+		)},
+		{45, 3, concatKeys(
+			exCmd("g/DROP/d"),
+			exCmd("%s/fix/DONE/g"),
+		)},
+		{45, 4, concatKeys(
+			[]string{"m", "a"},
+			exCmd("g/DROP/d"),
+			[]string{"g", "g"},
+			[]string{"j"},
+			[]string{"q", "a"},
+			append([]string{"c", "i", "w"}, append(typeStr("done"), "esc")...),
+			[]string{"f", "("},
+			[]string{"d", "i", "("},
+			[]string{"j", "0", "q"},
+			[]string{"@", "a"},
+			[]string{"/"}, typeStr("target"), []string{"enter"},
+			[]string{"v", "i", "w", "~"},
+			[]string{"G"},
+			append([]string{"o"}, append(typeStr("all clear"), "esc")...),
+			[]string{"'", "a"},
+			append([]string{"c", "i", "w"}, append(typeStr("TITLE"), "esc")...),
+		)},
 	}
 
 	m := NewModel()
