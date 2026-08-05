@@ -1,6 +1,6 @@
 # VimHero
 ![Go](https://img.shields.io/badge/Go-1.26-00ADD8?logo=go&logoColor=white)
-![Curriculum](https://img.shields.io/badge/curriculum-26%2F45%20days-blueviolet)
+![Curriculum](https://img.shields.io/badge/curriculum-45%2F45%20days-blueviolet)
 ![Engine](https://img.shields.io/badge/vim%20engine-hand--built-orange)
 
 **A terminal game that teaches Vim from zero to hero, one day at a time.**
@@ -85,14 +85,14 @@ Clearing every challenge in a day unlocks the next one.
 | 1    | 1–5   | Basic movement & modes                            | ✅ done                   |
 | 2    | 6–14  | More operators (`cw`, `ciw`, `daw`, `D`/`C`, `r`/`~`, `s`/`S`, `X`/`u`, `0`/`^`/`$`, ...) | ✅ done |
 | 3    | 15–21 | Counts & text objects (+ Day 21 full-revision boss) | ✅ done*                |
-| 4    | 22–28 | Find & search (+ Day 28 boss)                     | 🚧 in progress*           |
-| 5    | 29–34 | Visual mode, marks, macros, substitution & global | ⏳ planned                |
-| —    | 35–45 | Boss gauntlet — cumulative recap of every week, ending in the Day 45 ultimate boss | ⏳ planned |
+| 4    | 22–28 | Find & search (+ Day 28 boss)                     | ✅ done                   |
+| 5    | 29–34 | Visual mode, marks, macros, substitution & global | ✅ done                   |
+| —    | 35–45 | Boss gauntlet — cumulative recap of every week, ending in the Day 45 ultimate boss | ✅ done |
 
-\* Day 17 is missing a few challenges and Day 28 (this week's boss)
-hasn't been written yet — see [CURRICULUM.md](CURRICULUM.md) for
-details. All new teaching content wraps up by Day 34; every day from
-35 to 45 is pure recap and boss challenges, no new keys introduced.
+\* Day 17 is still missing a few challenges — see
+[CURRICULUM.md](CURRICULUM.md) for details. All new teaching content
+wraps up by Day 34; every day from 35 to 45 is pure recap and boss
+challenges, no new keys introduced.
 
 Every authored day carries 5 hands-on challenges, each one verified by
 scripting its solution against the real engine before being written
